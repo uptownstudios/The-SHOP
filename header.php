@@ -15,8 +15,11 @@
 		<meta charset="<?php bloginfo( 'charset' ); ?>" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<?php wp_head(); ?>
+		<script src="https://use.typekit.net/uax4yzt.js"></script>
+		<script>try{Typekit.load({ async: true });}catch(e){}</script>
 	</head>
-	<body <?php body_class(); ?>>
+	<body id="heeeey" <?php body_class(); ?>>
+	<div id="preloader"></div>
 	<?php do_action( 'foundationpress_after_body' ); ?>
 
 	<?php if ( get_theme_mod( 'wpt_mobile_menu_layout' ) == 'offcanvas' ) : ?>
@@ -28,17 +31,20 @@
 	<?php do_action( 'foundationpress_layout_start' ); ?>
 
 	<header id="masthead" class="site-header" role="banner">
+		<!-- <div class="logo-wrapper hide-for-small-only">
+			<?php if ( function_exists( 'the_custom_logo' ) ) { the_custom_logo(); } ?>
+		</div> -->
 		<div class="title-bar" data-responsive-toggle="site-navigation">
-			<button class="menu-icon" type="button" data-toggle="mobile-menu"></button>
 			<div class="title-bar-title">
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
+				<?php if ( function_exists( 'the_custom_logo' ) ) { the_custom_logo(); } ?>
 			</div>
+			<button class="menu-icon" type="button" data-toggle="mobile-menu"></button>
 		</div>
 
 		<nav id="site-navigation" class="main-navigation top-bar" role="navigation">
 			<div class="top-bar-left">
 				<ul class="menu">
-					<li class="home"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></li>
+					<li class="home"><?php if ( function_exists( 'the_custom_logo' ) ) { the_custom_logo(); } ?></li>
 				</ul>
 			</div>
 			<div class="top-bar-right">

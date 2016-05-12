@@ -7,8 +7,8 @@
  */
 
 ?>
-
-<nav class="off-canvas position-left" id="mobile-menu" data-off-canvas data-position="left" role="navigation">
+<nav class="off-canvas position-right" id="mobile-menu" data-off-canvas data-position="right" role="navigation">
+  <?php if ( function_exists( 'the_custom_logo' ) ) { the_custom_logo(); } ?>
   <?php foundationpress_mobile_nav(); ?>
 </nav>
 
