@@ -57,7 +57,7 @@ div#preloader.loaded {
 nav.off-canvas {
   height: 100vh;
   background: $dark;
-
+  
   a.custom-logo-link {
     display: block;
   }
@@ -69,11 +69,86 @@ nav.off-canvas {
   > ul.menu {
     height: auto;
   }
+  ul.social-media-wrapper {
+    margin: 0 17px;
+    text-align: center;
+  }
+  ul.social-media-wrapper li {
+    margin: 0 4px 10px;
+  }
+}
+
+body.off-canvas-open[data-whatinput="touch"] {
+  overflow-y: hidden;
 }
 
 header#masthead {
   background-color: rgba(18,18,18,.5);
   transition: all 500ms ease-out;
+}
+
+ul.social-media-wrapper {
+  list-style: none;
+  text-align: right;
+  margin: 0 5px 0 0;
+  li {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+    text-align: center;
+    position: relative;
+    z-index: 99;
+  }
+  li:after {
+    width: 24px;
+    height: 24px;
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    border-radius: 12px;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 250ms ease-out;
+  }
+  li.facebook:after {
+    background: #3b5998;
+  }
+  li.twitter:after {
+    background: #00aced;
+  }
+  li.linkedin:after {
+    background: #007bb6;
+  }
+  li.instagram:after {
+    background: #517fa4;
+  }
+  li.youtube:after {
+    background: #bb0000;
+  }
+  li.pinterest:after {
+    background: #cb2027;
+  }
+  li.vimeo:after {
+    background: #aad450;
+  }
+  li.rss:after {
+    background: #21759b;
+  }
+  li:hover:after {
+    transform: scale(1);
+    opacity: 1;
+  }
+  li a {
+    display: block;
+    color: #FFF;
+  }
+  li:hover a {
+    color: #FFF !important;
+  }
 }
 
 .top-bar {
@@ -104,12 +179,13 @@ background: none;
     }
   }
 
-  .top-bar-right {
-  display: table-cell;
-  float: none;
-  width: 75%;
-  text-align: right;
-  vertical-align: bottom;
+    .top-bar-right {
+    display: table-cell;
+    float: none;
+    width: 75%;
+    text-align: right;
+    vertical-align: bottom;
+
     .menu {
       text-align: right;
     }
@@ -156,6 +232,25 @@ background: none;
   }
 }
 
+@media only screen and (max-width: 64em) and (min-width: 50.0625em) {
+  .top-bar .top-bar-right .menu > li > a {
+    padding: 10px 7px 0 0 !important;
+    font-size: 1.95em;
+  }
+}
+@media only screen and (max-width: 50em) and (min-width: 45.0625em) {
+  .top-bar .top-bar-right .menu > li > a {
+    padding: 10px 7px 0 0 !important;
+    font-size: 1.75em;
+  }
+}
+@media only screen and (max-width: 45em) and (min-width: 40em) {
+  .top-bar .top-bar-right .menu > li > a {
+    padding: 10px 7px 0 0 !important;
+    font-size: 1.5em;
+  }
+}
+
 header#masthead.reverse-header {
   background-color: rgba(255,255,255,.95);
 
@@ -166,17 +261,34 @@ header#masthead.reverse-header {
     background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/05/logo-color.svg) no-repeat center center !important;
     background-size: 150px 69px !important;
   }
+  .title-bar-title a.custom-logo-link {
+    background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/05/logo-color.svg) no-repeat center center !important;
+    background-size: 171px 80px !important;
+    display: inline-block;
+  }
+  .menu-icon::after,
+  .menu-icon:hover:after {
+    background: #222;
+    box-shadow: 0 7px 0 #222, 0 14px 0 #222;
+  }
   img.custom-logo {
     opacity: 0;
   }
+  .top-bar-social ul li a {
+    color: #222;
+  }
 }
 
-body.shrink-logo .top-bar .top-bar-left a.custom-logo-link img {
-  width: 150px;
-  height: auto;
-  transition: width 500ms ease-out;
+body.shrink-logo {
+  .top-bar .top-bar-left a.custom-logo-link img {
+    width: 150px;
+    height: auto;
+    transition: width 500ms ease-out;
+  }
+  .top-bar-social ul {
+    margin: 18px 5px 0 0 !important;
+  }
 }
-
 /**** HEADER STYLES ****/
 header#masthead {
   position: fixed;
@@ -254,10 +366,10 @@ header#masthead {
   }
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 64em) {
   header#masthead {
-    position: absolute;
-    top: 0 !important;
+    // position: absolute;
+    // top: 0 !important;
   }
   .title-bar {
     background: none !important;
@@ -267,7 +379,16 @@ header#masthead {
     height: 100% !important;
   }
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 48.875em) {
+  .admin-bar header#masthead {
+    top: 46px;
+  }
+  body.shrink-logo .top-bar-social ul,
+  .top-bar-social ul {
+    margin: 5px 5px 0 0 !important;
+  }
+}
+@media only screen and (max-width: 47.9375em) {
   .what-we-do-wrapper .what-we-do-triangle {
     top: -80px;
   }
@@ -278,7 +399,16 @@ header#masthead {
     }
   }
 }
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 39.9375em) {
+  header#masthead {
+    position: absolute !important;
+    top: 0 !important;
+  }
+  .top-bar-social {
+    display: none !important;
+  }
+}
+@media only screen and (max-width: 30em) {
   .what-we-do-inner {
     .entry-portal {
       width: 100%;
@@ -651,26 +781,26 @@ ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:
 .portfolio-filter-toggle {
 	display: none;
 }
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 64em) {
 	.single-portfolio-item {
   	width: 33.3333% !important;
   	height: 0 !important;
   	padding-bottom: 25%;
 	}
 }
-@media only screen and (min-width: 801px) {
+@media only screen and (min-width: 50.0625em) {
 	.not-home.single-portfolio .content_container, .not-home.shrink-nav.single-portfolio .content_container {
 		margin-top: 0 !important;
 	}
 }
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 50em) {
 	.single-portfolio-item {
   	width: 33.3333% !important;
   	height: 0 !important;
   	padding-bottom: 33.3333%;
 	}
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 47.9375em) {
 	span.cat-link {
 		width: 50px;
 		height: 50px;
@@ -713,14 +843,14 @@ ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:
     display: none;
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 37.5em) {
 	.single-portfolio-item {
   	width: 50% !important;
   	height: 0 !important;
   	padding-bottom: 50%;
 	}
 }
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 30em) {
 	.single-portfolio-item {
   	width: 50% !important;
   	height: 0 !important;

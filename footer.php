@@ -81,6 +81,9 @@
 		  $container.isotope({ filter: selector });
 		  return false;
 		});
+		$('.title-bar .menu-icon').click(function() {
+			$('body').toggleClass('off-canvas-open');
+		})
 	});
 
 	function init() {
@@ -113,5 +116,7 @@
 
 </script>
 <?php do_action( 'foundationpress_before_closing_body' ); ?>
+<script id="__bs_script__">//<![CDATA[document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.2.12.3.js'><\/script>".replace("HOST", location.hostname));
+//]]></script>
 </body>
 </html>
