@@ -5,28 +5,91 @@ $redalpha: rgba(167,37,53,.9);
 $teal: #8dc7bd;
 $dark: #1b1b1b;
 
-/**** PRELOADER STYLES ****/
-div#preloader {
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 9999999;
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-    background: #FFF;
-}
-div#preloader {
-    opacity: 1;
-    -webkit-transition: opacity 700ms ease-out 400ms;
-    -moz-transition: opacity 700ms ease-out 400ms;
-    -o-transition: opacity 700ms ease-out 400ms;
-    transition: opacity 700ms ease-out 400ms;
-}
-div#preloader.loaded {
-    opacity: 0;
+@mixin transition($attr) {
+  -webkit-transition: $attr 250ms ease-out;
+     -moz-transition: $attr 250ms ease-out;
+      -ms-transition: $attr 250ms ease-out;
+          transition: $attr 250ms ease-out;
 }
 
+/**** TABLE OF CONTENTS ****
+0. PRELOADER STYLES
+1. GENERAL STYLES
+2. HEADER STYLES
+  2a. Off Canvas Nav Styles
+  2b. Social Media Styles
+  2c. Top Bar and Main Nav Styles
+  2d. Reverse Header Styles
+  2e. Shrink Logo Styles
+
+3. HOME PAGE STYLES
+4. INTERNAL PAGE STYLES
+  4a. Title Bar Styles
+
+5. PORTFOLIO STYLES
+6. FOOTER STYLES
+
+** END TABLE OF CONTENTS **/
+
+/**** 0. PRELOADER STYLES ****/
+div#preloader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999999;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  background: #FFF;
+}
+div#preloader {
+  opacity: 1;
+  -webkit-transition: opacity 700ms ease-out 400ms;
+  -moz-transition: opacity 700ms ease-out 400ms;
+  -o-transition: opacity 700ms ease-out 400ms;
+  transition: opacity 700ms ease-out 400ms;
+}
+div#preloader.loaded {
+  opacity: 0;
+}
+
+
+/**** 1. GENERAL STYLES ****/
+a {
+  font-size: 95%;
+  color: $red;
+  font-weight: 700;
+  font-family: 'museo-sans';
+  text-transform: uppercase;
+}
+a:hover, a:focus {
+  color: $dark;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-stack;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: $red;
+}
+.bs-btn {
+    font-size: 18px;
+    line-height: 1;
+    display: inline-block;
+    padding: 8px 20px;
+    border: 2px solid $red;
+    @include transition(all);
+}
+.bs-btn:hover,
+.bs-btn:focus {
+  background: $red;
+  color: #FFF;
+}
+html .margin-bottom-60 {
+  margin-bottom: 60px !important;
+}
+html .margin-bottom-6per {
+  margin-bottom: 6% !important;
+}
 .section-title {
   margin-top: -55px;
   img {
@@ -45,6 +108,17 @@ div#preloader.loaded {
   }
 }
 
+
+/**** 2. HEADER STYLES ****/
+header#masthead {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  background-color: rgba(18,18,18,.5);
+  transition: all 500ms ease-out;
+}
 .title-bar-title {
   width: calc(100% - 40px);
   text-align: left;
@@ -54,10 +128,12 @@ div#preloader.loaded {
     height: 80px !important;
   }
 }
+
+/* 2a. Off Canvas Nav Styles */
 nav.off-canvas {
   height: 100vh;
   background: $dark;
-  
+
   a.custom-logo-link {
     display: block;
   }
@@ -65,6 +141,31 @@ nav.off-canvas {
     margin: 0 auto;
     display: block;
     padding: 1rem 2rem;
+  }
+  .menu > li > a {
+    font: 500 28px/1 'acumin-pro-extra-condensed';
+    color: #FFF;
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .menu > li > a:after {
+    content: '';
+    width: 0;
+    height: 2px;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    background: $yellow;
+    @include transition(width);
+  }
+  .menu > li:hover > a:after,
+  .menu > li:active > a:after,
+  .menu > li:focus > a:after {
+    width: 100%;
   }
   > ul.menu {
     height: auto;
@@ -78,15 +179,15 @@ nav.off-canvas {
   }
 }
 
+body.off-canvas-open {
+  height: 100vh;
+  overflow: hidden;
+}
 body.off-canvas-open[data-whatinput="touch"] {
   overflow-y: hidden;
 }
 
-header#masthead {
-  background-color: rgba(18,18,18,.5);
-  transition: all 500ms ease-out;
-}
-
+/* 2b. Social Media Styles */
 ul.social-media-wrapper {
   list-style: none;
   text-align: right;
@@ -151,6 +252,7 @@ ul.social-media-wrapper {
   }
 }
 
+/* 2c. Top Bar and Main Nav Styles */
 .top-bar {
 display: table;
 width: 100%;
@@ -251,8 +353,10 @@ background: none;
   }
 }
 
+/* 2d. Reverse Header Styles */
 header#masthead.reverse-header {
   background-color: rgba(255,255,255,.95);
+  box-shadow: 0 0 18px 5px rgba(0,0,0,.2);
 
   .top-bar .menu a {
     color: $dark;
@@ -279,27 +383,17 @@ header#masthead.reverse-header {
   }
 }
 
+/* 2e. Shrink Logo Styles */
 body.shrink-logo {
   .top-bar .top-bar-left a.custom-logo-link img {
     width: 150px;
     height: auto;
     transition: width 500ms ease-out;
   }
-  .top-bar-social ul {
-    margin: 18px 5px 0 0 !important;
-  }
-}
-/**** HEADER STYLES ****/
-header#masthead {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 99;
 }
 
 
-/**** HOME PAGE STYLES ****/
+/**** 3. HOME PAGE STYLES ****/
 .admin-bar header#masthead {
   top: 32px;
 }
@@ -324,6 +418,9 @@ header#masthead {
     height: auto;
     background-size: 1%;
     transition: background-size 500ms ease-out;
+  }
+  .wpb_single_image.what-we-do-triangle img {
+    margin-bottom: -40px !important;
   }
   .wpb_single_image.sunburst-hover img {
     padding: 40px;
@@ -366,11 +463,208 @@ header#masthead {
   }
 }
 
-@media only screen and (max-width: 64em) {
-  header#masthead {
-    // position: absolute;
-    // top: 0 !important;
+.hcd-wrapper {
+  background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/05/sticky-notes-bg.svg) repeat-x -17px calc(100% + 35px);
+  background-size: 550px;
+
+  .hcd-hand-svg img {
+    width: 150px;
+    height: auto;
   }
+  .hcd-banner-svg img {
+    width: 520px;
+    max-width: 100%;
+    height: auto;
+    margin: 60px 0 30px;
+  }
+  p {
+    font: 400 25px/1.4 'museo-sans';
+    max-width: 700px;
+    text-align: center;
+    margin: 0 auto 1rem !important;
+    color: #222;
+  }
+  .vc_column_container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+.events-circle {
+  width: 500px;
+  height: 500px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 100%;
+  background: rgba(255,255,255,.75);
+  text-align: center;
+
+  .events-circle-inner {
+    padding: 40px 65px 100px;
+  }
+  img {
+    margin-bottom: 34px;
+  }
+  p {
+    font: 400 24px/1.4 'museo-sans';
+  }
+}
+
+.testimonials-wrapper {
+  background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/05/dots-bg-repeat3.svg) repeat top left;
+  background-size: 35px;
+  background-attachment: fixed;
+
+  > .vc_column_container > .vc_column-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .what-i-love-svg img {
+    width: 420px;
+    max-width: 90%;
+  }
+  .testimonial_rotator_quote {
+    color: #FFF;
+    font: 400 20px/1.6 'museo-sans';
+  }
+  .testimonial_rotator_author_info {
+    margin-top: 10px;
+    position: relative;
+    margin-top: 40px !important;
+  }
+  .testimonial_rotator_author_info p {
+    color: #FFF;
+    font: 400 18px/1.4 'museo-sans';
+  }
+  .testimonial_rotator_author_info:before {
+    content: '';
+    width: 30px;
+    height: 2px;
+    display: block;
+    position: absolute;
+    background: #FFF;
+    left: 50%;
+    top: -19px;
+    margin-left: -15px;
+  }
+  hr.longform_hr {
+    display: none;
+  }
+  .testimonial_rotator_prev i,
+  .testimonial_rotator_next i {
+    color: #FFF;
+    opacity: .5;
+    @include transition(opacity);
+  }
+  .testimonial_rotator_prev i:hover,
+  .testimonial_rotator_next i:hover,
+  .testimonial_rotator_prev i:focus,
+  .testimonial_rotator_next i:focus {
+    opacity: 1;
+  }
+}
+
+.waves-section {
+  background-color: #a50031 !important;
+  background-image: url('http://127.0.0.1/newuptown/wp-content/uploads/2016/05/waves-svg-bg3.svg') !important;
+  background-repeat: repeat-x;
+  background-position: -1px bottom;
+  background-size: 44px;
+  height: 24px;
+}
+
+.ig-wrapper {
+
+  span.ig-caption {
+    display: block;
+    position: absolute;
+    visibility: hidden;
+    bottom: -20px;
+    left: 0;
+    opacity: 0;
+    padding: 3px 6px;
+    width: 100%;
+    box-sizing: border-box;
+    background: #437d91;
+    background: rgba(67, 125, 145, 0.90);
+    color: #FFF !important;
+    font-family: 'museo-sans', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-size: .75rem;
+    -webkit-transition: all 250ms ease-out;
+    -moz-transition: all 250ms ease-out;
+    -o-transition: all 250ms ease-out;
+    transition: all 250ms ease-out;
+  }
+  #instafeed a:hover span.ig-caption {
+      visibility: visible;
+      bottom: 0;
+      opacity: 1;
+  }
+  a.instagram-image.slick-slide {
+    position: relative;
+    overflow: hidden;
+  }
+  a.instagram-image.slick-slide img {
+    transform: scale(1.25);
+    transition: all 3s ease-out;
+  }
+  a.instagram-image.slick-slide:hover img {
+    transform: scale(1.5) rotate(2deg);
+  }
+  ul.slick-dots {
+    list-style: none;
+    margin: 15px 0 0 0;
+    width: 100%;
+    text-align: center;
+  }
+  ul.slick-dots li {
+    display: inline-block;
+    margin: 0 10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background: $red;
+    text-indent: -9999px;
+    cursor: pointer !important;
+    transition: all 250ms ease-out;
+  }
+  ul.slick-dots li.slick-active {
+    transform: scale(1.2);
+    background: $dark;
+  }
+  div#instafeed {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 0 40px;
+    box-sizing: border-box;
+    position: relative;
+  }
+  button.slick-prev.slick-arrow,
+  button.slick-next.slick-arrow {
+    position: absolute;
+    width: 20px;
+    height: 40px;
+    left: 0;
+    top: calc(50% - 15px);
+    margin-top: -20px;
+    font-size: 20px;
+  }
+  button.slick-next.slick-arrow {
+    left: auto;
+    right: 0;
+  }
+  .how-we-roll-svg img {
+    width: 170px;
+    height: auto;
+  }
+  .follow-us-wrapper {
+    text-align: center;
+  }
+
+}
+
+@media only screen and (max-width: 64em) {
   .title-bar {
     background: none !important;
   }
@@ -398,6 +692,16 @@ header#masthead {
       width: 50%;
     }
   }
+  .hcd-wrapper {
+    background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/05/sticky-notes-bg.svg) repeat-x -17px calc(100% + 35px);
+    background-size: 400px;
+  }
+  .hcd-right {
+    margin-top: 40px !important;
+  }
+  .hcd-left *, .hcd-right * {
+    text-align: center;
+  }
 }
 @media only screen and (max-width: 39.9375em) {
   header#masthead {
@@ -406,6 +710,18 @@ header#masthead {
   }
   .top-bar-social {
     display: none !important;
+  }
+}
+@media only screen and (max-width: 35em) {
+  .events-circle {
+    width: calc(100% + 30px);
+    position: relative;
+    left: -15px;
+    height: auto;
+    border-radius: 0;
+    .events-circle-inner {
+      padding: 40px;
+    }
   }
 }
 @media only screen and (max-width: 30em) {
@@ -417,12 +733,13 @@ header#masthead {
 }
 
 
-/**** INTERNAL PAGE STYLES ****/
+/**** 4. INTERNAL PAGE STYLES ****/
 div#page-full-width {
   margin-top: 0;
+  max-width: none;
 }
 
-/* Title Bar Styles */
+/* 4a. Title Bar Styles */
 header#featured-hero {
   display: table;
   width: 100%;
@@ -436,12 +753,12 @@ header#featured-hero {
       text-transform: uppercase;
       display: table-cell;
       vertical-align: bottom;
-      padding: 80px 0 40px;
+      padding: 100px 0 40px;
     }
 }
 
 
-/**** PORTFOLIO PAGE STYLES ****/
+/**** 5. PORTFOLIO PAGE STYLES ****/
 div#page-full-width.portfolio-wrapper {
     max-width: 100rem;
 }
@@ -784,8 +1101,7 @@ ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:
 @media only screen and (max-width: 64em) {
 	.single-portfolio-item {
   	width: 33.3333% !important;
-  	height: 0 !important;
-  	padding-bottom: 25%;
+  	height: auto !important;
 	}
 }
 @media only screen and (min-width: 50.0625em) {
@@ -796,8 +1112,7 @@ ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:
 @media only screen and (max-width: 50em) {
 	.single-portfolio-item {
   	width: 33.3333% !important;
-  	height: 0 !important;
-  	padding-bottom: 33.3333%;
+  	height: auto !important;
 	}
 }
 @media only screen and (max-width: 47.9375em) {
@@ -830,6 +1145,11 @@ ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:
   .portfolio-filter-toggle a.open:before {
     content: '\f00d';
   }
+  ul.filter-portfolio-category li {
+    border-right: 0;
+    margin-right: 0;
+    padding-right: 24px;
+  }
   ul#filters {
     display: none;
   }
@@ -846,17 +1166,18 @@ ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:
 @media only screen and (max-width: 37.5em) {
 	.single-portfolio-item {
   	width: 50% !important;
-  	height: 0 !important;
-  	padding-bottom: 50%;
+  	height: auto !important;
 	}
 }
 @media only screen and (max-width: 30em) {
 	.single-portfolio-item {
   	width: 50% !important;
-  	height: 0 !important;
-  	padding-bottom: 50%;
+  	height: auto !important;
 	}
   span.cat-link {
 		display: none;
 	}
 }
+
+
+/**** 6. FOOTER STYLES ****/
