@@ -2,17 +2,29 @@
 	max-width: 100%;
 	width: 100%;
 	margin: 0 auto;
-	border-top: 1px solid #ccc;
-	margin-top: rem-calc(60);
+	margin-top: 0;
 
 	#footer {
 		@include grid-row();
-		padding: rem-calc(30) 0;
+		max-width: 92.5rem;
+		padding: 3rem 0 1.75rem;
 
 		ul {
 			list-style-type: none;
 			margin: 0;
 			padding: 0;
 		}
+	}
+}
+
+#copyright {
+  max-width: 92.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem 0;
+
+	p {
+		font: 700 .9375em/1.4 'museo-sans' !important;
+		padding: 0 0.9375rem;
 	}
 }

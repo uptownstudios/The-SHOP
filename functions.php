@@ -57,6 +57,14 @@ function theme_prefix_setup() {
 add_action( 'after_setup_theme', 'theme_prefix_setup' );
 
 
+// Current Year Shortcode
+function bs_current_year() {
+	$year = date('Y');
+	return $year;
+}
+add_shortcode('year','bs_current_year');
+
+
 // Allow the upload of SVG graphics to Media Library
 function cc_mime_types($mimes) {
   $mimes['svg'] = 'image/svg+xml';
@@ -212,7 +220,51 @@ function newuptown_customize_register( $wp_customize ) {
       'settings' => 'rss',
   ) ) );
 
+  // Add Copyright Section
+  $wp_customize->add_section( 'copyright-text' , array(
+    'title' => __( 'Copyright Text', '_s' ),
+    'priority' => 1000,
+    'description' => __( 'Enter the copyright text to appear at the bottom of the page. Do not include the copyright symbol or the year as these are added automatically to the beginning of this line.', '_s' )
+  ) );
+
+  // Add Copyright Text Field
+  $wp_customize->add_setting( 'copyright' , array( 'default' => '' ) );
+  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'copyright', array(
+      'label' => __( 'Copyright', '_s' ),
+      'section' => 'copyright-text',
+      'settings' => 'copyright',
+  ) ) );
+
 }
 
 add_action( 'customize_register', 'newuptown_customize_register' );
+}
+
+
+// Shortcodes in widget
+add_filter('widget_text', 'do_shortcode');
+
+
+// Social Media Links Shortcode
+add_shortcode( 'bs_social_urls', 'bs_social_urls_shortcode' );
+function bs_social_urls_shortcode( $atts ) {
+    extract( shortcode_atts( array(
+      'align' => '',
+      'color' => ''
+    ), $atts ) );
+    ob_start(); ?>
+
+    <ul class="social-media-wrapper <?php echo $align; ?> <?php echo $color; ?>">
+      <?php if( get_theme_mod('facebook')): ?><li class="facebook"><a href="<?php echo get_theme_mod('facebook','default'); ?>"><i class="fa fa-facebook"></i></a></li><?php endif; ?>
+      <?php if( get_theme_mod('twitter')): ?><li class="twitter"><a href="<?php echo get_theme_mod('twitter','default'); ?>"><i class="fa fa-twitter"></i></a></li><?php endif; ?>
+      <?php if( get_theme_mod('linkedin')): ?><li class="linkedin"><a href="<?php echo get_theme_mod('linkedin','default'); ?>"><i class="fa fa-linkedin"></i></a></li><?php endif; ?>
+      <?php if( get_theme_mod('instagram')): ?><li class="instagram"><a href="<?php echo get_theme_mod('instagram','default'); ?>"><i class="fa fa-instagram"></i></a></li><?php endif; ?>
+      <?php if( get_theme_mod('youtube')): ?><li class="youtube"><a href="<?php echo get_theme_mod('youtube','default'); ?>"><i class="fa fa-youtube-play"></i></a></li><?php endif; ?>
+      <?php if( get_theme_mod('pinterest')): ?><li class="pinterest"><a href="<?php echo get_theme_mod('pinterest','default'); ?>"><i class="fa fa-pinterest"></i></a></li><?php endif; ?>
+      <?php if( get_theme_mod('vimeo')): ?><li class="vimeo"><a href="<?php echo get_theme_mod('vimeo','default'); ?>"><i class="fa fa-vimeo"></i></a></li><?php endif; ?>
+      <?php if( get_theme_mod('rss')): ?><li class="rss"><a href="<?php echo get_theme_mod('rss','default'); ?>"><i class="fa fa-rss"></i></a></li><?php endif; ?>
+    </ul>
+
+    <?php $bs_social_variable = ob_get_clean();
+    return $bs_social_variable;
 }

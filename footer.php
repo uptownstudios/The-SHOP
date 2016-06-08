@@ -17,6 +17,14 @@
 				<?php dynamic_sidebar( 'footer-widgets' ); ?>
 				<?php do_action( 'foundationpress_after_footer' ); ?>
 			</footer>
+
+			<footer id="copyright">
+				<?php if( get_theme_mod('copyright')): ?>
+					<p>&copy; <?php echo date('Y'); ?> <?php echo get_theme_mod('copyright','default'); ?></p>
+				<?php else: ?>
+					<p>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?></p>
+				<?php endif; ?>
+			</footer>
 		</div>
 
 		<?php do_action( 'foundationpress_layout_end' ); ?>
@@ -123,8 +131,8 @@
 <script type="text/javascript">
   var userFeed = new Instafeed({
     get: 'user',
-    userId: 31411348,
-    accessToken: '609318530.467ede5.02e8a5cec1e54170a1eae5c20fb8c0dd',
+    userId: 609318530,
+    accessToken: '609318530.564bc1f.e9e7f530a82743d99f43dc70eb6ddc9a',
     limit: 24,
     resolution: 'standard_resolution',
     template: '<a class="instagram-image" href="{{link}}" target="_blank" title="{{caption}}"><img class="instafeed-img" src="{{image}}" /><span class="ig-caption">{{caption}}<br /><i class="fa fa-heart"></i> {{likes}} &nbsp;•&nbsp; <i class="fa fa-comment"></i> {{comments}}</span></a>',
@@ -143,19 +151,39 @@
         arrows: true,
         prevArrow: '<button type="button" class="slick-prev"><i class="fa fa-chevron-left"></i></a>',
         nextArrow: '<button type="button" class="slick-next"><i class="fa fa-chevron-right"></i></a>',
-        responsive: [{
-          breakpoint: 600,
-          settings: {
-            autoplay: false,
-          }
-        }],
+				responsive: [{
+		    	breakpoint: 1024,
+		      settings: {
+		        slidesToShow: 3,
+		        slidesToScroll: 3,
+		        infinite: true,
+		        dots: false,
+						autoplay: false,
+		      }
+		    },
+		    {
+		      breakpoint: 600,
+		      settings: {
+		        slidesToShow: 2,
+		        slidesToScroll: 2,
+						infinite: true,
+		        dots: false,
+						autoplay: false,
+		      }
+		    },
+		    {
+		      breakpoint: 480,
+		      settings: {
+		        slidesToShow: 2,
+		        slidesToScroll: 2,
+						infinite: true,
+		        dots: false,
+						autoplay: false,
+		      }
+	    }],
       });
 		(function($) {
-			$('a.instafeed-link').swipebox({
-				hideBarsDelay : 5000,
-				loopAtEnd: true,
-				removeBarsOnMobile: false
-			});
+			// Callback function here
 		})(jQuery);
       }
   });
