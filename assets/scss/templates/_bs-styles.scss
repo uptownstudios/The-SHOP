@@ -28,6 +28,7 @@ $dark: #1b1b1b;
 
 4. INTERNAL PAGE STYLES
   4a. Title Bar Styles
+  4b. Team Member Styles
 
 5. PORTFOLIO STYLES
 
@@ -437,7 +438,7 @@ body.shrink-logo {
   }
   .meet-the-team-svg img {
     width: 100%;
-    max-width: 500px;
+    min-width: 300px;
     height: auto;
     margin: 0 auto;
     display: block;
@@ -451,6 +452,9 @@ body.shrink-logo {
     width: 260px;
     height: auto;
     background-size: 1%;
+    -webkit-transition: background-size 500ms ease-out;
+    -moz-transition: background-size 500ms ease-out;
+    -o-transition: background-size 500ms ease-out;
     transition: background-size 500ms ease-out;
   }
   .wpb_single_image.what-we-do-triangle img {
@@ -469,18 +473,27 @@ body.shrink-logo {
   .video-portal .wpb_single_image img:hover {
     background: url(http://159.203.243.127/wp-content/uploads/2016/04/sunburst-yellow.svg) no-repeat center center;
     background-size: 100%;
+    -webkit-transition: background-size 500ms ease-out;
+    -moz-transition: background-size 500ms ease-out;
+    -o-transition: background-size 500ms ease-out;
     transition: background-size 500ms ease-out;
   }
   .graphic-portal .wpb_single_image img:hover,
   .print-portal .wpb_single_image img:hover {
     background: url(http://159.203.243.127/wp-content/uploads/2016/04/sunburst-red.svg) no-repeat center center;
     background-size: 100%;
+    -webkit-transition: background-size 500ms ease-out;
+    -moz-transition: background-size 500ms ease-out;
+    -o-transition: background-size 500ms ease-out;
     transition: background-size 500ms ease-out;
   }
   .branding-portal .wpb_single_image img:hover,
   .sm-portal .wpb_single_image img:hover {
     background: url(http://159.203.243.127/wp-content/uploads/2016/04/sunburst-teal.svg) no-repeat center center;
     background-size: 100%;
+    -webkit-transition: background-size 500ms ease-out;
+    -moz-transition: background-size 500ms ease-out;
+    -o-transition: background-size 500ms ease-out;
     transition: background-size 500ms ease-out;
   }
   .web-portal, .graphic-portal, .branding-portal, .sm-portal, .video-portal, .print-portal {
@@ -830,8 +843,11 @@ div#page-full-width {
 header#featured-hero {
   display: table;
   width: 100%;
+  height: 20rem;
+  margin-bottom: 0;
+  border-bottom: 1px solid #FFF;
 
-    h1 {
+    h1.entry-title {
       text-align: center;
       color: #FFF;
       font: 400 84px/1.1 'acumin-pro-extra-condensed';
@@ -840,8 +856,53 @@ header#featured-hero {
       text-transform: uppercase;
       display: table-cell;
       vertical-align: bottom;
-      padding: 100px 0 40px;
+      padding: 50px 0 60px;
+      position: relative;
     }
+    h1.entry-title.dark {
+      color: #222;
+      text-shadow: 1px 1px 2px #FFF;
+    }
+    // h1.entry-title:before {
+    //   content: '';
+    //   width: 200px;
+    //   height: 200px;
+    //   display: block;
+    //   background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/06/gray-sun-burst.svg);
+    //   position: absolute;
+    //   top: 0;
+    //   left: 50%;
+    //   transform: translate(-50%, -50%);
+    // }
+    h1.entry-title span {
+      position: relative;
+      padding: 0 100px;
+    }
+    h1.entry-title span:after {
+      content: '';
+      width: 100%;
+      height: 5px;
+      display: block;
+      position: absolute;
+      background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/06/dot-border-light2.svg);
+      left: 0;
+      bottom: 0;
+    }
+    h1.entry-title.dark span:after {
+      background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/06/dot-border2.svg);
+    }
+}
+
+/* 4b. Team Member Styles */
+.single-tm-outer:nth-of-type(even) {
+  background: #f1f1f1;
+}
+.single-tm-content {
+  max-width: 800px;
+  margin: 36px auto 0;
+}
+.single-tm-image {
+  margin-bottom: 0 !important;
 }
 
 
@@ -1075,7 +1136,7 @@ p.view-more-portfolios {
   padding: 0;
 }
 ul.filter-portfolio-category {
-  margin: 0 0 20px;
+  margin: 40px 0 20px;
   list-style: none;
   clear: both;
   text-align: center;
@@ -1249,6 +1310,9 @@ ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:
   ul#filters li.filter-label {
     display: none;
   }
+  header#featured-hero h1.entry-title span {
+    padding: 0 20px;
+  }
 }
 @media only screen and (max-width: 37.5em) {
 	.single-portfolio-item {
@@ -1277,6 +1341,11 @@ ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:
   .menu > li a {
     margin: 0 !important;
     padding: 0 0 10px 0 !important;
+  }
+  .menu .active > a {
+    color: #a72535;
+    background: none;
+    font-weight: 900 !important;
   }
   .footer-logo {
     width: 100%;

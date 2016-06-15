@@ -128,68 +128,6 @@
 
 </script>
 
-<script type="text/javascript">
-  var userFeed = new Instafeed({
-    get: 'user',
-    userId: 609318530,
-    accessToken: '609318530.564bc1f.e9e7f530a82743d99f43dc70eb6ddc9a',
-    limit: 24,
-    resolution: 'standard_resolution',
-    template: '<a class="instagram-image" href="{{link}}" target="_blank" title="{{caption}}"><img class="instafeed-img" src="{{image}}" /><span class="ig-caption">{{caption}}<br /><i class="fa fa-heart"></i> {{likes}} &nbsp;•&nbsp; <i class="fa fa-comment"></i> {{comments}}</span></a>',
-    after: function() {
-      jQuery('#instafeed').slick({
-        infinite: true,
-        slidesToShow: 6,
-        slidesToScroll: 6,
-        rows: 1,
-        centerPadding: '0px',
-        arrows: false,
-        autoplay: false,
-        autoplaySpeed: 5000,
-        easing: 'ease-out-back',
-        dots: true,
-        arrows: true,
-        prevArrow: '<button type="button" class="slick-prev"><i class="fa fa-chevron-left"></i></a>',
-        nextArrow: '<button type="button" class="slick-next"><i class="fa fa-chevron-right"></i></a>',
-				responsive: [{
-		    	breakpoint: 1024,
-		      settings: {
-		        slidesToShow: 3,
-		        slidesToScroll: 3,
-		        infinite: true,
-		        dots: false,
-						autoplay: false,
-		      }
-		    },
-		    {
-		      breakpoint: 600,
-		      settings: {
-		        slidesToShow: 2,
-		        slidesToScroll: 2,
-						infinite: true,
-		        dots: false,
-						autoplay: false,
-		      }
-		    },
-		    {
-		      breakpoint: 480,
-		      settings: {
-		        slidesToShow: 2,
-		        slidesToScroll: 2,
-						infinite: true,
-		        dots: false,
-						autoplay: false,
-		      }
-	    }],
-      });
-		(function($) {
-			// Callback function here
-		})(jQuery);
-      }
-  });
-  userFeed.run();
-</script>
-
 <?php do_action( 'foundationpress_before_closing_body' ); ?>
 <script id="__bs_script__">//<![CDATA[document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.2.12.3.js'><\/script>".replace("HOST", location.hostname));
 //]]></script>

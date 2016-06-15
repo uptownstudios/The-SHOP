@@ -268,3 +268,21 @@ function bs_social_urls_shortcode( $atts ) {
     <?php $bs_social_variable = ob_get_clean();
     return $bs_social_variable;
 }
+
+// Instagram Feed Shortcode
+// add_action( 'wp_enqueue_scripts', 'register_instafeed_script' );
+// function register_instafeed_script() {
+  // wp_register_script('instafeed', get_template_directory_uri() . '/assets/javascript/instafeed.js', array('jquery'), '1.0', true );
+// }
+function bs_instagram_feed( $atts ) {
+  extract( shortcode_atts(array(), $atts) );
+  ob_start(); ?>
+
+  <div id="instafeed"></div>
+
+  <?php
+    wp_enqueue_script( 'instafeed', get_template_directory_uri() . '/assets/javascript/instafeed.js', array('jquery'), '1.0', true );
+    $bs_ig_feed_variable = ob_get_clean();
+    return $bs_ig_feed_variable;
+}
+add_shortcode( 'bs_ig_feed', 'bs_instagram_feed' );
