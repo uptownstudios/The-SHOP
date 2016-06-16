@@ -1000,6 +1000,13 @@ span.fun-title {
   .single-tm-outer:last-of-type {
     padding-bottom: 0 !important;
   }
+  .single-tm-image figcaption {
+    opacity: 1;
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
 }
 
 
