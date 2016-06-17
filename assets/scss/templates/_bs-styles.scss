@@ -66,6 +66,12 @@ div#preloader img.preloader-logo {
   margin-top: -70px;
   margin-left: -150px;
 }
+.gambit_video_inner .flex-video.widescreen.vimeo {
+  padding-bottom: inherit;
+  height: inherit;
+  margin-bottom: inherit;
+  overflow: inherit;
+}
 
 
 /**** 1. GENERAL STYLES ****/
@@ -459,6 +465,12 @@ body.shrink-logo {
     display: block;
   }
 }
+body:not(.mobile) .home-hero-wrapper {
+  background-image: none !important;
+}
+body.mobile .home-hero-wrapper {
+  background-size: 110% !important;
+}
 .what-we-do-wrapper {
   .vc_column-inner {
     padding-top: 50px;
@@ -521,6 +533,34 @@ body.shrink-logo {
     }
     a {
       color: #414141;
+    }
+  }
+  .sunburst-hover-inner {
+    position: relative;
+
+    img.icon-to-be-hovered {
+      width: 260px;
+      height: auto;
+      margin: -40px auto -50px;
+      padding: 40px;
+      display: block;
+    }
+    img.sunburst {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%) scale(0);
+      width: auto;
+      height: 100%;
+      z-index: -1;
+      opacity: 0;
+      transition: all .25s ease-out;
+    }
+    a:hover img.sunburst {
+      transform: translateX(-50%) scale(1);
+      z-index: -1;
+      opacity: 1;
+      transition: all .25s ease-out;
     }
   }
 }
@@ -591,34 +631,9 @@ body.shrink-logo {
       color: #FFF;
       font: 400 20px/1.6 'museo-sans';
       text-align: center;
-      padding: 0 40px;
     }
     p.rc-line2 {
       font-weight: 700 !important;
-    }
-  }
-  .rotating-content-carousel-wrapper {
-    .owl-controls {
-      position: absolute !important;
-      width: 100% !important;
-      top: 50% !important;
-      margin-top: -17px !important;
-    }
-    .owl-prev {
-      float: left !important;
-      margin-left: -10px !important;
-    }
-    .owl-next {
-      float: right !important;
-      margin-right: -10px !important;
-    }
-    .owl-theme .owl-controls .owl-buttons div {
-      background: none !important;
-      opacity: 1 !important;
-    }
-    .owl-prev button i, .owl-next button i {
-      font-size: 20px !important;
-      font-size: 1.25rem !important;
     }
   }
   .rotating-content-details {
@@ -866,7 +881,7 @@ header#featured-hero {
       text-align: center;
       color: #FFF;
       font: 400 84px/1.1 'acumin-pro-extra-condensed';
-      letter-spacing: .03rem;
+      letter-spacing: .01rem;
       text-shadow: 1px 1px 2px #000;
       text-transform: uppercase;
       display: table-cell;
