@@ -26,6 +26,9 @@
 				<?php endif; ?>
 			</footer>
 		</div>
+		<div id="back-top">
+  		<a href="#" title="Back to top"><i class="fa fa-chevron-up"></i></a>
+		</div>
 
 		<?php do_action( 'foundationpress_layout_end' ); ?>
 
@@ -52,7 +55,7 @@
 
 	// Site Preloader
 	jQuery(document).ready(function($) {
-		$(window).load(function() {
+		$(window).imagesLoaded(function() {
 			$('#preloader').addClass('loaded')
 			// $('#preloader img').fadeIn('fast');
 			// $('#preloader .spinner').addClass('loaded');
@@ -61,6 +64,47 @@
 				$(this).hide();
 			});
 		});
+
+	  // hide #back-top first
+	  $('#back-top').hide();
+
+	  // fade in #back-top
+	  $(function () {
+	    $(window).scroll(function () {
+	      if ($(this).scrollTop() > 800) {
+	        $('#back-top').fadeIn();
+	      } else {
+	        $('#back-top').fadeOut();
+	      }
+	    });
+
+	    // scroll body to 0px on click
+	    $('#back-top a').click(function () {
+	      $('body,html').animate({
+	        scrollTop: 0
+	      }, 800);
+	      return false;
+	    });
+	  });
+
+		// Float Labels
+		function floatLabel(inputType) {
+			$(inputType).each(function(){
+					var $this = $(this);
+					// on focus add cladd active to label
+					$this.focus(function(){
+						$this.closest('li.gfield').find('label').attr("data-attr","active");
+					});
+					//on blur check field and remove class if needed
+					$this.blur(function(){
+						if($this.val() === '' || $this.val() === 'blank'){
+							$this.closest('li.gfield').find('label').attr("data-attr","");
+						}
+					});
+			});
+		}
+		// just add a class of "floatLabel to the input field!"
+		floatLabel(".floatLabel input");
 	});
 
 	// Isotope/Masonry filtering for Project thumbnails
@@ -87,6 +131,8 @@
 		$('#filters a').click(function(){
 		  var selector = $(this).attr('data-filter');
 		  $container.isotope({ filter: selector });
+			$('#filters a.active').not(this).removeClass('active');
+			$(this).addClass('active');
 		  return false;
 		});
 		$('.title-bar .menu-icon').click(function() {
@@ -124,6 +170,26 @@
 
 		},
 		offset: shrinkOn
+	});
+
+	// initiating the isotope page
+	jQuery(window).load(function($) {
+
+	    // Store # parameter and add "." before hash
+	    var hashID = "." + window.location.hash.substring(1);
+
+	    //  the current version of isotope, the hack works in v2 also
+	    var $container = jQuery('.portfolio-container');
+
+	    $container.imagesLoaded(function(){
+	        $container.isotope({
+	            itemSelector: ".single-portfolio-item",
+	            filter: hashID, // the variable filter hack
+	        });
+					jQuery('#filters a.active').removeClass('active');
+					jQuery('#filters a[data-filter="' + hashID + '"]').addClass('active');
+	    });
+
 	});
 
 </script>

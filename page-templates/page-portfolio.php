@@ -33,9 +33,9 @@ $loop = new WP_Query( $args );
                   <?php
                     foreach ($tax_terms as $tax_term) {
                       $filterText .= '<li>' . '<a href="#" title="' . sprintf( __( "View all posts in %s" ), $tax_term->name ) . '" data-filter=".' . $tax_term->slug . '" ' . '>' . $tax_term->name.'</a><span class="term-num">' . $tax_term->count . '</span></li>';
-                      $all_terms += $tax_term->count;
+                      // $all_terms += $tax_term->count;
                     }
-                    $filterText = '<li><a href="#" data-filter="*">All</a><span class="term-num">' . $all_terms . '</span></li>' . $filterText;
+                    $filterText = '<li><a class="active" href="#" data-filter="*">All</a></li>' . $filterText;
                     echo $filterText;
                   ?>
               </ul>

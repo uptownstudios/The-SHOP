@@ -28,7 +28,9 @@ $dark: #1b1b1b;
 
 4. INTERNAL PAGE STYLES
   4a. Title Bar Styles
-  4b. Team Member Styles
+  4b. Team Member and Services Styles
+  4c. Clients Styles
+  4d. Gravity Forms Styles
 
 5. PORTFOLIO STYLES
 
@@ -109,11 +111,64 @@ h1, h2, h3, h4, h5, h6 {
   border: 2px solid $red;
   color: #FFF;
 }
+.bs-btn.bs-btn-red {
+  background: $red;
+  color: #FFF;
+  border: 2px solid $red;
+}
+.bs-btn.bs-btn-red:hover,
+.bs-btn.bs-btn-red:focus {
+  background: $dark;
+  border: 2px solid $dark;
+  color: #FFF;
+}
+.bs-btns-wrapper {
+    text-align: left;
+    width: 100%;
+
+    .bs-btn {
+      display: inline-block;
+      margin: 0 10px 0 0 ;
+    }
+
+}
 html .margin-bottom-60 {
   margin-bottom: 60px !important;
 }
 html .margin-bottom-6per {
   margin-bottom: 6% !important;
+}
+.max-width-eleven-seventy {
+  max-width: 1170px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.max-width-sixteen-hundred {
+  max-width: 1600px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.entry-content {
+
+  h2, h3, h4, h5, h6 {
+    margin-bottom: 0;
+  }
+  h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
+    margin-top: 1rem;
+  }
+  ul.row {
+    margin-left: 1.25rem;
+  }
+  ul.row li.columns {
+    padding-left: 0;
+  }
+  ul.row .column:last-child:not(:first-child),
+  ul.row .columns:last-child:not(:first-child),
+  ol.row .column:last-child:not(:first-child),
+  ol.row .columns:last-child:not(:first-child) {
+    float: left;
+  }
+
 }
 .section-title {
   margin-top: -55px;
@@ -161,6 +216,26 @@ ul.social-media-wrapper.white li a {
 .cta-text * {
   font-family: 'museo-sans';
   line-height: 1.4;
+}
+#back-top {
+  position: fixed;
+  bottom:20px;
+  right: 2%;
+  z-index: 100;
+}
+#back-top a {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background: $redalpha;
+  color: #FFF;
+  display: inline-block;
+  @include transition(background);
+}
+#back-top a:hover,
+#back-top a:focus {
+  background: $red;
 }
 
 
@@ -392,13 +467,13 @@ background: none;
 
 @media only screen and (max-width: 64em) and (min-width: 50.0625em) {
   .top-bar .top-bar-right .menu > li > a {
-    padding: 10px 7px 0 0 !important;
+    padding: 10px 3.5px 0 3.5px !important;
     font-size: 1.95em;
   }
 }
 @media only screen and (max-width: 50em) and (min-width: 45.0625em) {
   .top-bar .top-bar-right .menu > li > a {
-    padding: 10px 7px 0 0 !important;
+    padding: 10px 3.5px 0 3.5px !important;
     font-size: 1.75em;
   }
 }
@@ -472,6 +547,9 @@ body.mobile .home-hero-wrapper {
   background-size: 110% !important;
 }
 .what-we-do-wrapper {
+  background: #e7e7e7 url(http://127.0.0.1/newuptown/wp-content/uploads/2016/06/what-we-do-bg-tile.svg) repeat fixed !important;
+  background-size: 75px !important;
+
   .vc_column-inner {
     padding-top: 50px;
   }
@@ -681,6 +759,8 @@ body.mobile .home-hero-wrapper {
 }
 
 .ig-wrapper {
+  background: #e7e7e7 url(http://127.0.0.1/newuptown/wp-content/uploads/2016/06/what-we-do-bg-tile.svg) repeat fixed !important;
+  background-size: 75px !important;
 
   span.ig-caption {
     display: block;
@@ -923,11 +1003,17 @@ header#featured-hero {
     }
 }
 
-/* 4b. Team Member Styles */
-.single-tm-outer:nth-of-type(even) {
+/* 4b. Team Member Styles and Service Styles */
+.single-tm-outer:nth-of-type(even),
+.single-service-outer:nth-of-type(even) {
   background: #f1f1f1;
 }
-.single-tm-content {
+.single-service-inner {
+  max-width: 100rem;
+  margin: 0 auto !important;
+}
+.single-tm-content,
+.single-service-content {
   max-width: 800px;
   margin: 36px auto 0;
 
@@ -935,8 +1021,26 @@ header#featured-hero {
       font-family: 'museo-sans';
     }
 }
-.single-tm-image {
+.single-service-content {
+  max-width: none;
+}
+.single-tm-image,
+.single-service-image {
   margin-bottom: 0 !important;
+}
+.single-service-image {
+  .vc_single_image-wrapper {
+    width: 100%;
+    padding-top: 40px;
+  }
+  figure {
+    width: 80%;
+  }
+  img {
+    width: 100%;
+    max-height: 500px;
+  }
+
 }
 span.fun-title {
   font-family: 'acumin-pro-extra-condensed';
@@ -951,6 +1055,7 @@ span.fun-title {
 .single-tm-image figcaption {
     position: absolute;
     width: 100%;
+    margin: 0 !important;
     padding: 20px;
     color: #FFF;
     font-size: 2.5rem !important;
@@ -969,7 +1074,7 @@ span.fun-title {
     -o-transition: all .25s ease-out;
     transition: all .25s ease-out;
 }
-.single-tm-image figure:hover figcaption {
+.single-tm-inner:hover .single-tm-image figure figcaption {
     opacity: 1;
     -webkit-transform: translateY(-100%);
     -moz-transform: translateY(-100%);
@@ -977,7 +1082,7 @@ span.fun-title {
     transform: translateY(-100%);
 }
 @media only screen and (max-width: 68.6875em) {
-  .single-tm-inner {
+  .single-tm-inner, .single-service-inner {
 
     .wpb_column.vc_column_container.vc_col-sm-4 {
       width: 40%;
@@ -992,7 +1097,7 @@ span.fun-title {
   }
 }
 @media only screen and (max-width: 47.9375em) {
-  .single-tm-inner {
+  .single-tm-inner, .single-service-inner {
     .wpb_column.vc_column_container.vc_col-sm-4,
     .wpb_column.vc_column_container.vc_col-sm-8 {
       width: 100%;
@@ -1006,13 +1111,17 @@ span.fun-title {
       padding-right: 0;
     }
   }
-  .single-tm-content {
+  .single-tm-content, .single-service-content {
     margin: 5px auto 20px;
   }
-  .single-tm-outer {
+  body .single-tm-outer {
     padding-bottom: 40px !important;
   }
-  .single-tm-outer:last-of-type {
+  body .single-service-outer {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+  .single-tm-outer:last-of-type, .single-service-outer:last-of-type {
     padding-bottom: 0 !important;
   }
   .single-tm-image figcaption {
@@ -1024,6 +1133,167 @@ span.fun-title {
   }
 }
 
+/* 4c. Clients Page Styles */
+@media only screen and (max-width: 47.9375em) and (min-width: 30.0625em) {
+  .clients-wrapper-inner .vc_col-sm-3 {
+    width: 50%;
+    float: left;
+  }
+  .clients-wrapper-inner .vc_col-sm-3:nth-child(3n+3) {
+    clear: left;
+  }
+}
+
+/* 4d. Contact Us Page and Gravity Forms Styles */
+.holler-at-us-wrapper {
+  background: #ecebe9 url(http://127.0.0.1/newuptown/wp-content/uploads/2016/04/geo-feathers-semi-transparent.svg) fixed;
+  background-size: 55px;
+}
+ul.us-contact-info {
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+}
+ul.us-contact-info li {
+  padding: 20px 20px 20px 46px;
+  border-bottom: 2px solid $dark;
+  position: relative;
+  font-size: 20px;
+  font-family: 'museo-sans';
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 1.4;
+}
+ul.us-contact-info li i {
+  position: absolute;
+  margin-top: -2px;
+  left: 10px;
+  font-size: 40px;
+  color: $yellow;
+}
+body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
+  margin-top: 0 !important;
+}
+.entry-content {
+
+  .gform_wrapper {
+    margin: 0 auto !important;
+    max-width: 100% !important;
+  }
+  .gform_body {
+    padding: 0;
+    border: 4px solid $yellow;
+    border-bottom: 0;
+    box-sizing: border-box;
+  }
+  .gform_wrapper .hidden_label input.large,
+  .gform_wrapper .hidden_label select.large,
+  .gform_wrapper .top_label input.large,
+  .gform_wrapper .top_label select.large {
+    width: 100% !important;
+    height: 56px;
+    line-height: 50px;
+    border: 0;
+    background: #FFF;
+    background: rgba(255,255,255,.8);
+    box-shadow: none;
+    margin: 0;
+    padding: 0 5px;
+  }
+  .gform_wrapper textarea {
+    width: 100% !important;
+    border: 0;
+    background: #FFF;
+    background: rgba(255,255,255,.8);
+    box-shadow: none;
+    margin: 0;
+  }
+  .gform_wrapper form li, .gform_wrapper li {
+    padding: 6px 10px;
+    border-bottom: 4px solid $yellow;
+  }
+  li.gfield {
+    position: relative;
+  }
+  label.gfield_label {
+    line-height: 1.2 !important;
+    position: absolute;
+    margin: 0 !important;
+    left: 18px;
+    bottom: 10px;
+    text-transform: capitalize;
+    font-family: 'museo-sans';
+    -webkit-transition: all .5s ease-out;
+    -moz-transition: all .5s ease-out;
+    -o-transition: all .5s ease-out;
+    transition: all .5s ease-out;
+  }
+  label[data-attr="active"].gfield_label {
+    bottom: 69%;
+    font-size: 75%;
+    opacity: .65;
+  }
+  .bs-textarea textarea {
+    padding: 10px 10px 30px !important;
+  }
+  .bs-textarea label {
+    bottom: 40px !important;
+  }
+  li.bs-textarea .ginput_container_textarea:after {
+    content: '';
+    background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/05/dots-bg-repeat3.svg);
+    background-size: 16px;
+    width: 100%;
+    height: 28px;
+    display: block;
+  }
+  .validation_error {
+    font-weight: 500 !important;
+    font-size: 1.2rem !important;
+    line-height: 1.4 !important;
+    font-family: 'museo-sans' !important;
+    width: 100% !important;
+    text-align: center;
+  }
+  .validation_error + .gform_body ul li label {
+    top: -15px;
+  }
+  .validation_error + .gform_body ul li.gfield_error label {
+    top: -5px;
+    left: 0;
+  }
+  .gform_wrapper .gfield_error {
+    width: 100% !important;
+  }
+  li.gfield_error .ginput_container {
+    margin-top: 30px !important;
+  }
+  .gform_wrapper .gform_footer {
+    text-align: right;
+  }
+  .gform_footer input.gform_button {
+    background: $red;
+    font-family: 'museo-sans';
+    text-transform: uppercase;
+    font-weight: 700;
+    @include transition(background);
+  }
+  .gform_footer input.gform_button:hover,
+  .gform_footer input.gform_button:focus {
+    background: $dark;
+  }
+  .gform_confirmation_wrapper {
+    margin: 0 auto;
+    text-align: center;
+  }
+  .gform_confirmation_message {
+    font-weight: 500 !important;
+    font-size: 1.5rem !important;
+    line-height: 1.3 !important;
+    font-family: 'museo-sans' !important;
+  }
+
+}
 
 /**** 5. PORTFOLIO PAGE STYLES ****/
 div#page-full-width.portfolio-wrapper {
@@ -1264,14 +1534,12 @@ ul.filter-portfolio-category li {
 	display: inline-block;
 	height: 20px;
 	line-height: 20px;
-	margin-right: 10px;
-	padding-right: 10px;
+	padding: 0 10px;
+  margin-bottom: 10px;
 	border-right: 1px solid #CCC;
   position: relative;
 }
 ul.filter-portfolio-category li:last-child {
-	margin-right: 0;
-	padding-right: 0;
 	border-right: 0;
 }
 ul.filter-portfolio-category li.filter-label {
@@ -1288,6 +1556,14 @@ ul.filter-portfolio-category li:hover span.term-num {
   -o-transition: all 150ms ease-out 200ms;
   transition: all 150ms ease-out 200ms;
 }
+ul.filter-portfolio-category li a {
+  padding-left: 3px;
+  padding-right: 3px;
+  border: 3px solid #FFF;
+}
+ul.filter-portfolio-category li a.active {
+  border-color: $red;
+}
 span.term-num {
   color: #FFF !important;
   position: absolute;
@@ -1297,12 +1573,15 @@ span.term-num {
   background: $red;
   text-align: center;
   left: 50%;
-  margin-left: -20px;
   line-height: 25px;
   border-radius: 3px;
   display: block;
   visibility: hidden;
   opacity: 0;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
   -webkit-transition: all 150ms ease-out 200ms;
   -moz-transition: all 150ms ease-out 200ms;
   -o-transition: all 150ms ease-out 200ms;
@@ -1325,12 +1604,13 @@ span.term-num:after {
 ul.filter-portfolio-category li a {
   position: relative;
   padding-bottom: 3px;
+  padding-top: 3px;
 }
 ul.filter-portfolio-category li a:before {
   position: absolute;
   content: '';
   width: 0;
-  bottom: 0;
+  bottom: -3px;
   height: 3px;
   left: 0;
   background: $red;
@@ -1343,7 +1623,7 @@ ul.filter-portfolio-category li a:after {
   position: absolute;
   content: '';
   width: 0;
-  bottom: 0;
+  bottom: -3px;
   height: 3px;
   right: 0;
   background: $red;
@@ -1355,7 +1635,8 @@ ul.filter-portfolio-category li a:after {
 ul.filter-portfolio-category li:hover a {
   color: $red !important;
 }
-ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:hover a::after {
+ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:hover a:after,
+ul.filter-portfolio-category li a.active:before, ul.filter-portfolio-category li a.active:after {
   width: 50%;
   -webkit-transition: width 150ms ease-out;
   -moz-transition: width 150ms ease-out;
@@ -1397,6 +1678,8 @@ ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:
   .portfolio-filter-toggle a {
     padding-left: 20px;
     position: relative;
+    margin: 40px 0 20px;
+    display: inline-block;
   }
   .portfolio-filter-toggle a:before {
     content: '\f0c9';
@@ -1415,10 +1698,11 @@ ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:
   ul.filter-portfolio-category li {
     border-right: 0;
     margin-right: 0;
-    padding-right: 24px;
+    padding: 0 12px !important;
   }
   ul#filters {
     display: none;
+    margin: 0 0 20px;
   }
   ul#filters.show {
     display: block;
@@ -1451,7 +1735,11 @@ ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:
 
 
 /**** 6. FOOTER STYLES ****/
+#footer-container #footer {
+  max-width: 100rem;
+}
 #footer {
+
   .menu > li {
     display: block;
     padding: 0 !important;
@@ -1491,6 +1779,12 @@ ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:
   }
   ul.social-media-wrapper li a {
     line-height: 24px !important;
+  }
+}
+@media only screen and (max-width: 101.875rem) {
+  #footer-container #footer {
+    padding-left: .9375rem;
+    padding-right: .9375rem;
   }
 }
 @media only screen and (max-width: 47.9375em) {
