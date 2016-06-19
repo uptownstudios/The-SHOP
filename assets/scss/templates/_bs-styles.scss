@@ -128,7 +128,7 @@ h1, h2, h3, h4, h5, h6 {
 
     .bs-btn {
       display: inline-block;
-      margin: 0 10px 0 0 ;
+      margin: 0 10px 10px 0 ;
     }
 
 }
@@ -236,6 +236,13 @@ ul.social-media-wrapper.white li a {
 #back-top a:hover,
 #back-top a:focus {
   background: $red;
+}
+@media only screen and (max-width: 30em) {
+  .bs-btns-wrapper .bs-btn {
+    width: 100%;
+    margin: 0 0 10px 0;
+    text-align: center;
+  }
 }
 
 
@@ -644,8 +651,10 @@ body.mobile .home-hero-wrapper {
 }
 
 .hcd-wrapper {
-  background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/05/sticky-notes-bg.svg) repeat-x -17px calc(100% + 35px);
-  background-size: 550px;
+  /*background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/05/sticky-notes-bg.svg) repeat-x -17px calc(100% + 35px);
+  background-size: 550px; */
+  margin-bottom: -120px !important;
+  padding-bottom: 120px;
 
   .hcd-hand-svg img {
     width: 150px;
@@ -668,6 +677,11 @@ body.mobile .home-hero-wrapper {
     max-width: 1200px;
     margin: 0 auto;
   }
+}
+.hcd-postits {
+  background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/05/sticky-notes-bg.svg) repeat-x -17px 0;
+  background-size: 550px;
+  height: 120px;
 }
 
 .events-circle {
@@ -880,8 +894,13 @@ body.mobile .home-hero-wrapper {
     }
   }
   .hcd-wrapper {
-    background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/05/sticky-notes-bg.svg) repeat-x -17px calc(100% + 35px);
+    margin-bottom: -85px !important;
+    padding-bottom: 85px;
+  }
+  .hcd-postits {
+    background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/05/sticky-notes-bg.svg) repeat-x -17px 0;
     background-size: 400px;
+    height: 85px;
   }
   .hcd-right {
     margin-top: 40px !important;
@@ -1008,6 +1027,25 @@ header#featured-hero {
 .single-service-outer:nth-of-type(even) {
   background: #f1f1f1;
 }
+.photo-right {
+
+  .vc_col-sm-4 {
+    order: 2;
+
+    .vc_column-inner {
+      padding-right: 0;
+    }
+
+  }
+
+}
+.photo-left {
+
+    .vc_col-sm-4 .vc_column-inner {
+      padding-left: 0;
+    }
+
+}
 .single-service-inner {
   max-width: 100rem;
   margin: 0 auto !important;
@@ -1130,6 +1168,10 @@ span.fun-title {
     -moz-transform: translateY(-100%);
     -o-transform: translateY(-100%);
     transform: translateY(-100%);
+  }
+  .single-service-image .vc_single_image-wrapper {
+    padding-top: 0;
+    padding-bottom: 20px;
   }
 }
 
@@ -1293,6 +1335,194 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
     font-family: 'museo-sans' !important;
   }
 
+}
+
+/* 4e. Events Styles */
+.uptown-events-wrapper {
+  display: table;
+  width: 100%;
+  max-width: 1600px;
+  margin: 40px auto 0 !important;
+
+  .list-style-events-wrapper {
+    margin-left: -40px;
+  }
+  .list-style-events-wrapper h2 {
+    display: none;
+  }
+  .list-style-events-wrapper .list-style-events-single-event {
+    width: 50%;
+    float: left;
+    padding-left: 40px;
+    margin-bottom: 40px;
+    display: table;
+  }
+  .list-style-events-wrapper .list-style-events-single-event .event-featured-image {
+    display: table-cell;
+    width: 50%;
+    vertical-align: middle;
+    overflow: hidden;
+  }
+  .list-style-events-wrapper .list-style-events-single-event .event-featured-image a {
+    display: block;
+  }
+  .list-style-events-wrapper .list-style-events-single-event .event-featured-image img {
+    width: 100%;
+    height: auto;
+    -webkit-transform: scale(1.1) rotate(0deg);
+    -moz-transform: scale(1.1) rotate(0deg);
+    -o-transform: scale(1.1) rotate(0deg);
+    transform: scale(1.1) rotate(0deg);
+    @include transition(all);
+  }
+  .list-style-events-wrapper .list-style-events-single-event:hover .event-featured-image img {
+    width: 120%;
+    -webkit-transform: scale(1.2) rotate(2deg);
+    -moz-transform: scale(1.2) rotate(2deg);
+    -o-transform: scale(1.2) rotate(2deg);
+    transform: scale(1.2) rotate(2deg);
+    @include transition(all);
+  }
+  .list-style-events-wrapper .list-style-events-single-event .event-details {
+    display: table-cell;
+    width: 50%;
+    vertical-align: middle;
+    background: $red;
+    padding: 0 20px;
+    text-align: center;
+  }
+  h3,
+  h3 a {
+    color: #FFF !important;
+    font-family: 'museo-sans' !important;
+    font-size: 1.875rem;
+    font-weight: 900 !important;
+    line-height: 1.2 !important;
+    text-transform: capitalize !important;
+    margin-bottom: 1rem;
+  }
+  span.event-meta {
+    font-family: 'museo-sans';
+    font-size: 1.5rem;
+    line-height: 1.4;
+    color: $yellow;
+    margin: 5px 0 0 0;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+  span.event-meta em {
+    font-style: normal !important;
+  }
+  span.event-meta-inner {
+    padding: 0 10px;
+    background: $red;
+    z-index: 99;
+    position: relative;
+    display: inline-block;
+  }
+  span.event-excerpt {
+    color: #FFF;
+    font-family: 'museo-sans';
+    font-size: 1.125rem;
+    line-height: 1.4;
+  }
+  div.event-details {
+
+    p {
+      margin-bottom: 0;
+    }
+
+  }
+
+}
+
+span.em-pagination {
+  margin-left: 40px;
+  display: block;
+  clear: both;
+}
+.page-numbers {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  border: 1px solid $dark;
+  line-height: 26px;
+  margin: 0 !important;
+  -webkit-transition: background 250ms ease-out;
+  -moz-transition: background 250ms ease-out;
+  -o-transition: background 250ms ease-out;
+  transition: background 250ms ease-out;
+}
+span.em-pagination strong {
+  position: relative;
+  font-family: 'museo-sans';
+}
+span.page-numbers.current {
+  background: $red;
+  color: #FFF;
+  border-color: $red;
+  text-shadow: 0 0 1px $dark;
+  font-size: 20px;
+}
+a.page-numbers:hover,
+a.page-numbers:focus {
+  background: $dark !important;
+  color: #FFF !important;
+}
+@media only screen and (max-width: 84.375em) {
+  .uptown-events-wrapper {
+
+    h3,
+    h3 a {
+      font-size: 1.5rem;
+    }
+    span.event-meta {
+      font-size: 1.125rem;
+    }
+    span.event-excerpt {
+      font-size: 1rem;
+    }
+  }
+}
+@media only screen and (max-width: 78.1275em) {
+  .uptown-events-wrapper {
+
+    .list-style-events-wrapper .list-style-events-single-event .event-featured-image {
+      width: 45%
+    }
+    .list-style-events-wrapper .list-style-events-single-event .event-details {
+      width: 55%;
+    }
+    h3,
+    h3 a {
+      font-size: 1.25rem;
+    }
+    span.event-meta {
+      font-size: 1rem;
+    }
+    span.event-excerpt {
+      font-size: .9375rem;
+    }
+  }
+}
+@media only screen and (max-width: 66.5625em) {
+  .uptown-events-wrapper .list-style-events-wrapper .list-style-events-single-event {
+    width: 100%;
+    float: none;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .uptown-events-wrapper .list-style-events-wrapper .list-style-events-single-event .event-featured-image,
+  .uptown-events-wrapper .list-style-events-wrapper .list-style-events-single-event .event-details {
+    display: block;
+    width: 100%;
+  }
+  .uptown-events-wrapper .list-style-events-wrapper .list-style-events-single-event .event-details {
+    padding: 20px;
+  }
 }
 
 /**** 5. PORTFOLIO PAGE STYLES ****/
