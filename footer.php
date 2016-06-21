@@ -166,12 +166,27 @@
 		element: document.getElementById('init-header-change'),
 		handler: function(direction) {
 			jQuery('#masthead').toggleClass('reverse-header');
-			jQuery('#masthead.reverse-header .top-bar .top-bar-left a.custom-logo-link img').attr('src','http://127.0.0.1/newuptown/wp-content/uploads/2016/05/logo-color.svg');
-			jQuery('#masthead .top-bar .top-bar-left a.custom-logo-link img').attr('src','http://127.0.0.1/newuptown/wp-content/uploads/2016/04/logo.svg');
+			jQuery('#masthead.reverse-header .top-bar .top-bar-left a.custom-logo-link img').attr('src','http://159.203.243.127/wp-content/uploads/2016/05/logo-color.svg');
+			jQuery('#masthead .top-bar .top-bar-left a.custom-logo-link img').attr('src','http://159.203.243.127/wp-content/uploads/2016/04/logo.svg');
 
 		},
 		offset: shrinkOn
 	});
+
+	jQuery(function($) {
+  $('a[href*="#"]:not([href="#"])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: target.offset().top - 120
+        }, 1000);
+        return false;
+      }
+    }
+  });
+});
 
 	// initiating the isotope page
 	jQuery(window).load(function($) {
@@ -237,7 +252,7 @@
         return str;
       },
       scrollToElement: function(whereTo){
-        jQuery('html, body').animate({ scrollTop: jQuery(whereTo).offset().top }, scroller.scrollTiming);
+        jQuery('html, body').animate({ scrollTop: jQuery(whereTo).offset().top - 120 }, scroller.scrollTiming);
       },
       generateTempNavId: function(navId){
         return '_'+navId;

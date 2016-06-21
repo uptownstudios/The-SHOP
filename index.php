@@ -15,7 +15,9 @@
 
 get_header(); ?>
 
-<div id="page" role="main">
+<?php get_template_part( 'template-parts/title-bar' ); ?>
+
+<div id="page-full-width" role="main">
 	<article class="main-content">
 	<?php if ( have_posts() ) : ?>
 
@@ -38,7 +40,6 @@ get_header(); ?>
 		<?php } ?>
 
 	</article>
-	<?php get_sidebar(); ?>
 
 </div>
 

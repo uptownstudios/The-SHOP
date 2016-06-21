@@ -99,6 +99,7 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-block;
   padding: 8px 20px;
   border: 2px solid $red;
+  background: #FFF;
   @include transition(all);
 }
 .bs-btn.bs-btn-white {
@@ -1080,6 +1081,35 @@ header#featured-hero {
   }
 
 }
+.services-list-inner {
+  display: table;
+  width: 100%;
+
+  .service-list-item {
+    display: table-cell;
+    width: 14.2857142857%;
+
+    img {
+      width: 60px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      padding: 0;
+    }
+    a.service-list-anchor {
+      display: inline-block;
+      text-align: center;
+      width: 100%;
+    }
+    h3 a.service-list-anchor {
+      color: #FFF !important;
+      text-align: center;
+      font-size: .9875rem;
+    }
+
+  }
+
+}
 span.fun-title {
   font-family: 'acumin-pro-extra-condensed';
   text-transform: uppercase;
@@ -1135,6 +1165,16 @@ span.fun-title {
   }
 }
 @media only screen and (max-width: 47.9375em) {
+  .services-list-inner {
+    .service-list-item {
+      h3 {
+        display: none;
+      }
+      img {
+        width: 45px;
+      }
+    }
+  }
   .single-tm-inner, .single-service-inner {
     .wpb_column.vc_column_container.vc_col-sm-4,
     .wpb_column.vc_column_container.vc_col-sm-8 {
@@ -1172,6 +1212,16 @@ span.fun-title {
   .single-service-image .vc_single_image-wrapper {
     padding-top: 0;
     padding-bottom: 20px;
+  }
+}
+
+@media only screen and (max-width: 23.4375em) {
+  .services-list-inner {
+    .service-list-item {
+      img {
+        width: 40px;
+      }
+    }
   }
 }
 
@@ -1965,6 +2015,15 @@ ul.filter-portfolio-category li a.active:before, ul.filter-portfolio-category li
 
 
 /**** 6. FOOTER STYLES ****/
+#footer-container:before {
+    content: '';
+    width: 100%;
+    height: 4px;
+    display: block;
+    background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/06/dot-border-red.svg);
+    top: -2px;
+    position: relative;
+}
 #footer-container #footer {
   max-width: 100rem;
 }
@@ -2000,8 +2059,16 @@ ul.filter-portfolio-category li a.active:before, ul.filter-portfolio-category li
   .large-3.widget li,
   .large-3.widget a,
   .large-3.widget span {
-    font: 700 .9375rem/1.4 'museo-sans';
+    font-family: 'museo-sans';
+    font-size: .9375rem;
+    font-weight: 700;
+    line-height: 1.4;
     padding: 0;
+  }
+  .large-3.widget a.bs-btn {
+    font-size: 18px;
+    line-height: 1;
+    padding: 8px 20px;
   }
   .widget h6 {
     font-weight: 900;
