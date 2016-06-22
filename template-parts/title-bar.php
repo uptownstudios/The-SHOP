@@ -15,12 +15,12 @@
 	if ( has_post_thumbnail( $post->ID ) ) :
 ?>
 	<header id="featured-hero" role="banner" style="background-image: url('<?php echo $image ?>'); background-repeat: <?php echo $bg_repeat; ?>; background-color: <?php echo $bg_color; ?>; background-size: <?php echo $bg_size; ?>;">
-		<h1 class="entry-title <?php if($title_color == 'dark') {?> dark<?php } ?>"><span><?php the_title(); ?></span></h1>
+		<h1 class="entry-title <?php if($title_color == 'dark') {?> dark<?php } ?>"><span class="entry-title-inner"><?php the_title(); ?></span></h1>
 	</header>
 	<div id="init-header-change"></div>
 <?php else : ?>
-	<header id="featured-hero" role="banner" style="background-image: url('http://127.0.0.1/newuptown/wp-content/uploads/2016/06/tie-fighter-wing02.svg'); background-repeat: repeat; background-color: #a8c9e9; background-size: 290px;">
-		<h1 class="entry-title dark"><span><?php the_title(); ?></span></h1>
+	<header id="featured-hero" role="banner" style="background-image: url('<?php bloginfo('url') ?>/wp-content/uploads/2016/06/tie-fighter-wing02.svg'); background-repeat: repeat; background-color: #a8c9e9; background-size: 290px;">
+		<h1 class="entry-title dark"><span class="entry-title-inner"><?php the_title(); ?></span></h1>
 	</header>
 	<div id="init-header-change"></div>
-<?php endif;
+<?php endif; ?>

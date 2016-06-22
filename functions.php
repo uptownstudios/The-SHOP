@@ -145,6 +145,45 @@ function my_taxonomies_portfolio() {
 add_action( 'init', 'my_taxonomies_portfolio', 0 );
 
 
+// SERVICES CUSTOM POST TYPE
+function my_custom_post_current_services() {
+	$labels = array(
+		'name'               => _x( 'Services', 'post type general name' ),
+		'singular_name'      => _x( 'Service', 'post type singular name' ),
+		'add_new'            => _x( 'Add New Item', 'service' ),
+		'add_new_item'       => __( 'Add New Item' ),
+		'edit_item'          => __( 'Edit Service Item' ),
+		'new_item'           => __( 'New Service Item' ),
+		'all_items'          => __( 'All Service Items' ),
+		'view_item'          => __( 'View Service Item' ),
+		'search_items'       => __( 'Search Service' ),
+		'not_found'          => __( 'No services items found' ),
+		'not_found_in_trash' => __( 'No services items found in the Trash' ),
+		'parent_item_colon'  => '',
+		'menu_name'          => 'Services'
+	);
+	$args = array(
+		'labels'        	     => $labels,
+		'description'   	     => 'Holds our services and service specific data',
+		'capablility_type' 	   => 'post',
+		'public'        	     => true,
+		'menu_position' 	     => 5,
+    'taxonomies'           => array( 'post_tag' ),
+		'supports'      	     => array( 'title', 'editor', 'thumbnail', 'excerpt', 'comments', 'custom-fields', ),
+		//'register_meta_box_cb' => 'add_project_metaboxes',
+		'has_archive'   	     => true,
+    'menu_icon'            => 'dashicons-list-view',
+	);
+	register_post_type( 'service', $args );
+}
+add_action( 'init', 'my_custom_post_current_services' );
+
+//Add new image size for Service featured image
+if ( function_exists( 'add_image_size' ) ) {
+	add_image_size( 'service', 500, 500, true ); //(cropped)
+}
+
+
 // Customizer Additions
 if ( ! function_exists( 'newuptown_customize_register' ) ) {
 function newuptown_customize_register( $wp_customize ) {
@@ -286,3 +325,10 @@ function bs_instagram_feed( $atts ) {
     return $bs_ig_feed_variable;
 }
 add_shortcode( 'bs_ig_feed', 'bs_instagram_feed' );
+
+
+// Custom Excerpt
+function bs_exceprt_more( $more ) {
+  return ' ...';
+}
+add_filter( 'excerpt_more', 'bs_exceprt_more' );
