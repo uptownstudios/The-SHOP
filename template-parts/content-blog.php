@@ -9,7 +9,7 @@
  */
 
 $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
-$args = array( 'post_type' => 'post', 'posts_per_page' => 3, 'paged' => $paged );
+$args = array( 'post_type' => 'post', 'posts_per_page' => 9, 'paged' => $paged );
 $loop = new WP_Query( $args );
 
 ?>
@@ -25,21 +25,8 @@ $loop = new WP_Query( $args );
 							<h3><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h3>
 							<p class="author-date">Published on <?php the_date(); ?></p>
 							<?php the_excerpt(); ?>
-							<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="bs-btn bs-btn-red">Read More &raquo;</a>
+							<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">Read More &raquo;</a>
 						</div>
 					</div>
 				</article>
-			<?php endwhile; ?>
-
-				<?php if ($loop->max_num_pages > 1) { // check if the max number of pages is greater than 1  ?>
-					<nav class="prev-next-posts">
-						<div class="prev-posts-link">
-							<?php echo get_next_posts_link( '&laquo; Older Posts', $loop->max_num_pages ); // display older posts link ?>
-						</div>
-						<div class="next-posts-link">
-							<?php echo get_previous_posts_link( 'Newer Posts &raquo;' ); // display newer posts link ?>
-						</div>
-					</nav>
-				<?php } ?>
-
-			<?php endif; ?>
+			<?php endwhile; endif; ?>

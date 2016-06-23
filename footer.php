@@ -145,6 +145,23 @@
 		});
 	});
 
+	// Masonry Layout for Blog Posts
+	(function ($) {
+		var $container2 = $('.page-template-page-blog article.main-content > .entry-content');
+		$container2.imagesLoaded(function() {
+			$container2.isotope({
+				resizable: false,
+				itemSelector: 'article.post',
+				layoutMode: 'masonry',
+				fitRows: {
+	  				gutter: 20
+				}
+			});
+			$container2.isotope('reloadItems');
+		});
+		$(window).trigger('resize');
+	}(jQuery));
+
 	function init() {
     window.addEventListener('scroll', function(e){
       var distanceY = window.pageYOffset || document.documentElement.scrollTop,

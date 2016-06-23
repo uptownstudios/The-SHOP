@@ -575,16 +575,13 @@ body.mobile .home-hero-wrapper {
     padding-top: 50px;
   }
   .wpb_single_image img {
-    width: 260px;
+    width: 250px;
     height: auto;
     background-size: 1%;
     -webkit-transition: background-size 500ms ease-out;
     -moz-transition: background-size 500ms ease-out;
     -o-transition: background-size 500ms ease-out;
     transition: background-size 500ms ease-out;
-  }
-  .wpb_single_image.what-we-do-triangle img {
-    margin-bottom: -40px !important;
   }
   .wpb_single_image.sunburst-hover img {
     padding: 40px;
@@ -595,34 +592,7 @@ body.mobile .home-hero-wrapper {
     margin-left: auto;
     margin-right: auto;
   }
-  .web-portal .wpb_single_image img:hover,
-  .video-portal .wpb_single_image img:hover {
-    background: url(http://159.203.243.127/wp-content/uploads/2016/04/sunburst-yellow.svg) no-repeat center center;
-    background-size: 100%;
-    -webkit-transition: background-size 500ms ease-out;
-    -moz-transition: background-size 500ms ease-out;
-    -o-transition: background-size 500ms ease-out;
-    transition: background-size 500ms ease-out;
-  }
-  .graphic-portal .wpb_single_image img:hover,
-  .print-portal .wpb_single_image img:hover {
-    background: url(http://159.203.243.127/wp-content/uploads/2016/04/sunburst-red.svg) no-repeat center center;
-    background-size: 100%;
-    -webkit-transition: background-size 500ms ease-out;
-    -moz-transition: background-size 500ms ease-out;
-    -o-transition: background-size 500ms ease-out;
-    transition: background-size 500ms ease-out;
-  }
-  .branding-portal .wpb_single_image img:hover,
-  .sm-portal .wpb_single_image img:hover {
-    background: url(http://159.203.243.127/wp-content/uploads/2016/04/sunburst-teal.svg) no-repeat center center;
-    background-size: 100%;
-    -webkit-transition: background-size 500ms ease-out;
-    -moz-transition: background-size 500ms ease-out;
-    -o-transition: background-size 500ms ease-out;
-    transition: background-size 500ms ease-out;
-  }
-  .web-portal, .graphic-portal, .branding-portal, .sm-portal, .video-portal, .print-portal {
+  .web-portal, .graphic-portal, .branding-portal, .sm-portal, .video-portal, .print-portal, .hcd-portal, .adwords-portal {
     margin-bottom: 40px;
     p {
       text-align: center;
@@ -643,6 +613,8 @@ body.mobile .home-hero-wrapper {
       margin: -40px auto -50px;
       padding: 40px;
       display: block;
+      position: relative;
+      z-index: 10;
     }
     img.sunburst {
       position: absolute;
@@ -657,45 +629,41 @@ body.mobile .home-hero-wrapper {
     }
     a:hover img.sunburst {
       transform: translateX(-50%) scale(1);
-      z-index: -1;
+      z-index: 1;
       opacity: 1;
       transition: all .25s ease-out;
     }
   }
 }
 
-.hcd-wrapper {
-  /*background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/05/sticky-notes-bg.svg) repeat-x -17px calc(100% + 35px);
-  background-size: 550px; */
-  margin-bottom: -120px !important;
-  padding-bottom: 120px;
+.cta-wrapper {
 
-  .hcd-hand-svg img {
-    width: 150px;
-    height: auto;
+  .cta-content .wpb_wrapper {
+    display: table;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
   }
-  .hcd-banner-svg img {
-    width: 520px;
-    max-width: 100%;
-    height: auto;
-    margin: 60px 0 30px;
+  .hello-icon-svg img {
+    width: 290px;
   }
-  p {
-    font: 400 25px/1.4 'museo-sans';
-    max-width: 700px;
+  .cta-text {
     text-align: center;
-    margin: 0 auto 1rem !important;
-    color: #222;
+    font-family: 'museo-sans';
+    font-size: 1.75rem;
+
+    p {
+      font: 300 28px/1.4 'museo-sans';
+      max-width: 800px;
+      margin: 0 auto 1rem !important;
+      color: #222;
+    }
+
   }
   .vc_column_container {
     max-width: 1200px;
     margin: 0 auto;
   }
-}
-.hcd-postits {
-  background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/05/sticky-notes-bg.svg) repeat-x -17px 0;
-  background-size: 550px;
-  height: 120px;
 }
 
 .events-circle {
@@ -879,6 +847,10 @@ body.mobile .home-hero-wrapper {
 
 }
 
+.holler-at-us-svg img {
+  width: 420px;
+}
+
 @media only screen and (max-width: 64em) {
   .title-bar {
     background: none !important;
@@ -907,20 +879,9 @@ body.mobile .home-hero-wrapper {
       width: 50%;
     }
   }
-  .hcd-wrapper {
+  .cta-wrapper {
     margin-bottom: -85px !important;
     padding-bottom: 85px;
-  }
-  .hcd-postits {
-    background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/05/sticky-notes-bg.svg) repeat-x -17px 0;
-    background-size: 400px;
-    height: 85px;
-  }
-  .hcd-right {
-    margin-top: 40px !important;
-  }
-  .hcd-left *, .hcd-right * {
-    text-align: center;
   }
 }
 @media only screen and (max-width: 39.9375em) {
@@ -970,7 +931,7 @@ body.mobile .home-hero-wrapper {
 }
 
 @media only screen and (max-width: 23.4375em) {
-  .hcd-wrapper a.bs-btn.bs-btn-clear {
+  .cta-wrapper a.bs-btn.bs-btn-clear {
     margin-bottom: 60px !important;
   }
 }
@@ -1038,8 +999,8 @@ header#featured-hero {
 }
 
 /* 4b. Team Member Styles and Service Styles */
-.single-tm-outer:nth-of-type(even),
-.single-service-outer:nth-of-type(even) {
+.single-tm-outer:nth-of-type(odd),
+.single-service-outer:nth-of-type(odd) {
   background: #f1f1f1;
 }
 .photo-right {
@@ -1098,6 +1059,8 @@ header#featured-hero {
 .services-list-inner {
   display: table;
   width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
 
   .service-list-item {
     display: table-cell;
@@ -1250,10 +1213,13 @@ span.fun-title {
 }
 
 /* 4d. Contact Us Page and Gravity Forms Styles */
-.holler-at-us-wrapper {
-  background: #ecebe9 url(http://127.0.0.1/newuptown/wp-content/uploads/2016/04/geo-feathers-semi-transparent.svg) fixed;
-  background-size: 55px;
-}
+// .holler-at-us-wrapper {
+//   background: #ecebe9 url(http://127.0.0.1/newuptown/wp-content/uploads/2016/04/geo-feathers-semi-transparent.svg) fixed;
+//   background-size: 55px;
+// }
+// .home .holler-at-us-wrapper {
+//   background: #FFF;
+// }
 ul.us-contact-info {
   list-style: none;
   padding: 10px 0;
@@ -1299,8 +1265,8 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
     height: 56px;
     line-height: 50px;
     border: 0;
-    background: #FFF;
-    background: rgba(255,255,255,.8);
+    background: #E6E6E6;
+    background: rgba(230,230,230,.8);
     box-shadow: none;
     margin: 0;
     padding: 0 5px;
@@ -1308,8 +1274,8 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
   .gform_wrapper textarea {
     width: 100% !important;
     border: 0;
-    background: #FFF;
-    background: rgba(255,255,255,.8);
+    background: #E6E6E6;
+    background: rgba(230,230,230,.8);
     box-shadow: none;
     margin: 0;
   }
@@ -1398,6 +1364,10 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
     font-family: 'museo-sans' !important;
   }
 
+}
+.home .entry-content .gform_wrapper {
+  margin: 0 auto !important;
+  max-width: 800px !important;
 }
 
 /* 4e. Events Styles */
@@ -1591,30 +1561,47 @@ a.page-numbers:focus {
 /* 4f. Blog Page Styles */
 .page-template-page-blog {
 
-  article.post {
+  article.main-content {
     max-width: 1600px;
-    margin: 50px auto 0;
+    margin-left: auto;
+    margin-right: auto;
+    float: none !important;
+  }
+  article.main-content > .entry-content {
+    margin-top: 50px;
+    margin-left: -30px;
+  }
+  article.main-content > .entry-content article.post {
+    padding-left: 30px;
+    padding-bottom: 30px;
+  }
+  article.post {
+    width: 33.3333%;
+    margin: 0 auto;
     padding: 0;
-    border-bottom: 1px solid #a72535;
 
     p.author-date {
       text-transform: uppercase;
     }
     .entry-content {
       display: inline-block;
-      margin-bottom: 40px;
+      border: 1px solid #f1f1f1;
     }
     .blog-page-title-excerpt {
-      width: 66.875%;
-      float: right;
+      width: 100%;
       font-family: 'museo-sans';
+      padding: 15px;
+      background: #f1f1f1;
     }
     .blog-page-featured-image {
-      float: left;
-      width: 33.125%;
+      width: 100%;
 
         figure {
-          margin: 0 30px 0 0;
+          margin: 0;
+        }
+        figure img {
+          width: 100%;
+          height: auto;
         }
 
     }
@@ -1627,7 +1614,7 @@ a.page-numbers:focus {
     margin: 10px auto 0;
     padding: 20px 5px;
     border-top: 1px solid #a72535;
-    max-width: 1600px;
+    max-width: 1570px;
   }
 
 }
@@ -2176,14 +2163,18 @@ ul.filter-portfolio-category li a.active:before, ul.filter-portfolio-category li
 
 
 /**** 6. FOOTER STYLES ****/
-#footer-container:before {
-    content: '';
-    width: 100%;
-    height: 4px;
-    display: block;
-    background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/06/dot-border-red.svg);
-    top: -2px;
-    position: relative;
+// #footer-container:before {
+//     content: '';
+//     width: 100%;
+//     height: 4px;
+//     display: block;
+//     background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/06/dot-border-red.svg);
+//     top: -2px;
+//     position: relative;
+// }
+#footer-container {
+  background: #e9e9e9;
+  background: rgba(230,230,230,.8);
 }
 #footer-container #footer {
   max-width: 100rem;
