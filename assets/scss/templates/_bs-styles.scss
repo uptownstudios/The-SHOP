@@ -1618,18 +1618,25 @@ a.page-numbers:focus {
   }
 
 }
+@media only screen and (max-width: 64em) {
+  .page-template-page-blog article.post {
+    width: 50%;
+  }
+}
 @media only screen and (max-width: 47.9375em) {
   .page-template-page-blog article.post .blog-page-title-excerpt,
   .page-template-page-blog article.post .blog-page-featured-image {
     width: 100%;
     float: none;
   }
-  .page-template-page-blog article.post .blog-page-featured-image figure {
-    margin: 0 0 10px 0;
-  }
   .page-template-page-blog article.post .blog-page-featured-image img {
     width: 100%;
     height: auto;
+  }
+}
+@media only screen and (max-width: 40em) {
+  .page-template-page-blog article.post {
+    width: 100%;
   }
 }
 
@@ -1972,10 +1979,11 @@ ul.filter-portfolio-category li.filter-label {
   padding-right: 0;
   border-right: 0;
 }
-ul.filter-portfolio-category li:hover span.term-num {
+ul.filter-portfolio-category li:hover span.term-num,
+ul.filter-portfolio-category li a.active + span.term-num {
   visibility: visible;
   opacity: 1;
-  top: -35px;
+  top: -38px;
   -webkit-transition: all 150ms ease-out 200ms;
   -moz-transition: all 150ms ease-out 200ms;
   -o-transition: all 150ms ease-out 200ms;
@@ -2150,6 +2158,41 @@ ul.filter-portfolio-category li a.active:before, ul.filter-portfolio-category li
   	width: 50% !important;
   	height: auto !important;
 	}
+  ul.filter-portfolio-category li {
+  	display: block;
+    margin-bottom: 15px;
+    margin-left: 30px;
+  }
+  ul.filter-portfolio-category li:first-child {
+    margin-left: 0;
+  }
+  ul.filter-portfolio-category li span.term-num {
+    position: relative;
+    top: 0;
+    right: -80px;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    opacity: 0;
+    visibility: hidden;
+  }
+  ul.filter-portfolio-category li:hover span.term-num,
+  ul.filter-portfolio-category li a.active + span.term-num  {
+    top: 0;
+    left: auto;
+    right: -30px;
+    opacity: 1;
+    visibility: visible;
+  }
+  ul.filter-portfolio-category li span.term-num:after {
+    border-top-color: transparent;
+    border-right-color: #a72535;
+    margin-left: 0;
+    left: auto;
+    right: 100%;
+    top: 50%;
+    margin-top: -8px;
+  }
 }
 @media only screen and (max-width: 30em) {
 	.single-portfolio-item {

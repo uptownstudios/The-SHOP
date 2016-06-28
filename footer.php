@@ -43,14 +43,22 @@
 
 <script type="text/javascript">
 
+	var windowWidth;
+	var headerHeight;
+	var topScrollOffset;
+	var windowWidth = jQuery(window).width();
+	var headerHeight = jQuery('#masthead').height();
+	if(windowWidth > 640) {
+		var topScrollOffset = '112';
+	} else {
+		var topScrollOffset = '0';
+	}
+
 	jQuery(document).ready(function($) {
 		$heightOnLoad = $('.home-hero-wrapper.vc_row.vc_row-o-full-height').height();
-		$heightOnLoad2 = $('.hcd-wrapper').height();
 		console.log($heightOnLoad);
-		console.log($heightOnLoad2);
 		$(window).resize(function() {
 			$('body.mobile .home-hero-wrapper.vc_row.vc_row-o-full-height').css({'min-height':$heightOnLoad});
-			$('.hcd-inner').css({'background-position':'-17px ' + $heightOnLoad2});
 		});
 	});
 
@@ -197,7 +205,7 @@
       target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
       if (target.length) {
         $('html, body').animate({
-          scrollTop: target.offset().top - 120
+          scrollTop: target.offset().top - topScrollOffset
         }, 1000);
         return false;
       }
@@ -234,8 +242,7 @@
   (function($){
 
     scroller = {
-      topScrollOffset: 200,
-      scrollTiming: 1000,
+			scrollTiming: 1000,
       pageLoadScrollDelay: 1000,
       hashLinkClicked: function(e){
 
@@ -269,7 +276,7 @@
         return str;
       },
       scrollToElement: function(whereTo){
-        jQuery('html, body').animate({ scrollTop: jQuery(whereTo).offset().top - 120 }, scroller.scrollTiming);
+        jQuery('html, body').animate({ scrollTop: jQuery(whereTo).offset().top - topScrollOffset }, scroller.scrollTiming);
       },
       generateTempNavId: function(navId){
         return '_'+navId;
@@ -296,8 +303,6 @@
             scroller.scrollToElement('#'+scroller.getNavIdFromHash());
           },scroller.pageLoadScrollDelay);
           var hash = window.location.hash;
-          // $('#'+hash.substring(2)).find('.meteor-toggle').addClass('expanded').addClass('scroller');
-          // $('#'+hash.substring(2)).find('div.post-content').add('show');
         }
       }
     };
