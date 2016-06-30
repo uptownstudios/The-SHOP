@@ -2,6 +2,7 @@ $font-stack: 'museo-sans', Helvetica, Arial, sans-serif;
 $yellow: #ecb937;
 $red: #a72535;
 $redalpha: rgba(167,37,53,.85);
+$blackalpha: rgba(27,27,27,.65);
 $teal: #8dc7bd;
 $dark: #1b1b1b;
 
@@ -28,7 +29,9 @@ $dark: #1b1b1b;
 
 4. INTERNAL PAGE STYLES
   4a. Title Bar Styles
-  4b. Team Member Styles
+  4b. Team Member and Services Styles
+  4c. Clients Styles
+  4d. Gravity Forms Styles
 
 5. PORTFOLIO STYLES
 
@@ -76,27 +79,38 @@ div#preloader img.preloader-logo {
 
 /**** 1. GENERAL STYLES ****/
 a {
-  font-size: 95%;
   color: $red;
   font-weight: 700;
   font-family: 'museo-sans';
-  text-transform: uppercase;
 }
 a:hover, a:focus {
   color: $dark;
+}
+p {
+  font-weight: 300;
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-stack;
   text-transform: uppercase;
   font-weight: 700;
   color: $red;
+  line-height: 1.1;
+}
+h2, h3 {
+  color: $dark;
+}
+h3, h4 {
+  text-transform: capitalize;
 }
 .bs-btn {
   font-size: 18px;
+  font-weight: 700 !important;
   line-height: 1;
   display: inline-block;
   padding: 8px 20px;
   border: 2px solid $red;
+  background: #FFF;
+  text-transform: uppercase;
   @include transition(all);
 }
 .bs-btn.bs-btn-white {
@@ -109,11 +123,64 @@ h1, h2, h3, h4, h5, h6 {
   border: 2px solid $red;
   color: #FFF;
 }
+.bs-btn.bs-btn-red {
+  background: $red;
+  color: #FFF;
+  border: 2px solid $red;
+}
+.bs-btn.bs-btn-red:hover,
+.bs-btn.bs-btn-red:focus {
+  background: $dark;
+  border: 2px solid $dark;
+  color: #FFF;
+}
+.bs-btns-wrapper {
+    text-align: left;
+    width: 100%;
+
+    .bs-btn {
+      display: inline-block;
+      margin: 0 10px 10px 0 ;
+    }
+
+}
 html .margin-bottom-60 {
   margin-bottom: 60px !important;
 }
 html .margin-bottom-6per {
   margin-bottom: 6% !important;
+}
+.max-width-eleven-seventy {
+  max-width: 1170px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.max-width-sixteen-hundred {
+  max-width: 1600px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.entry-content {
+
+  h2, h3, h4, h5, h6 {
+    margin-bottom: 0;
+  }
+  h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
+    margin-top: 1rem;
+  }
+  ul.row {
+    margin-left: 1.25rem;
+  }
+  ul.row li.columns {
+    padding-left: 0;
+  }
+  ul.row .column:last-child:not(:first-child),
+  ul.row .columns:last-child:not(:first-child),
+  ol.row .column:last-child:not(:first-child),
+  ol.row .columns:last-child:not(:first-child) {
+    float: left;
+  }
+
 }
 .section-title {
   margin-top: -55px;
@@ -162,6 +229,33 @@ ul.social-media-wrapper.white li a {
   font-family: 'museo-sans';
   line-height: 1.4;
 }
+#back-top {
+  position: fixed;
+  bottom:20px;
+  right: 2%;
+  z-index: 100;
+}
+#back-top a {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background: $redalpha;
+  color: #FFF;
+  display: inline-block;
+  @include transition(background);
+}
+#back-top a:hover,
+#back-top a:focus {
+  background: $red;
+}
+@media only screen and (max-width: 30em) {
+  .bs-btns-wrapper .bs-btn {
+    width: 100%;
+    margin: 0 0 10px 0;
+    text-align: center;
+  }
+}
 
 
 /**** 2. HEADER STYLES ****/
@@ -202,6 +296,7 @@ nav.off-canvas {
     color: #FFF;
     position: relative;
     display: inline-block;
+    text-transform: uppercase;
     margin-left: 10px;
     padding-left: 0;
     padding-right: 0;
@@ -250,23 +345,24 @@ ul.social-media-wrapper {
   margin: 0 5px 0 0;
   li {
     display: inline-block;
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
     margin-right: 5px;
     text-align: center;
     position: relative;
     z-index: 99;
+    font-size: 1.25rem;
   }
   li:after {
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
     content: '';
     display: block;
     position: absolute;
     z-index: -1;
     top: 0;
     left: 0;
-    border-radius: 12px;
+    border-radius: 15px;
     opacity: 0;
     transform: scale(0);
     transition: all 250ms ease-out;
@@ -392,13 +488,13 @@ background: none;
 
 @media only screen and (max-width: 64em) and (min-width: 50.0625em) {
   .top-bar .top-bar-right .menu > li > a {
-    padding: 10px 7px 0 0 !important;
+    padding: 10px 3.5px 0 3.5px !important;
     font-size: 1.95em;
   }
 }
 @media only screen and (max-width: 50em) and (min-width: 45.0625em) {
   .top-bar .top-bar-right .menu > li > a {
-    padding: 10px 7px 0 0 !important;
+    padding: 10px 3.5px 0 3.5px !important;
     font-size: 1.75em;
   }
 }
@@ -472,20 +568,20 @@ body.mobile .home-hero-wrapper {
   background-size: 110% !important;
 }
 .what-we-do-wrapper {
+  background: #e7e7e7 url(http://127.0.0.1/newuptown/wp-content/uploads/2016/06/what-we-do-bg-tile.svg) repeat fixed !important;
+  background-size: 75px !important;
+
   .vc_column-inner {
     padding-top: 50px;
   }
   .wpb_single_image img {
-    width: 260px;
+    width: 250px;
     height: auto;
     background-size: 1%;
     -webkit-transition: background-size 500ms ease-out;
     -moz-transition: background-size 500ms ease-out;
     -o-transition: background-size 500ms ease-out;
     transition: background-size 500ms ease-out;
-  }
-  .wpb_single_image.what-we-do-triangle img {
-    margin-bottom: -40px !important;
   }
   .wpb_single_image.sunburst-hover img {
     padding: 40px;
@@ -496,34 +592,7 @@ body.mobile .home-hero-wrapper {
     margin-left: auto;
     margin-right: auto;
   }
-  .web-portal .wpb_single_image img:hover,
-  .video-portal .wpb_single_image img:hover {
-    background: url(http://159.203.243.127/wp-content/uploads/2016/04/sunburst-yellow.svg) no-repeat center center;
-    background-size: 100%;
-    -webkit-transition: background-size 500ms ease-out;
-    -moz-transition: background-size 500ms ease-out;
-    -o-transition: background-size 500ms ease-out;
-    transition: background-size 500ms ease-out;
-  }
-  .graphic-portal .wpb_single_image img:hover,
-  .print-portal .wpb_single_image img:hover {
-    background: url(http://159.203.243.127/wp-content/uploads/2016/04/sunburst-red.svg) no-repeat center center;
-    background-size: 100%;
-    -webkit-transition: background-size 500ms ease-out;
-    -moz-transition: background-size 500ms ease-out;
-    -o-transition: background-size 500ms ease-out;
-    transition: background-size 500ms ease-out;
-  }
-  .branding-portal .wpb_single_image img:hover,
-  .sm-portal .wpb_single_image img:hover {
-    background: url(http://159.203.243.127/wp-content/uploads/2016/04/sunburst-teal.svg) no-repeat center center;
-    background-size: 100%;
-    -webkit-transition: background-size 500ms ease-out;
-    -moz-transition: background-size 500ms ease-out;
-    -o-transition: background-size 500ms ease-out;
-    transition: background-size 500ms ease-out;
-  }
-  .web-portal, .graphic-portal, .branding-portal, .sm-portal, .video-portal, .print-portal {
+  .web-portal, .graphic-portal, .branding-portal, .sm-portal, .video-portal, .print-portal, .hcd-portal, .adwords-portal {
     margin-bottom: 40px;
     p {
       text-align: center;
@@ -544,6 +613,8 @@ body.mobile .home-hero-wrapper {
       margin: -40px auto -50px;
       padding: 40px;
       display: block;
+      position: relative;
+      z-index: 10;
     }
     img.sunburst {
       position: absolute;
@@ -558,33 +629,36 @@ body.mobile .home-hero-wrapper {
     }
     a:hover img.sunburst {
       transform: translateX(-50%) scale(1);
-      z-index: -1;
+      z-index: 1;
       opacity: 1;
       transition: all .25s ease-out;
     }
   }
 }
 
-.hcd-wrapper {
-  background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/05/sticky-notes-bg.svg) repeat-x -17px calc(100% + 35px);
-  background-size: 550px;
+.cta-wrapper {
 
-  .hcd-hand-svg img {
-    width: 150px;
-    height: auto;
+  .cta-content .wpb_wrapper {
+    display: table;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
   }
-  .hcd-banner-svg img {
-    width: 520px;
-    max-width: 100%;
-    height: auto;
-    margin: 60px 0 30px;
+  .hello-icon-svg img {
+    width: 290px;
   }
-  p {
-    font: 400 25px/1.4 'museo-sans';
-    max-width: 700px;
+  .cta-text {
     text-align: center;
-    margin: 0 auto 1rem !important;
-    color: #222;
+    font-family: 'museo-sans';
+    font-size: 1.75rem;
+
+    p {
+      font: 300 28px/1.4 'museo-sans';
+      max-width: 800px;
+      margin: 0 auto 1rem !important;
+      color: #222;
+    }
+
   }
   .vc_column_container {
     max-width: 1200px;
@@ -598,7 +672,7 @@ body.mobile .home-hero-wrapper {
   display: block;
   margin: 0 auto;
   border-radius: 100%;
-  background: $redalpha;
+  background: $blackalpha;
   text-align: center;
 
   .events-circle-inner {
@@ -681,6 +755,8 @@ body.mobile .home-hero-wrapper {
 }
 
 .ig-wrapper {
+  background: #e7e7e7 url(http://127.0.0.1/newuptown/wp-content/uploads/2016/06/what-we-do-bg-tile.svg) repeat fixed !important;
+  background-size: 75px !important;
 
   span.ig-caption {
     display: block;
@@ -707,6 +783,15 @@ body.mobile .home-hero-wrapper {
       visibility: visible;
       bottom: 0;
       opacity: 1;
+  }
+  #instafeed .slick-slide {
+    float: none;
+    display: table-cell;
+    vertical-align: middle;
+    width: auto !important;
+  }
+  #instafeed .slick-track {
+    display: table;
   }
   a.instagram-image.slick-slide {
     position: relative;
@@ -771,6 +856,10 @@ body.mobile .home-hero-wrapper {
 
 }
 
+.holler-at-us-svg img {
+  width: 420px;
+}
+
 @media only screen and (max-width: 64em) {
   .title-bar {
     background: none !important;
@@ -799,15 +888,9 @@ body.mobile .home-hero-wrapper {
       width: 50%;
     }
   }
-  .hcd-wrapper {
-    background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/05/sticky-notes-bg.svg) repeat-x -17px calc(100% + 35px);
-    background-size: 400px;
-  }
-  .hcd-right {
-    margin-top: 40px !important;
-  }
-  .hcd-left *, .hcd-right * {
-    text-align: center;
+  .cta-wrapper {
+    margin-bottom: -85px !important;
+    padding-bottom: 85px;
   }
 }
 @media only screen and (max-width: 39.9375em) {
@@ -857,7 +940,7 @@ body.mobile .home-hero-wrapper {
 }
 
 @media only screen and (max-width: 23.4375em) {
-  .hcd-wrapper a.bs-btn.bs-btn-clear {
+  .cta-wrapper a.bs-btn.bs-btn-clear {
     margin-bottom: 60px !important;
   }
 }
@@ -880,13 +963,13 @@ header#featured-hero {
     h1.entry-title {
       text-align: center;
       color: #FFF;
-      font: 400 84px/1.1 'acumin-pro-extra-condensed';
+      font: 400 84px/1 'acumin-pro-extra-condensed';
       letter-spacing: .01rem;
       text-shadow: 1px 1px 2px #000;
       text-transform: uppercase;
       display: table-cell;
       vertical-align: bottom;
-      padding: 50px 0 60px;
+      padding: 165px 0 60px;
       position: relative;
     }
     h1.entry-title.dark {
@@ -904,11 +987,12 @@ header#featured-hero {
     //   left: 50%;
     //   transform: translate(-50%, -50%);
     // }
-    h1.entry-title span {
+    h1.entry-title span.entry-title-inner {
       position: relative;
       padding: 0 100px;
+      display: inline-block;
     }
-    h1.entry-title span:after {
+    h1.entry-title span.entry-title-inner:after {
       content: '';
       width: 100%;
       height: 5px;
@@ -916,18 +1000,43 @@ header#featured-hero {
       position: absolute;
       background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/06/dot-border-light2.svg);
       left: 0;
-      bottom: 0;
+      bottom: -1rem;
     }
-    h1.entry-title.dark span:after {
+    h1.entry-title.dark span.entry-title-inner:after {
       background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/06/dot-border2.svg);
     }
 }
 
-/* 4b. Team Member Styles */
-.single-tm-outer:nth-of-type(even) {
+/* 4b. Team Member Styles and Service Styles */
+.single-tm-outer:nth-of-type(odd),
+.single-service-outer:nth-of-type(odd) {
   background: #f1f1f1;
 }
-.single-tm-content {
+.photo-right {
+
+  .vc_col-sm-4 {
+    order: 2;
+
+    .vc_column-inner {
+      padding-right: 0;
+    }
+
+  }
+
+}
+.photo-left {
+
+    .vc_col-sm-4 .vc_column-inner {
+      padding-left: 0;
+    }
+
+}
+.single-service-inner {
+  max-width: 100rem;
+  margin: 0 auto !important;
+}
+.single-tm-content,
+.single-service-content {
   max-width: 800px;
   margin: 36px auto 0;
 
@@ -935,11 +1044,59 @@ header#featured-hero {
       font-family: 'museo-sans';
     }
 }
-.single-tm-image {
+.single-service-content {
+  max-width: none;
+}
+.single-tm-image,
+.single-service-image {
   margin-bottom: 0 !important;
 }
+.single-service-image {
+  .vc_single_image-wrapper {
+    width: 100%;
+    padding-top: 40px;
+  }
+  figure {
+    width: 80%;
+  }
+  img {
+    width: 100%;
+    max-height: 500px;
+  }
+
+}
+.services-list-inner {
+  display: table;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+
+  .service-list-item {
+    display: table-cell;
+    width: 14.2857142857%;
+
+    img {
+      width: 60px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      padding: 0;
+    }
+    a.service-list-anchor {
+      display: inline-block;
+      text-align: center;
+      width: 100%;
+    }
+    h3 a.service-list-anchor {
+      color: #FFF !important;
+      text-align: center;
+      font-size: .9875rem;
+    }
+
+  }
+
+}
 span.fun-title {
-  font-family: 'acumin-pro-extra-condensed';
   text-transform: uppercase;
   font-size: 1.5rem;
   line-height: 1;
@@ -951,6 +1108,7 @@ span.fun-title {
 .single-tm-image figcaption {
     position: absolute;
     width: 100%;
+    margin: 0 !important;
     padding: 20px;
     color: #FFF;
     font-size: 2.5rem !important;
@@ -969,7 +1127,7 @@ span.fun-title {
     -o-transition: all .25s ease-out;
     transition: all .25s ease-out;
 }
-.single-tm-image figure:hover figcaption {
+.single-tm-inner:hover .single-tm-image figure figcaption {
     opacity: 1;
     -webkit-transform: translateY(-100%);
     -moz-transform: translateY(-100%);
@@ -977,7 +1135,7 @@ span.fun-title {
     transform: translateY(-100%);
 }
 @media only screen and (max-width: 68.6875em) {
-  .single-tm-inner {
+  .single-tm-inner, .single-service-inner {
 
     .wpb_column.vc_column_container.vc_col-sm-4 {
       width: 40%;
@@ -992,7 +1150,17 @@ span.fun-title {
   }
 }
 @media only screen and (max-width: 47.9375em) {
-  .single-tm-inner {
+  .services-list-inner {
+    .service-list-item {
+      h3 {
+        display: none;
+      }
+      img {
+        width: 45px;
+      }
+    }
+  }
+  .single-tm-inner, .single-service-inner {
     .wpb_column.vc_column_container.vc_col-sm-4,
     .wpb_column.vc_column_container.vc_col-sm-8 {
       width: 100%;
@@ -1006,13 +1174,17 @@ span.fun-title {
       padding-right: 0;
     }
   }
-  .single-tm-content {
+  .single-tm-content, .single-service-content {
     margin: 5px auto 20px;
   }
-  .single-tm-outer {
+  body .single-tm-outer {
     padding-bottom: 40px !important;
   }
-  .single-tm-outer:last-of-type {
+  body .single-service-outer {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+  .single-tm-outer:last-of-type, .single-service-outer:last-of-type {
     padding-bottom: 0 !important;
   }
   .single-tm-image figcaption {
@@ -1022,6 +1194,549 @@ span.fun-title {
     -o-transform: translateY(-100%);
     transform: translateY(-100%);
   }
+  .single-service-image .vc_single_image-wrapper {
+    padding-top: 0;
+    padding-bottom: 20px;
+  }
+}
+
+@media only screen and (max-width: 23.4375em) {
+  .services-list-inner {
+    .service-list-item {
+      img {
+        width: 40px;
+      }
+    }
+  }
+}
+
+/* 4c. Clients Page Styles */
+@media only screen and (max-width: 47.9375em) and (min-width: 30.0625em) {
+  .clients-wrapper-inner .vc_col-sm-3 {
+    width: 50%;
+    float: left;
+  }
+  .clients-wrapper-inner .vc_col-sm-3:nth-child(3n+3) {
+    clear: left;
+  }
+}
+
+/* 4d. Contact Us Page and Gravity Forms Styles */
+// .holler-at-us-wrapper {
+//   background: #ecebe9 url(http://127.0.0.1/newuptown/wp-content/uploads/2016/04/geo-feathers-semi-transparent.svg) fixed;
+//   background-size: 55px;
+// }
+// .home .holler-at-us-wrapper {
+//   background: #FFF;
+// }
+ul.us-contact-info {
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+}
+ul.us-contact-info li {
+  padding: 20px 20px 20px 46px;
+  border-bottom: 2px solid $dark;
+  position: relative;
+  font-size: 20px;
+  font-family: 'museo-sans';
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 1.4;
+}
+ul.us-contact-info li i {
+  position: absolute;
+  margin-top: -2px;
+  left: 10px;
+  font-size: 40px;
+  color: $yellow;
+}
+body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
+  margin-top: 0 !important;
+}
+.entry-content {
+
+  .gform_wrapper {
+    margin: 0 auto !important;
+    max-width: 100% !important;
+  }
+  .gform_body {
+    padding: 0;
+    border: 4px solid $yellow;
+    border-bottom: 0;
+    box-sizing: border-box;
+  }
+  .gform_wrapper .hidden_label input.large,
+  .gform_wrapper .hidden_label select.large,
+  .gform_wrapper .top_label input.large,
+  .gform_wrapper .top_label select.large {
+    width: 100% !important;
+    height: 56px;
+    line-height: 50px;
+    border: 0;
+    background: #E6E6E6;
+    background: rgba(230,230,230,.8);
+    box-shadow: none;
+    margin: 0;
+    padding: 0 5px;
+  }
+  .gform_wrapper textarea {
+    width: 100% !important;
+    border: 0;
+    background: #E6E6E6;
+    background: rgba(230,230,230,.8);
+    box-shadow: none;
+    margin: 0;
+  }
+  .gform_wrapper form li, .gform_wrapper li {
+    padding: 6px 10px;
+    border-bottom: 4px solid $yellow;
+  }
+  li.gfield {
+    position: relative;
+  }
+  label.gfield_label {
+    line-height: 1.2 !important;
+    position: absolute;
+    margin: 0 !important;
+    left: 18px;
+    bottom: 10px;
+    text-transform: capitalize;
+    font-family: 'museo-sans';
+    -webkit-transition: all .5s ease-out;
+    -moz-transition: all .5s ease-out;
+    -o-transition: all .5s ease-out;
+    transition: all .5s ease-out;
+  }
+  label[data-attr="active"].gfield_label {
+    bottom: 69%;
+    font-size: 75%;
+    opacity: .65;
+  }
+  .bs-textarea textarea {
+    padding: 10px 10px 30px !important;
+  }
+  .bs-textarea label {
+    bottom: 40px !important;
+  }
+  li.bs-textarea .ginput_container_textarea:after {
+    content: '';
+    background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/05/dots-bg-repeat3.svg);
+    background-size: 16px;
+    width: 100%;
+    height: 28px;
+    display: block;
+  }
+  .validation_error {
+    font-weight: 500 !important;
+    font-size: 1.2rem !important;
+    line-height: 1.4 !important;
+    font-family: 'museo-sans' !important;
+    width: 100% !important;
+    text-align: center;
+  }
+  .validation_error + .gform_body ul li label {
+    top: -15px;
+  }
+  .validation_error + .gform_body ul li.gfield_error label {
+    top: -5px;
+    left: 0;
+  }
+  .gform_wrapper .gfield_error {
+    width: 100% !important;
+  }
+  li.gfield_error .ginput_container {
+    margin-top: 30px !important;
+  }
+  .gform_wrapper .gform_footer {
+    text-align: right;
+  }
+  .gform_footer input.gform_button {
+    background: $red;
+    font-family: 'museo-sans';
+    text-transform: uppercase;
+    font-weight: 700;
+    @include transition(background);
+  }
+  .gform_footer input.gform_button:hover,
+  .gform_footer input.gform_button:focus {
+    background: $dark;
+  }
+  .gform_confirmation_wrapper {
+    margin: 0 auto;
+    text-align: center;
+  }
+  .gform_confirmation_message {
+    font-weight: 500 !important;
+    font-size: 1.5rem !important;
+    line-height: 1.3 !important;
+    font-family: 'museo-sans' !important;
+  }
+
+}
+.home .entry-content .gform_wrapper {
+  margin: 0 auto !important;
+  max-width: 800px !important;
+}
+
+/* 4e. Events Styles */
+.uptown-events-wrapper {
+  display: table;
+  width: 100%;
+  max-width: 1600px;
+  margin: 40px auto 0 !important;
+
+  .list-style-events-wrapper {
+    margin-left: -40px;
+  }
+  .list-style-events-wrapper h2 {
+    display: none;
+  }
+  .list-style-events-wrapper .list-style-events-single-event {
+    width: 33.3333%;
+    float: left;
+    padding-left: 40px;
+    margin-bottom: 40px;
+    display: table;
+  }
+  .list-style-events-wrapper .list-style-events-single-event .event-featured-image {
+    display: block;
+    width: 100%;
+    vertical-align: middle;
+    overflow: hidden;
+  }
+  .list-style-events-wrapper .list-style-events-single-event .event-featured-image a {
+    display: block;
+  }
+  .list-style-events-wrapper .list-style-events-single-event .event-featured-image img {
+    width: 100%;
+    height: auto;
+    -webkit-transform: scale(1) rotate(0deg);
+    -moz-transform: scale(1) rotate(0deg);
+    -o-transform: scale(1) rotate(0deg);
+    transform: scale(1) rotate(0deg);
+    @include transition(all);
+  }
+  .list-style-events-wrapper .list-style-events-single-event:hover .event-featured-image img {
+    width: 120%;
+    -webkit-transform: scale(1.1) rotate(2deg);
+    -moz-transform: scale(1.1) rotate(2deg);
+    -o-transform: scale(1.1) rotate(2deg);
+    transform: scale(1.1) rotate(2deg);
+    @include transition(all);
+  }
+  .list-style-events-wrapper .list-style-events-single-event .event-details {
+    display: block;
+    width: 100%;
+    vertical-align: middle;
+    background: $red;
+    padding: 20px;
+    text-align: center;
+  }
+  h3,
+  h3 a {
+    color: #FFF !important;
+    font-family: 'museo-sans' !important;
+    font-size: 1.875rem;
+    font-weight: 900 !important;
+    line-height: 1.2 !important;
+    text-transform: capitalize !important;
+    margin-bottom: 1rem;
+  }
+  span.event-meta {
+    font-family: 'museo-sans';
+    font-size: 1.5rem;
+    line-height: 1.4;
+    color: $yellow;
+    margin: 5px 0 0 0;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+  span.event-meta em {
+    font-style: normal !important;
+  }
+  span.event-meta-inner {
+    padding: 0 10px;
+    background: $red;
+    z-index: 99;
+    position: relative;
+    display: inline-block;
+  }
+  span.event-excerpt {
+    color: #FFF;
+    font-family: 'museo-sans';
+    font-size: 1.125rem;
+    line-height: 1.4;
+  }
+  div.event-details {
+
+    p {
+      margin-bottom: 0;
+    }
+
+  }
+
+}
+
+span.em-pagination {
+  margin-left: 40px;
+  display: block;
+  clear: both;
+}
+.page-numbers {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  border: 1px solid $dark;
+  line-height: 26px;
+  margin: 0 !important;
+  -webkit-transition: background 250ms ease-out;
+  -moz-transition: background 250ms ease-out;
+  -o-transition: background 250ms ease-out;
+  transition: background 250ms ease-out;
+}
+span.em-pagination strong {
+  position: relative;
+  font-family: 'museo-sans';
+}
+span.page-numbers.current {
+  background: $red;
+  color: #FFF;
+  border-color: $red;
+  text-shadow: 0 0 1px $dark;
+  font-size: 20px;
+}
+a.page-numbers:hover,
+a.page-numbers:focus {
+  background: $dark !important;
+  color: #FFF !important;
+}
+@media only screen and (max-width: 84.375em) {
+  .uptown-events-wrapper {
+
+    h3,
+    h3 a {
+      font-size: 1.5rem;
+    }
+    span.event-meta {
+      font-size: 1.125rem;
+    }
+    span.event-excerpt {
+      font-size: 1rem;
+    }
+  }
+}
+@media only screen and (max-width: 78.1275em) {
+  .uptown-events-wrapper {
+
+    h3,
+    h3 a {
+      font-size: 1.25rem;
+    }
+    span.event-meta {
+      font-size: 1rem;
+    }
+    span.event-excerpt {
+      font-size: .9375rem;
+    }
+  }
+}
+@media only screen and (max-width: 66.5625em) {
+  .uptown-events-wrapper .list-style-events-wrapper {
+    margin-left: -30px;
+  }
+  .uptown-events-wrapper .list-style-events-wrapper .list-style-events-single-event {
+    width: 50%;
+    padding-left: 30px;
+    margin-bottom: 30px;
+  }
+}
+@media only screen and (max-width: 40em) {
+  .uptown-events-wrapper .list-style-events-wrapper .list-style-events-single-event {
+    width: 100%;
+    float: none;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .uptown-events-wrapper .list-style-events-wrapper .list-style-events-single-event .event-featured-image,
+  .uptown-events-wrapper .list-style-events-wrapper .list-style-events-single-event .event-details {
+    display: block;
+    width: 100%;
+  }
+  .uptown-events-wrapper .list-style-events-wrapper .list-style-events-single-event .event-details {
+    padding: 20px;
+  }
+}
+
+/* 4f. Blog Page Styles */
+.page-template-page-blog {
+
+  article.main-content {
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+    float: none !important;
+  }
+  article.main-content > .entry-content {
+    margin-top: 50px;
+    margin-left: -30px;
+  }
+  article.main-content > .entry-content article.post {
+    padding-left: 30px;
+    padding-bottom: 30px;
+  }
+  article.post {
+    width: 33.3333%;
+    margin: 0 auto;
+    padding: 0;
+
+    p.author-date {
+      text-transform: uppercase;
+    }
+    .entry-content {
+      display: inline-block;
+      border: 1px solid #f1f1f1;
+    }
+    .blog-page-title-excerpt {
+      width: 100%;
+      font-family: 'museo-sans';
+      padding: 15px;
+      background: #f1f1f1;
+    }
+    .blog-page-featured-image {
+      width: 100%;
+
+        figure {
+          margin: 0;
+        }
+        figure img {
+          width: 100%;
+          height: auto;
+        }
+
+    }
+
+  }
+  article.post:last-of-type {
+    border-bottom: 0;
+  }
+  nav.prev-next-posts {
+    margin: 10px auto 0;
+    padding: 20px 5px;
+    border-top: 1px solid #a72535;
+    max-width: 1570px;
+  }
+
+}
+@media only screen and (max-width: 64em) {
+  .page-template-page-blog article.post {
+    width: 50%;
+  }
+}
+@media only screen and (max-width: 47.9375em) {
+  .page-template-page-blog article.post .blog-page-title-excerpt,
+  .page-template-page-blog article.post .blog-page-featured-image {
+    width: 100%;
+    float: none;
+  }
+  .page-template-page-blog article.post .blog-page-featured-image img {
+    width: 100%;
+    height: auto;
+  }
+}
+@media only screen and (max-width: 40em) {
+  .page-template-page-blog article.post {
+    width: 100%;
+  }
+}
+
+/* 4g. Single Blog Post Styles */
+header#featured-hero.single-featured-hero {
+
+  h1.entry-title {
+    padding: 140px 0 30px;
+
+    p.entry-meta {
+      font-size: 20px;
+      font-family: 'museo-sans';
+      letter-spacing: 0;
+      margin-top: 24px;
+      margin-bottom: 0;
+    }
+
+  }
+
+}
+div#single-post {
+  font-family: 'museo-sans';
+}
+div#single-post.max-width-nine-hundred {
+    max-width: 900px;
+}
+div#single-post.max-width-one-thousand {
+    max-width: 1000px;
+}
+div#single-post.no-sidebar article,
+#page.archives-wrapper.no-sidebar article {
+    float: none;
+    width: 100%;
+    margin-bottom: 0;
+}
+.single-featured-image {
+  margin-bottom: 20px;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+}
+nav#nav-single {
+  margin: 40px auto 0;
+  padding: 20px 5px;
+  border-top: 1px solid #a72535;
+}
+.nav-single-inner {
+  display: inline-block;
+  width: 100%;
+
+  span.nav-previous,
+  span.nav-next {
+    width: 50%;
+    float: left;
+    display: inline-block;
+    min-height: 1px;
+  }
+  span.nav-next {
+    text-align: right;
+  }
+
+}
+
+/* 4h. 404 Page Styles and Archive Styles */
+div#four-o-four-wrapper {
+  margin-top: 40px;
+  margin-bottom: 40px;
+
+  .entry-content {
+    font-family: 'museo-sans';
+  }
+
+}
+div.archives-wrapper {
+
+  .entry-content, header {
+    font-family: 'museo-sans';
+  }
+  .blogpost-entry {
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid $red;
+  }
+
 }
 
 
@@ -1264,14 +1979,12 @@ ul.filter-portfolio-category li {
 	display: inline-block;
 	height: 20px;
 	line-height: 20px;
-	margin-right: 10px;
-	padding-right: 10px;
+	padding: 0 10px;
+  margin-bottom: 10px;
 	border-right: 1px solid #CCC;
   position: relative;
 }
 ul.filter-portfolio-category li:last-child {
-	margin-right: 0;
-	padding-right: 0;
 	border-right: 0;
 }
 ul.filter-portfolio-category li.filter-label {
@@ -1279,14 +1992,23 @@ ul.filter-portfolio-category li.filter-label {
   padding-right: 0;
   border-right: 0;
 }
-ul.filter-portfolio-category li:hover span.term-num {
+ul.filter-portfolio-category li:hover span.term-num,
+ul.filter-portfolio-category li a.active + span.term-num {
   visibility: visible;
   opacity: 1;
-  top: -35px;
+  top: -38px;
   -webkit-transition: all 150ms ease-out 200ms;
   -moz-transition: all 150ms ease-out 200ms;
   -o-transition: all 150ms ease-out 200ms;
   transition: all 150ms ease-out 200ms;
+}
+ul.filter-portfolio-category li a {
+  padding-left: 3px;
+  padding-right: 3px;
+  border: 3px solid #FFF;
+}
+ul.filter-portfolio-category li a.active {
+  border-color: $red;
 }
 span.term-num {
   color: #FFF !important;
@@ -1297,12 +2019,15 @@ span.term-num {
   background: $red;
   text-align: center;
   left: 50%;
-  margin-left: -20px;
   line-height: 25px;
   border-radius: 3px;
   display: block;
   visibility: hidden;
   opacity: 0;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
   -webkit-transition: all 150ms ease-out 200ms;
   -moz-transition: all 150ms ease-out 200ms;
   -o-transition: all 150ms ease-out 200ms;
@@ -1325,12 +2050,13 @@ span.term-num:after {
 ul.filter-portfolio-category li a {
   position: relative;
   padding-bottom: 3px;
+  padding-top: 3px;
 }
 ul.filter-portfolio-category li a:before {
   position: absolute;
   content: '';
   width: 0;
-  bottom: 0;
+  bottom: -3px;
   height: 3px;
   left: 0;
   background: $red;
@@ -1343,7 +2069,7 @@ ul.filter-portfolio-category li a:after {
   position: absolute;
   content: '';
   width: 0;
-  bottom: 0;
+  bottom: -3px;
   height: 3px;
   right: 0;
   background: $red;
@@ -1355,7 +2081,8 @@ ul.filter-portfolio-category li a:after {
 ul.filter-portfolio-category li:hover a {
   color: $red !important;
 }
-ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:hover a::after {
+ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:hover a:after,
+ul.filter-portfolio-category li a.active:before, ul.filter-portfolio-category li a.active:after {
   width: 50%;
   -webkit-transition: width 150ms ease-out;
   -moz-transition: width 150ms ease-out;
@@ -1370,6 +2097,9 @@ ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:
   	width: 33.3333% !important;
   	height: auto !important;
 	}
+  header#featured-hero h1.entry-title span.entry-title-inner {
+    padding: 0 10px;
+  }
 }
 @media only screen and (min-width: 50.0625em) {
 	.not-home.single-portfolio .content_container, .not-home.shrink-nav.single-portfolio .content_container {
@@ -1397,6 +2127,8 @@ ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:
   .portfolio-filter-toggle a {
     padding-left: 20px;
     position: relative;
+    margin: 40px 0 20px;
+    display: inline-block;
   }
   .portfolio-filter-toggle a:before {
     content: '\f0c9';
@@ -1415,10 +2147,11 @@ ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:
   ul.filter-portfolio-category li {
     border-right: 0;
     margin-right: 0;
-    padding-right: 24px;
+    padding: 0 12px !important;
   }
   ul#filters {
     display: none;
+    margin: 0 0 20px;
   }
   ul#filters.show {
     display: block;
@@ -1429,8 +2162,8 @@ ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:
   ul#filters li.filter-label {
     display: none;
   }
-  header#featured-hero h1.entry-title span {
-    padding: 0 20px;
+  header#featured-hero h1.entry-title {
+    font: 66px/1 'acumin-pro-extra-condensed';
   }
 }
 @media only screen and (max-width: 37.5em) {
@@ -1438,6 +2171,41 @@ ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:
   	width: 50% !important;
   	height: auto !important;
 	}
+  ul.filter-portfolio-category li {
+  	display: block;
+    margin-bottom: 15px;
+    margin-left: 30px;
+  }
+  ul.filter-portfolio-category li:first-child {
+    margin-left: 0;
+  }
+  ul.filter-portfolio-category li span.term-num {
+    position: relative;
+    top: 0;
+    right: -80px;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    opacity: 0;
+    visibility: hidden;
+  }
+  ul.filter-portfolio-category li:hover span.term-num,
+  ul.filter-portfolio-category li a.active + span.term-num  {
+    top: 0;
+    left: auto;
+    right: -30px;
+    opacity: 1;
+    visibility: visible;
+  }
+  ul.filter-portfolio-category li span.term-num:after {
+    border-top-color: transparent;
+    border-right-color: #a72535;
+    margin-left: 0;
+    left: auto;
+    right: 100%;
+    top: 50%;
+    margin-top: -8px;
+  }
 }
 @media only screen and (max-width: 30em) {
 	.single-portfolio-item {
@@ -1451,7 +2219,24 @@ ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:
 
 
 /**** 6. FOOTER STYLES ****/
+// #footer-container:before {
+//     content: '';
+//     width: 100%;
+//     height: 4px;
+//     display: block;
+//     background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/06/dot-border-red.svg);
+//     top: -2px;
+//     position: relative;
+// }
+#footer-container {
+  background: #e9e9e9;
+  background: rgba(230,230,230,.8);
+}
+#footer-container #footer {
+  max-width: 100rem;
+}
 #footer {
+
   .menu > li {
     display: block;
     padding: 0 !important;
@@ -1459,7 +2244,9 @@ ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:
   }
   .menu > li a {
     margin: 0 !important;
-    padding: 0 0 10px 0 !important;
+    padding: 0 0 5px 0 !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
   }
   .menu .active > a {
     color: #a72535;
@@ -1482,8 +2269,16 @@ ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:
   .large-3.widget li,
   .large-3.widget a,
   .large-3.widget span {
-    font: 700 .9375rem/1.4 'museo-sans';
+    font-family: 'museo-sans';
+    font-size: .9375rem;
+    font-weight: 300;
+    line-height: 1.4;
     padding: 0;
+  }
+  .large-3.widget a.bs-btn {
+    font-size: 18px;
+    line-height: 1;
+    padding: 8px 20px;
   }
   .widget h6 {
     font-weight: 900;
@@ -1491,6 +2286,12 @@ ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:
   }
   ul.social-media-wrapper li a {
     line-height: 24px !important;
+  }
+}
+@media only screen and (max-width: 101.875rem) {
+  #footer-container #footer {
+    padding-left: .9375rem;
+    padding-right: .9375rem;
   }
 }
 @media only screen and (max-width: 47.9375em) {
@@ -1508,4 +2309,14 @@ ul.filter-portfolio-category li:hover a:before, ul.filter-portfolio-category li:
     width: 100%;
     margin-bottom: 40px;
   }
+}
+
+#copyright {
+  max-width: 1600px;
+
+  p {
+    font-weight: 300 !important;
+    text-align: center;
+  }
+
 }

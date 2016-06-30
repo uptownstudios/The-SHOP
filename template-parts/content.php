@@ -18,8 +18,9 @@
 	<div class="entry-content">
 		<?php the_content( __( 'Continue reading...', 'foundationpress' ) ); ?>
 	</div>
+	<?php $tag = get_the_tags(); if ( $tag ) { ?>
 	<footer>
-		<?php $tag = get_the_tags(); if ( $tag ) { ?><p><?php the_tags(); ?></p><?php } ?>
+		<p><?php the_tags(); ?></p>
 	</footer>
-	<hr />
+	<?php } ?>
 </div>

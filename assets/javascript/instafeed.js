@@ -60,3 +60,24 @@ var userFeed = new Instafeed({
     }
 });
 userFeed.run();
+
+// function updateRotatorHeight(selector) {
+//         var maxHeight = -1,
+//             $items;
+//         $items = $('#instafeed').find(selector).each(function (i, item) {
+//             var height;
+//             item.style.height = '';
+//             $(item).children().first().css('paddingTop', '');
+//             if((item.curHeight = item.scrollHeight) > maxHeight) {
+//                 maxHeight = item.curHeight;
+//             }
+//         }).each(function (i, item) {
+//             $(item).css('height', maxHeight).children().first().css('paddingTop', (maxHeight - item.curHeight) / 2);
+//         });
+//
+//         rotatorHeight = maxHeight;
+//     }
+//
+// //you should debounce this
+// $(window).on('resize', updateRotatorHeight.bind(null, '.slick-track > a.instagram-image'));
+// $(window).resize();

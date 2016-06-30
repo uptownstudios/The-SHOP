@@ -17,7 +17,9 @@
 
 get_header(); ?>
 
-<div id="page" role="main">
+<?php get_template_part( 'template-parts/archive-title-bar' ); ?>
+
+<div id="page" class="archives-wrapper max-width-one-thousand no-sidebar" role="main">
 	<article class="main-content">
 	<?php if ( have_posts() ) : ?>
 
@@ -33,14 +35,18 @@ get_header(); ?>
 
 		<?php /* Display navigation to next/previous pages when applicable */ ?>
 		<?php if ( function_exists( 'foundationpress_pagination' ) ) { foundationpress_pagination(); } else if ( is_paged() ) { ?>
-			<nav id="post-nav">
-				<div class="post-previous"><?php next_posts_link( __( '&larr; Older posts', 'foundationpress' ) ); ?></div>
-				<div class="post-next"><?php previous_posts_link( __( 'Newer posts &rarr;', 'foundationpress' ) ); ?></div>
+			<nav class="prev-next-posts">
+				<div class="prev-posts-link">
+					<?php echo get_next_posts_link( '&laquo; Older Posts', $loop->max_num_pages ); // display older posts link ?>
+				</div>
+				<div class="next-posts-link">
+					<?php echo get_previous_posts_link( 'Newer Posts &raquo;' ); // display newer posts link ?>
+				</div>
 			</nav>
 		<?php } ?>
 
 	</article>
-	<?php get_sidebar(); ?>
+
 
 </div>
 

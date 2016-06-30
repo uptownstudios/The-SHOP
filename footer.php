@@ -26,6 +26,9 @@
 				<?php endif; ?>
 			</footer>
 		</div>
+		<div id="back-top">
+  		<a href="#" title="Back to top"><i class="fa fa-chevron-up"></i></a>
+		</div>
 
 		<?php do_action( 'foundationpress_layout_end' ); ?>
 
@@ -40,19 +43,28 @@
 
 <script type="text/javascript">
 
+	var windowWidth;
+	var headerHeight;
+	var topScrollOffset;
+	var windowWidth = jQuery(window).width();
+	var headerHeight = jQuery('#masthead').height();
+	if(windowWidth > 640) {
+		var topScrollOffset = '112';
+	} else {
+		var topScrollOffset = '0';
+	}
+
 	jQuery(document).ready(function($) {
 		$heightOnLoad = $('.home-hero-wrapper.vc_row.vc_row-o-full-height').height();
 		console.log($heightOnLoad);
 		$(window).resize(function() {
-			$('body.mobile .home-hero-wrapper.vc_row.vc_row-o-full-height').css({
-				'min-height':$heightOnLoad
-			});
+			$('body.mobile .home-hero-wrapper.vc_row.vc_row-o-full-height').css({'min-height':$heightOnLoad});
 		});
 	});
 
 	// Site Preloader
 	jQuery(document).ready(function($) {
-		$(window).load(function() {
+		$(window).imagesLoaded(function() {
 			$('#preloader').addClass('loaded')
 			// $('#preloader img').fadeIn('fast');
 			// $('#preloader .spinner').addClass('loaded');
@@ -61,6 +73,47 @@
 				$(this).hide();
 			});
 		});
+
+	  // hide #back-top first
+	  $('#back-top').hide();
+
+	  // fade in #back-top
+	  $(function () {
+	    $(window).scroll(function () {
+	      if ($(this).scrollTop() > 800) {
+	        $('#back-top').fadeIn();
+	      } else {
+	        $('#back-top').fadeOut();
+	      }
+	    });
+
+	    // scroll body to 0px on click
+	    $('#back-top a').click(function () {
+	      $('body,html').animate({
+	        scrollTop: 0
+	      }, 1200);
+	      return false;
+	    });
+	  });
+
+		// Float Labels
+		function floatLabel(inputType) {
+			$(inputType).each(function(){
+					var $this = $(this);
+					// on focus add cladd active to label
+					$this.focus(function(){
+						$this.closest('li.gfield').find('label').attr("data-attr","active");
+					});
+					//on blur check field and remove class if needed
+					$this.blur(function(){
+						if($this.val() === '' || $this.val() === 'blank'){
+							$this.closest('li.gfield').find('label').attr("data-attr","");
+						}
+					});
+			});
+		}
+		// just add a class of "floatLabel to the input field!"
+		floatLabel(".floatLabel input");
 	});
 
 	// Isotope/Masonry filtering for Project thumbnails
@@ -87,6 +140,8 @@
 		$('#filters a').click(function(){
 		  var selector = $(this).attr('data-filter');
 		  $container.isotope({ filter: selector });
+			$('#filters a.active').not(this).removeClass('active');
+			$(this).addClass('active');
 		  return false;
 		});
 		$('.title-bar .menu-icon').click(function() {
@@ -97,6 +152,42 @@
 			return false;
 		});
 	});
+
+	// Masonry Layout for Blog Posts
+	(function ($) {
+		var $container2 = $('.page-template-page-blog article.main-content > .entry-content');
+		$container2.imagesLoaded(function() {
+			$container2.isotope({
+				resizable: false,
+				itemSelector: 'article.post',
+				layoutMode: 'masonry',
+				fitRows: {
+	  				gutter: 20
+				}
+			});
+
+		});
+		$container2.isotope('reloadItems');
+		$(window).trigger('resize');
+	}(jQuery));
+
+	// Masonry Layout for Events
+	(function ($) {
+		var $container3 = $('.list-style-events-wrapper');
+		$container3.imagesLoaded(function() {
+			$container3.isotope({
+				resizable: false,
+				itemSelector: '.list-style-events-single-event',
+				layoutMode: 'masonry',
+				fitRows: {
+	  				gutter: 20
+				}
+			});
+
+		});
+		$container3.isotope('reloadItems');
+		$(window).trigger('resize');
+	}(jQuery));
 
 	function init() {
     window.addEventListener('scroll', function(e){
@@ -119,12 +210,123 @@
 		element: document.getElementById('init-header-change'),
 		handler: function(direction) {
 			jQuery('#masthead').toggleClass('reverse-header');
-			jQuery('#masthead.reverse-header .top-bar .top-bar-left a.custom-logo-link img').attr('src','http://127.0.0.1/newuptown/wp-content/uploads/2016/05/logo-color.svg');
-			jQuery('#masthead .top-bar .top-bar-left a.custom-logo-link img').attr('src','http://127.0.0.1/newuptown/wp-content/uploads/2016/04/logo.svg');
+			jQuery('#masthead.reverse-header .top-bar .top-bar-left a.custom-logo-link img').attr('src','http://159.203.243.127/wp-content/uploads/2016/05/logo-color.svg');
+			jQuery('#masthead .top-bar .top-bar-left a.custom-logo-link img').attr('src','http://159.203.243.127/wp-content/uploads/2016/04/logo.svg');
 
 		},
 		offset: shrinkOn
 	});
+
+	jQuery(function($) {
+  $('a[href*="#"]:not([href="#"])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: target.offset().top - topScrollOffset
+        }, 1000);
+        return false;
+      }
+    }
+  });
+});
+
+	// initiating the isotope page
+	jQuery(window).load(function($) {
+
+	    // Store # parameter and add "." before hash
+	    var hashID = "." + window.location.hash.substring(1);
+
+	    //  the current version of isotope, the hack works in v2 also
+	    var $container = jQuery('.portfolio-container');
+
+	    $container.imagesLoaded(function(){
+	        $container.isotope({
+	            itemSelector: ".single-portfolio-item",
+	            filter: hashID, // the variable filter hack
+	        });
+					jQuery('#filters a.active').removeClass('active');
+					jQuery('#filters a[data-filter="' + hashID + '"]').addClass('active');
+	    });
+
+	});
+
+	// Scroll to service on page load after all images are loaded
+  jQuery(function($){
+  $('a.go-to-service, .go-to-service a').on('click', scroller.hashLinkClicked);
+    scroller.loaded();
+  });
+
+  (function($){
+
+    scroller = {
+			scrollTiming: 1000,
+      pageLoadScrollDelay: 1000,
+      hashLinkClicked: function(e){
+
+        // current path
+        var temp    = window.location.pathname.split('#');
+        var curPath = scroller.addTrailingSlash(temp[0]);
+
+        // target path
+        var link       = $(this).attr('href');
+        var linkArray  = link.split('#');
+        var navId      = (typeof linkArray[1] !== 'undefined') ? linkArray[1] : null;
+        var targetPath = scroller.addTrailingSlash(linkArray[0]);
+
+        // scrollTo the hash id if the target is on the same page
+        if (targetPath == curPath && navId) {
+          e.preventDefault();
+          scroller.scrollToElement('#'+navId);
+          window.location.hash = scroller.generateTempNavId(navId);
+
+        // otherwise add '_' to hash
+        } else if (navId) {
+          e.preventDefault();
+          navId = scroller.generateTempNavId(navId);
+          window.location = targetPath+'#'+navId;
+        }
+      },
+      addTrailingSlash: function(str){
+        lastChar = str.substring(str.length-1, str.length);
+        if (lastChar != '/')
+          str = str+'/';
+        return str;
+      },
+      scrollToElement: function(whereTo){
+        jQuery('html, body').animate({ scrollTop: jQuery(whereTo).offset().top - topScrollOffset }, scroller.scrollTiming);
+      },
+      generateTempNavId: function(navId){
+        return '_'+navId;
+      },
+      getNavIdFromHash: function(){
+        var hash = window.location.hash;
+
+        if (scroller.hashIsTempNavId()) {
+          hash = hash.substring(2);
+        }
+
+        return hash;
+      },
+      hashIsTempNavId: function(){
+        var hash = window.location.hash;
+
+        return hash.substring(0,2) === '#_';
+      },
+
+      loaded: function(){
+
+        if (scroller.hashIsTempNavId()) {
+          setTimeout(function() {
+            scroller.scrollToElement('#'+scroller.getNavIdFromHash());
+          },scroller.pageLoadScrollDelay);
+          var hash = window.location.hash;
+        }
+      }
+    };
+
+  })(jQuery);
 
 </script>
 
