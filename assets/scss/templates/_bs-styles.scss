@@ -784,6 +784,15 @@ body.mobile .home-hero-wrapper {
       bottom: 0;
       opacity: 1;
   }
+  #instafeed .slick-slide {
+    float: none;
+    display: table-cell;
+    vertical-align: middle;
+    width: auto !important;
+  }
+  #instafeed .slick-track {
+    display: table;
+  }
   a.instagram-image.slick-slide {
     position: relative;
     overflow: hidden;
@@ -1384,15 +1393,15 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
     display: none;
   }
   .list-style-events-wrapper .list-style-events-single-event {
-    width: 50%;
+    width: 33.3333%;
     float: left;
     padding-left: 40px;
     margin-bottom: 40px;
     display: table;
   }
   .list-style-events-wrapper .list-style-events-single-event .event-featured-image {
-    display: table-cell;
-    width: 50%;
+    display: block;
+    width: 100%;
     vertical-align: middle;
     overflow: hidden;
   }
@@ -1402,26 +1411,26 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
   .list-style-events-wrapper .list-style-events-single-event .event-featured-image img {
     width: 100%;
     height: auto;
-    -webkit-transform: scale(1.1) rotate(0deg);
-    -moz-transform: scale(1.1) rotate(0deg);
-    -o-transform: scale(1.1) rotate(0deg);
-    transform: scale(1.1) rotate(0deg);
+    -webkit-transform: scale(1) rotate(0deg);
+    -moz-transform: scale(1) rotate(0deg);
+    -o-transform: scale(1) rotate(0deg);
+    transform: scale(1) rotate(0deg);
     @include transition(all);
   }
   .list-style-events-wrapper .list-style-events-single-event:hover .event-featured-image img {
     width: 120%;
-    -webkit-transform: scale(1.2) rotate(2deg);
-    -moz-transform: scale(1.2) rotate(2deg);
-    -o-transform: scale(1.2) rotate(2deg);
-    transform: scale(1.2) rotate(2deg);
+    -webkit-transform: scale(1.1) rotate(2deg);
+    -moz-transform: scale(1.1) rotate(2deg);
+    -o-transform: scale(1.1) rotate(2deg);
+    transform: scale(1.1) rotate(2deg);
     @include transition(all);
   }
   .list-style-events-wrapper .list-style-events-single-event .event-details {
-    display: table-cell;
-    width: 50%;
+    display: block;
+    width: 100%;
     vertical-align: middle;
     background: $red;
-    padding: 0 20px;
+    padding: 20px;
     text-align: center;
   }
   h3,
@@ -1523,12 +1532,6 @@ a.page-numbers:focus {
 @media only screen and (max-width: 78.1275em) {
   .uptown-events-wrapper {
 
-    .list-style-events-wrapper .list-style-events-single-event .event-featured-image {
-      width: 45%
-    }
-    .list-style-events-wrapper .list-style-events-single-event .event-details {
-      width: 55%;
-    }
     h3,
     h3 a {
       font-size: 1.25rem;
@@ -1542,6 +1545,16 @@ a.page-numbers:focus {
   }
 }
 @media only screen and (max-width: 66.5625em) {
+  .uptown-events-wrapper .list-style-events-wrapper {
+    margin-left: -30px;
+  }
+  .uptown-events-wrapper .list-style-events-wrapper .list-style-events-single-event {
+    width: 50%;
+    padding-left: 30px;
+    margin-bottom: 30px;
+  }
+}
+@media only screen and (max-width: 40em) {
   .uptown-events-wrapper .list-style-events-wrapper .list-style-events-single-event {
     width: 100%;
     float: none;

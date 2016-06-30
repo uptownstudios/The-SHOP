@@ -165,8 +165,27 @@
 	  				gutter: 20
 				}
 			});
-			$container2.isotope('reloadItems');
+
 		});
+		$container2.isotope('reloadItems');
+		$(window).trigger('resize');
+	}(jQuery));
+
+	// Masonry Layout for Events
+	(function ($) {
+		var $container3 = $('.list-style-events-wrapper');
+		$container3.imagesLoaded(function() {
+			$container3.isotope({
+				resizable: false,
+				itemSelector: '.list-style-events-single-event',
+				layoutMode: 'masonry',
+				fitRows: {
+	  				gutter: 20
+				}
+			});
+
+		});
+		$container3.isotope('reloadItems');
 		$(window).trigger('resize');
 	}(jQuery));
 
