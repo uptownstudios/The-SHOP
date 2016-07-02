@@ -14,7 +14,7 @@ $loop = new WP_Query( $args );
 
 ?>
 			<?php if ( $loop->have_posts()) : while ( $loop->have_posts()) : $loop->the_post(); ?>
-				<article id="post-<?php the_ID(); ?>" <?php post_class('index-card'); ?>>
+				<article id="post-<?php the_ID(); ?>" <?php post_class('index-card bs-isotope-item'); ?>>
 					<div class="entry-content">
 						<?php if ( has_post_thumbnail() ) { ?>
 						<div class="blog-page-featured-image">

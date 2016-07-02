@@ -40,13 +40,13 @@ $loop = new WP_Query( $args );
                   ?>
               </ul>
             <?php /* Start loop */ ?>
-            <div class="portfolio-container">
+            <div class="portfolio-container bs-isotope">
               <?php while ( $loop->have_posts()) : $loop->the_post(); ?>
               <?php
                 $image_id = get_post_thumbnail_id();
                 $image_url = wp_get_attachment_image_src($image_id,'full', true);
               ?>
-                <div class="single-portfolio-item <?php $terms = get_the_terms( $post->ID , 'portfolio-cat' ); foreach ( $terms as $term ) { echo $term->slug . ' '; } ?> ">
+                <div class="single-portfolio-item bs-isotope-item <?php $terms = get_the_terms( $post->ID , 'portfolio-cat' ); foreach ( $terms as $term ) { echo $term->slug . ' '; } ?> ">
                   <article <?php post_class() ?> id="post-<?php the_ID(); ?>">
                     <a href="<?php the_permalink();?>" class="single-portfolio-link" title="<?php the_title();?>">
                       <section class="entry-content">

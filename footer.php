@@ -74,10 +74,8 @@
 			});
 		});
 
-	  // hide #back-top first
+	  // Back to top script
 	  $('#back-top').hide();
-
-	  // fade in #back-top
 	  $(function () {
 	    $(window).scroll(function () {
 	      if ($(this).scrollTop() > 800) {
@@ -86,8 +84,6 @@
 	        $('#back-top').fadeOut();
 	      }
 	    });
-
-	    // scroll body to 0px on click
 	    $('#back-top a').click(function () {
 	      $('body,html').animate({
 	        scrollTop: 0
@@ -100,11 +96,9 @@
 		function floatLabel(inputType) {
 			$(inputType).each(function(){
 					var $this = $(this);
-					// on focus add cladd active to label
 					$this.focus(function(){
 						$this.closest('li.gfield').find('label').attr("data-attr","active");
 					});
-					//on blur check field and remove class if needed
 					$this.blur(function(){
 						if($this.val() === '' || $this.val() === 'blank'){
 							$this.closest('li.gfield').find('label').attr("data-attr","");
@@ -112,27 +106,27 @@
 					});
 			});
 		}
-		// just add a class of "floatLabel to the input field!"
 		floatLabel(".floatLabel input");
 	});
 
-	// Isotope/Masonry filtering for Project thumbnails
+	// Masonry Layout for Portfolio, Blog Posts, and Events
 	(function ($) {
-		var $container = $('.portfolio-container'),
-			isotope = function () {
-				$container.isotope({
-					resizable: false,
-					itemSelector: '.single-portfolio-item',
-					layoutMode: 'masonry',
-					fitRows: {
-	  					gutter: 20
-					}
-				});
-			};
-		isotope();
-		$(window).resize();
+		var $container = $('.bs-isotope');
+		$container.imagesLoaded(function() {
+			$container.isotope({
+				resizable: false,
+				itemSelector: '.bs-isotope-item',
+				layoutMode: 'masonry',
+				fitRows: {
+	  				gutter: 20
+				}
+			});
+			$container.isotope('reloadItems');
+		});
+		$(window).trigger('resize');
 	}(jQuery));
 
+	// Isotope Filters for Portfolio
 	jQuery(document).ready(function($) {
 		// cache container
 		var $container = $('.portfolio-container');
@@ -153,42 +147,7 @@
 		});
 	});
 
-	// Masonry Layout for Blog Posts
-	(function ($) {
-		var $container2 = $('.page-template-page-blog article.main-content > .entry-content');
-		$container2.imagesLoaded(function() {
-			$container2.isotope({
-				resizable: false,
-				itemSelector: 'article.post',
-				layoutMode: 'masonry',
-				fitRows: {
-	  				gutter: 20
-				}
-			});
-
-		});
-		$container2.isotope('reloadItems');
-		$(window).trigger('resize');
-	}(jQuery));
-
-	// Masonry Layout for Events
-	(function ($) {
-		var $container3 = $('.list-style-events-wrapper');
-		$container3.imagesLoaded(function() {
-			$container3.isotope({
-				resizable: false,
-				itemSelector: '.list-style-events-single-event',
-				layoutMode: 'masonry',
-				fitRows: {
-	  				gutter: 20
-				}
-			});
-
-		});
-		$container3.isotope('reloadItems');
-		$(window).trigger('resize');
-	}(jQuery));
-
+	// Shrink logo Classie script
 	function init() {
     window.addEventListener('scroll', function(e){
       var distanceY = window.pageYOffset || document.documentElement.scrollTop,
@@ -205,6 +164,7 @@
 	}
 	window.onload = init();
 
+	// Light header switch Waypoint script
 	shrinkOn = jQuery('#masthead').height()
 	var sharewaypoint = new Waypoint({
 		element: document.getElementById('init-header-change'),
@@ -217,6 +177,7 @@
 		offset: shrinkOn
 	});
 
+	// Scroll to hash on click
 	jQuery(function($) {
   $('a[href*="#"]:not([href="#"])').click(function() {
     if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
