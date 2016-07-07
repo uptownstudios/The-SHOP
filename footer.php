@@ -107,6 +107,7 @@
 			});
 		}
 		floatLabel(".floatLabel input");
+		floatLabel(".floatLabel textarea");
 	});
 
 	// Masonry Layout for Portfolio, Blog Posts, and Events
@@ -177,21 +178,41 @@
 		offset: shrinkOn
 	});
 
-	// Scroll to hash on click
+
 	jQuery(function($) {
-  $('a[href*="#"]:not([href="#"])').click(function() {
-    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-      if (target.length) {
-        $('html, body').animate({
-          scrollTop: target.offset().top - topScrollOffset
-        }, 1000);
-        return false;
-      }
-    }
-  });
-});
+		// Scroll to hash on click
+	  $('a[href*="#"]:not([href="#"])').click(function() {
+	    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+	      var target = $(this.hash);
+	      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+	      if (target.length) {
+	        $('html, body').animate({
+	          scrollTop: target.offset().top - topScrollOffset
+	        }, 1000);
+	        return false;
+	      }
+	    }
+	  });
+
+		// Quote Modal Script
+		$('a.bs-quote-modal').click(function() {
+			$(this).parents('.single-service-content').find('.bs-quote-modal-wrapper').addClass('show-modal');
+			$('body').addClass('modal-active');
+			return false;
+		});
+		$('.bs-quote-modal-close').click(function() {
+			$('.bs-quote-modal-wrapper.show-modal').removeClass('show-modal');
+			$('body').removeClass('modal-active');
+			return false;
+		});
+		$(document).keyup(function(e) {
+    	if (e.keyCode == 27) { // escape key maps to keycode `27`
+      	$('.bs-quote-modal-wrapper.show-modal').removeClass('show-modal');
+				$('body').removeClass('modal-active');
+    	}
+		});
+
+	});
 
 	// initiating the isotope page
 	jQuery(window).load(function($) {

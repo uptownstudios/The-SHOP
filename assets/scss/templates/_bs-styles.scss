@@ -112,6 +112,9 @@ h2, h3 {
 h3, h4 {
   text-transform: capitalize;
 }
+body.modal-active {
+  overflow: hidden;
+}
 .bs-btn {
   font-size: 1.125rem;
   font-weight: 700 !important;
@@ -127,11 +130,32 @@ h3, h4 {
   background: #FFF;
   border: 2px solid #FFF;
 }
-.bs-btn:hover,
-.bs-btn:focus {
-  background: $red;
-  border: 2px solid $red;
+.bs-btn.bs-btn-white:hover,
+.bs-btn.bs-btn-white:focus {
+  background: $dark;
+  border: 2px solid $dark;
   color: #FFF;
+}
+.bs-btn.bs-btn-clear {
+  background: #FFF;
+  border: 2px solid $red;
+}
+.bs-btn.bs-btn-clear:hover,
+.bs-btn.bs-btn-clear:focus {
+  background: $dark;
+  border: 2px solid $dark;
+  color: #FFF;
+}
+.bs-btn.bs-btn-black {
+  background: $dark;
+  border: 2px solid $dark;
+  color: #FFF;
+}
+.bs-btn.bs-btn-black:hover,
+.bs-btn.bs-btn-black:focus {
+  background: #FFF;
+  border: 2px solid $red;
+  color: $red;
 }
 .bs-btn.bs-btn-red {
   background: $red;
@@ -142,6 +166,25 @@ h3, h4 {
 .bs-btn.bs-btn-red:focus {
   background: $dark;
   border: 2px solid $dark;
+  color: #FFF;
+}
+.bs-btn.bs-btn-yellow {
+  background: $yellow;
+  border: 2px solid $yellow;
+  color: #FFF;
+  text-shadow: 0 0 1px $dark;
+}
+.bs-btn.bs-btn-yellow:hover,
+.bs-btn.bs-btn-yellow:focus {
+  background: $dark;
+  border: 2px solid $dark;
+  color: #FFF;
+  text-shadow: none;
+}
+.bs-btn:hover,
+.bs-btn:focus {
+  background: $red;
+  border: 2px solid $red;
   color: #FFF;
 }
 .bs-btns-wrapper {
@@ -188,7 +231,7 @@ html .margin-bottom-6per {
   margin-right: auto !important;
 }
 .max-width-sixteen-hundred {
-  max-width: 1600px;
+  max-width: 1600px !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
@@ -1122,6 +1165,15 @@ header#featured-hero {
 .single-service-outer:nth-of-type(odd) {
   background: #f1f1f1;
 }
+.single-service {
+
+  .single-service-outer {
+    background: #FFF;
+  }
+  #single-post {
+    margin-top: 0;
+  }
+}
 .photo-right {
 
   .vc_col-sm-4 {
@@ -1165,6 +1217,7 @@ header#featured-hero {
   .vc_single_image-wrapper {
     width: 100%;
     padding-top: 40px;
+    padding-bottom: 40px;
   }
   figure {
     width: 80%;
@@ -1206,6 +1259,97 @@ header#featured-hero {
   }
 
 }
+.case-study-title {
+  text-align: center;
+
+  h2 {
+    margin: 0 0 60px 0 !important;
+    color: $red;
+    position: relative;
+    font-size: 2.5rem !important;
+    text-transform: capitalize;
+  }
+  h2:after {
+    content: '';
+    width: 80px;
+    height: 2px;
+    display: block;
+    background: $red;
+    position: absolute;
+    left: 50%;
+    margin-left: -40px;
+    bottom: -20px;
+  }
+}
+@media #{$break767} {
+  .case-study-text {
+    order: -1;
+    margin-top: -40px;
+  }
+  .case-study-image figure,
+  .case-study-image div,
+  .case-study-image img {
+    width: 100%;
+  }
+}
+
+/* Quote Modal Styles */
+.bs-quote-modal-wrapper {
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  @include transition(all);
+
+  .bs-quote-modal-overlay {
+    position: absolute;
+    background: rgba(0,0,0,.85);
+    width: 100%;
+    height: 100%;
+  }
+  .bs-quote-modal-inner {
+    position: absolute;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 90%;
+    padding: 20px;
+    background: #FFF;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    overflow: scroll;
+  }
+  .bs-quote-modal-inner br {
+    display: none;
+  }
+}
+.bs-quote-modal-wrapper.show-modal {
+  visibility: visible;
+  opacity: 1;
+}
+button.bs-quote-modal-close {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background: $red;
+  color: #FFF;
+  line-height: 15px;
+  display: inline-block;
+}
+@media #{$break600} {
+  .bs-quote-modal-inner {
+    width: 85% !important;
+  }
+}
+
 span.fun-title {
   text-transform: uppercase;
   font-size: 1.5rem;
@@ -1427,7 +1571,7 @@ span.fun-title {
     transform: translateY(-50%);
     margin: 0 0 0 -300px;
   }
-  
+
 }
 .single-team-member:hover,
 .single-team-member:focus {
@@ -1509,6 +1653,16 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
     border-bottom: 0;
     box-sizing: border-box;
   }
+  .gform_wrapper .gform_heading {
+    margin: 0 !important;
+    width: calc(100% - 30px);
+    min-height: 30px;
+  }
+  .gform_wrapper .gform_heading h3.gform_title {
+    margin: 0;
+    line-height: 1.9rem;
+    font-size: 1.75rem !important;
+  }
   .gform_wrapper .hidden_label input.large,
   .gform_wrapper .hidden_label select.large,
   .gform_wrapper .top_label input.large,
@@ -1521,7 +1675,7 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
     background: rgba(230,230,230,.8);
     box-shadow: none;
     margin: 0;
-    padding: 0 5px;
+    padding: 0 10px !important;
   }
   .gform_wrapper textarea {
     width: 100% !important;
@@ -1531,19 +1685,31 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
     box-shadow: none;
     margin: 0;
   }
-  .gform_wrapper form li, .gform_wrapper li {
+  .gform_wrapper form li.gfield, .gform_wrapper li.gfield {
     padding: 6px 10px;
+    border-top: 0 !important;
     border-bottom: 4px solid $yellow;
+    margin: 0;
   }
   li.gfield {
     position: relative;
+    padding-right: 10px !important;
+  }
+  .gform_wrapper li.gfield.field_description_below+li.gsection {
+    margin-top: 0 !important;
+  }
+  li.gsection {
+    background: $yellow;
+  }
+  li.gsection h2 {
+    color: #000;
   }
   label.gfield_label {
     line-height: 1.2 !important;
     position: absolute;
     margin: 0 !important;
     left: 18px;
-    bottom: 10px;
+    top: 8px;
     text-transform: capitalize;
     font-family: 'museo-sans';
     -webkit-transition: all .5s ease-out;
@@ -1556,8 +1722,11 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
     font-size: 75%;
     opacity: .65;
   }
+  textarea {
+    padding: 15px 10px !important;
+  }
   .bs-textarea textarea {
-    padding: 10px 10px 30px !important;
+    padding: 15px 10px !important;
   }
   .bs-textarea label {
     bottom: 40px !important;
@@ -1570,6 +1739,54 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
     height: 28px;
     display: block;
   }
+  .gform_wrapper .ginput_container.ginput_container_radio {
+    padding: 1px 8px 1px;
+    background: #E6E6E6;
+    background: rgba(230,230,230,.8);
+
+    ul.gfield_radio  {
+      width: 100% !important;
+      margin: 8px 0 8px 0;
+    }
+    ul.gfield_radio li {
+      margin: 0 0 5px 0 !important;
+    }
+    ul.gfield_radio li input[type="radio"] {
+      margin: 0;
+    }
+    ul.gfield_radio li label {
+      line-height: 1.1 !important;
+    }
+  }
+  .gform_wrapper .ginput_container.ginput_container_checkbox {
+    padding: 1px 8px 1px;
+    background: #E6E6E6;
+    background: rgba(230,230,230,.8);
+
+    ul.gfield_checkbox  {
+      width: 100% !important;
+      margin: 8px 0 8px 0;
+    }
+    ul.gfield_checkbox li {
+      margin: 0 0 5px 0 !important;
+    }
+    ul.gfield_checkbox li input[type="checkbox"] {
+      margin: 0;
+    }
+  }
+  .gform_wrapper .gfield_checkbox li label,
+  .gform_wrapper .gfield_radio li label {
+    line-height: 1.2 !important;
+  }
+  .nofloatLabel label.gfield_label {
+    position: relative;
+    left: 0 !important;
+    top: auto;
+    display: block;
+    padding: 4px 8px 0;
+    background: #E6E6E6;
+    background: rgba(230,230,230,.8);
+  }
   .validation_error {
     font-weight: 500 !important;
     font-size: 1.2rem !important;
@@ -1579,11 +1796,16 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
     text-align: center;
   }
   .validation_error + .gform_body ul li label {
-    top: -15px;
+    font-size: 85%;
   }
   .validation_error + .gform_body ul li.gfield_error label {
-    top: -5px;
-    left: 0;
+    top: 9px;
+    left: 18px;
+    font-size: 85%;
+  }
+  .gform_wrapper .gfield_description.validation_message {
+    padding-top: 0;
+    color: #FF0000;
   }
   .gform_wrapper .gfield_error {
     width: 100% !important;
@@ -1591,8 +1813,20 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
   li.gfield_error .ginput_container {
     margin-top: 30px !important;
   }
+  .gform_wrapper li.gfield.gfield_error.gfield_contains_required {
+    margin: 0 !important;
+  }
+  .gforms_confirmation_message {
+    width: calc(100% - 30px);
+  }
   .gform_wrapper .gform_footer {
     text-align: right;
+  }
+  .gform_wrapper .gform_footer input.button,
+  .gform_wrapper .gform_footer input[type=submit],
+  .gform_wrapper .gform_page_footer input.button,
+  .gform_wrapper .gform_page_footer input[type=submit] {
+    margin: 0;
   }
   .gform_footer input.gform_button {
     background: $red;
