@@ -19,6 +19,30 @@
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
 	</head>
 	<body id="heeeey" <?php body_class(); ?>>
+		<script>window.fbAsyncInit = function() { FB.init({ appId: '237010259984812', xfbml: true, version: 'v2.5' }); };
+    (function(d, s, id){ var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js"; fjs.parentNode.insertBefore(js, fjs); } (document, 'script', 'facebook-jssdk'));
+    function fb_share() { FB.ui({ method: 'share', href: '<?php the_permalink(); ?>' },
+        function(response) { if (response && !response.error_code) {
+              // window.location = "http://imintohire.org/thank-you-for-sharing-on-facebook/"
+            } else { } }); }
+    </script>
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <?php function customFShare() {
+        $like_results = file_get_contents('http://graph.facebook.com/'. get_permalink());
+        $like_array = json_decode($like_results, true);
+        $like_count =  $like_array['shares'];
+        return ($like_count ) ? $like_count : "0";
+    } ?>
+
 	<div id="preloader"><img src="http://127.0.0.1/newuptown/wp-content/uploads/2016/05/logo-color.svg" class="preloader-logo"></div>
 	<?php do_action( 'foundationpress_after_body' ); ?>
 

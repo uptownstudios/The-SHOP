@@ -17,10 +17,10 @@ $break480: "only screen and (max-width: 30em)";
 $break375: "only screen and (max-width: 23.4375em)";
 
 @mixin transition($attr) {
-  -webkit-transition: $attr 250ms ease-out;
-     -moz-transition: $attr 250ms ease-out;
-      -ms-transition: $attr 250ms ease-out;
-          transition: $attr 250ms ease-out;
+  -webkit-transition: $attr .2s ease-out;
+     -moz-transition: $attr .2s ease-out;
+      -ms-transition: $attr .2s ease-out;
+          transition: $attr .2s ease-out;
 }
 
 /**** TABLE OF CONTENTS ****
@@ -42,6 +42,7 @@ $break375: "only screen and (max-width: 23.4375em)";
   4b. Team Member and Services Styles
   4c. Clients Styles
   4d. Gravity Forms Styles
+  4e. Social Sharing Styles
 
 5. PORTFOLIO STYLES
 
@@ -1041,10 +1042,10 @@ body.mobile .home-hero-wrapper {
       width: 50%;
     }
   }
-  .cta-wrapper {
-    margin-bottom: -85px !important;
-    padding-bottom: 85px;
-  }
+  // .cta-wrapper {
+  //   margin-bottom: -85px !important;
+  //   padding-bottom: 85px;
+  // }
 }
 @media #{$break640} {
   header#masthead {
@@ -1360,33 +1361,33 @@ span.fun-title {
     overflow: hidden;
 }
 .single-tm-image figcaption {
-    position: absolute;
-    width: 100%;
-    margin: 0 !important;
-    padding: 20px;
-    color: #FFF;
-    font-size: 2.5rem !important;
-    line-height: 1.1;
-    font-family: 'acumin-pro-extra-condensed';
-    text-transform: uppercase;
-    font-weight: 700;
-    background: rgba(0,0,0,.5);
-    opacity: 0;
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -o-transform: translateY(0);
-    transform: translateY(0);
-    -webkit-transition: all .25s ease-out;
-    -moz-transition: all .25s ease-out;
-    -o-transition: all .25s ease-out;
-    transition: all .25s ease-out;
+  position: absolute;
+  width: 100%;
+  margin: 0 !important;
+  padding: 20px;
+  color: #FFF;
+  font-size: 2.5rem !important;
+  line-height: 1.1;
+  font-family: 'acumin-pro-extra-condensed';
+  text-transform: uppercase;
+  font-weight: 700;
+  background: rgba(0,0,0,.5);
+  opacity: 0;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+  -webkit-transition: all .25s ease-out;
+  -moz-transition: all .25s ease-out;
+  -o-transition: all .25s ease-out;
+  transition: all .25s ease-out;
 }
 .single-tm-inner:hover .single-tm-image figure figcaption {
-    opacity: 1;
-    -webkit-transform: translateY(-100%);
-    -moz-transform: translateY(-100%);
-    -o-transform: translateY(-100%);
-    transform: translateY(-100%);
+  opacity: 1;
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
 }
 @media only screen and (max-width: 68.6875em) {
   .single-tm-inner, .single-service-inner {
@@ -1712,10 +1713,8 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
     top: 8px;
     text-transform: capitalize;
     font-family: 'museo-sans';
-    -webkit-transition: all .5s ease-out;
-    -moz-transition: all .5s ease-out;
-    -o-transition: all .5s ease-out;
-    transition: all .5s ease-out;
+    will-change: transition;
+    @include transition(all);
   }
   label[data-attr="active"].gfield_label {
     bottom: 69%;
@@ -2173,6 +2172,23 @@ div.archives-wrapper {
     margin-bottom: 40px;
     padding-bottom: 40px;
     border-bottom: 1px solid $red;
+  }
+
+}
+
+/* 4e. Social Sharing Styles */
+.bs-social-share-container {
+  display: block;
+
+  .bs-social-share-inner {
+    width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    display: table;
+  }
+  .single-social-share {
+    display: table-cell;
+    width: 50px;
   }
 
 }
@@ -2637,6 +2653,64 @@ ul.filter-portfolio-category li a.active:before, ul.filter-portfolio-category li
   span.cat-link {
 		display: none;
 	}
+}
+
+/* 5a. Single Portfolio Page Styles */
+.portfolio-wrap {
+  display: table;
+  width: 100%;
+
+  .portfolio-main-image {
+    display: table-cell;
+    vertical-align: middle;
+    width: 50%;
+    padding-right: 40px;
+  }
+  .portfolio-main-image img {
+    width: 100%;
+    height: auto;
+  }
+  .portfolio-description {
+    display: table-cell;
+    vertical-align: middle;
+    width: 50%;
+  }
+  .portfolio-gallery {
+    display: inline-block;
+    width: 100%;
+    margin: 40px 0 0;
+
+    h3 {
+      margin-bottom: .625rem;
+    }
+    .gallery {
+      margin-left: -20px;
+    }
+    .gallery figure.gallery-item {
+      margin: 0;
+      padding-left: 20px;
+      width: 25%;
+      float: left;
+      box-sizing: border-box;
+    }
+    .gallery figure.gallery-item img {
+      width: 100%;
+      height: auto;
+    }
+    .gallery-icon a {
+      overflow: hidden;
+      display: block;
+    }
+    .gallery-icon a img {
+      transform: scale(1);
+      @include transition(transform);
+    }
+    .gallery-icon a:hover img {
+      transform: scale(1.1);
+    }
+
+  }
+
 }
 
 

@@ -6,6 +6,7 @@ get_header();
 
 $args = array( 'post_type' => 'portfolio', 'posts_per_page' => -1 );
 $loop = new WP_Query( $args );
+$thumb = get_field('bs_portfolio_thumbnail');
 
 ?>
 
@@ -43,8 +44,9 @@ $loop = new WP_Query( $args );
             <div class="portfolio-container bs-isotope">
               <?php while ( $loop->have_posts()) : $loop->the_post(); ?>
               <?php
-                $image_id = get_post_thumbnail_id();
-                $image_url = wp_get_attachment_image_src($image_id,'full', true);
+                $thumb = get_field('bs_portfolio_thumbnail');
+                //$image_id = get_post_thumbnail_id();
+                //$image_url = wp_get_attachment_image_src($image_id,'full', true);
               ?>
                 <div class="single-portfolio-item bs-isotope-item <?php $terms = get_the_terms( $post->ID , 'portfolio-cat' ); foreach ( $terms as $term ) { echo $term->slug . ' '; } ?> ">
                   <article <?php post_class() ?> id="post-<?php the_ID(); ?>">
@@ -52,7 +54,7 @@ $loop = new WP_Query( $args );
                       <section class="entry-content">
                         <h4 class="portfolio-title"><?php the_title(); ?></h4>
                         <ul class="portfolio-category"><?php $terms = get_the_terms( $post->ID , 'portfolio-cat' ); foreach ( $terms as $term ) { echo '<li class="cat-name">' . $term->name . '</li>'; } ?></ul>
-                        <img src="<?php echo $image_url[0]; ?>" class="portfolio-thumbnail" alt="<?php the_title();?> portfolio thumbnail" />
+                        <img src="<?php echo $thumb['url']; ?>" class="portfolio-thumbnail" alt="<?php the_title();?> portfolio thumbnail" />
                         <span class="cat-link">+</span>
                         <canvas class="portfolio-overlay"></canvas>
                       </section>

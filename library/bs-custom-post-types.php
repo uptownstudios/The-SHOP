@@ -27,6 +27,7 @@ function my_custom_post_current_portfolio() {
 		//'register_meta_box_cb' => 'add_project_metaboxes',
 		'has_archive'   	     => true,
     'menu_icon'            => 'dashicons-schedule',
+		'rewrite'							 => array('slug' => 'project'),
 	);
 	register_post_type( 'portfolio', $args );
 }
