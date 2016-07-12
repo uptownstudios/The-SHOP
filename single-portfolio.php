@@ -8,7 +8,7 @@
 
 get_header(); ?>
 
-<?php get_template_part( 'template-parts/blog-title-bar' ); ?>
+<?php get_template_part( 'template-parts/portfolio-title-bar' ); ?>
 
 <div id="single-post" class="page-full-width max-width-sixteen-hundred no-sidebar" role="main">
 
@@ -30,21 +30,23 @@ get_header(); ?>
 					<img src="<?php echo $mainimg['url']; ?>" alt="<?php echo $mainimg['alt']; ?>" />
 				</div>
 				<div class="portfolio-description">
-					<h2>Project Overview</h2>
-					<?php echo $description; ?>
-					<?php if($mbt && $mbu) { ?>
-					<a class="bs-btn bs-btn-red" href="<?php echo $mbu; ?>"><?php echo $mbt; ?></a>
-					<?php } ?>
-					<?php if($gallery) { ?>
-					<div class="clearfix clear"></div>
-					<div class="portfolio-gallery">
-						<h3>Project Gallery</h3>
-						<?php
-							$shortcode = '[gallery ids="' . implode(',', $gallery) . '" columns="4" size="thumbnail"]';
-							echo do_shortcode( $shortcode );
-						?>
+					<div class="portfolio-description-inner">
+						<h2>Project Overview</h2>
+						<?php echo $description; ?>
+						<?php if($mbt && $mbu) { ?>
+						<a class="bs-btn bs-btn-red" href="<?php echo $mbu; ?>"><?php echo $mbt; ?></a>
+						<?php } ?>
+						<?php if($gallery) { ?>
+						<div class="clearfix clear"></div>
+						<div class="portfolio-gallery">
+							<h3>Project Gallery</h3>
+							<?php
+								$shortcode = '[gallery ids="' . implode(',', $gallery) . '" columns="4" size="thumbnail"]';
+								echo do_shortcode( $shortcode );
+							?>
+						</div>
+						<?php } ?>
 					</div>
-					<?php } ?>
 				</div>
 			</div>
 

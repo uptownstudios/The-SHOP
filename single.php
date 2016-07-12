@@ -28,6 +28,8 @@ get_header(); ?>
 		<?php the_content(); ?>
 		</div>
 
+		<?php get_template_part( 'template-parts/about-author' ); ?>
+
 		<nav id="nav-single" class="nav-single">
 			<div class="nav-single-inner">
 				<span class="nav-previous"><?php next_post_link( '%link', '<span class="meta-nav">' . _x( '&laquo;', 'Previous post link', 'wp-forge' ) . '</span> %title' ); ?></span>

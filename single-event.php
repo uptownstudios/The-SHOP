@@ -16,16 +16,17 @@ get_header(); ?>
 <?php while ( have_posts() ) : the_post(); ?>
 	<article <?php post_class('main-content') ?> id="post-<?php the_ID(); ?>">
 		<?php do_action( 'foundationpress_post_before_entry_content' ); ?>
-		<div class="entry-content">
+		<div class="entry-content event-wrap">
 
-		<?php
-			if ( has_post_thumbnail() ) { ?>
-			<div class="single-featured-image">
-				<?php the_post_thumbnail(); ?>
+		<?php if ( has_post_thumbnail() ) { ?>
+		<div class="event-main-image">
+			<?php the_post_thumbnail(); ?>
+		</div><?php }	?>
+		<div class="event-description">
+			<div class="event-description-inner">
+				<?php the_content(); ?>
 			</div>
-		<?php }	?>
-
-		<?php the_content(); ?>
+		</div>
 		</div>
 
 		<nav id="nav-single" class="nav-single">

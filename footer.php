@@ -62,9 +62,10 @@
 		});
 	});
 
-	// Site Preloader
 	jQuery(document).ready(function($) {
 		$(window).imagesLoaded(function() {
+
+			// Site Preloader
 			$('#preloader').addClass('loaded')
 			// $('#preloader img').fadeIn('fast');
 			// $('#preloader .spinner').addClass('loaded');
@@ -72,6 +73,20 @@
 			$('#preloader.loaded').delay(250).slideUp(1000, function() {
 				$(this).hide();
 			});
+
+			// Portfolio/Event left/right height function
+			var portlefthalf = jQuery('.portfolio-main-image').height();
+			var portrighthalf = jQuery('.portfolio-description-inner').height();
+			var eventlefthalf = jQuery('.event-main-image').height();
+			var eventrighthalf = jQuery('.event-description-inner').height();
+			if(portlefthalf > portrighthalf) {
+				$('.portfolio-main-image').addClass('alignmiddle');
+				$('.portfolio-description').addClass('alignmiddle');
+			}
+			if(eventlefthalf > eventrighthalf) {
+				$('.event-main-image').addClass('alignmiddle');
+				$('.event-description').addClass('alignmiddle');
+			}
 		});
 
 	  // Back to top script

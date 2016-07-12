@@ -42,7 +42,12 @@ $break375: "only screen and (max-width: 23.4375em)";
   4b. Team Member and Services Styles
   4c. Clients Styles
   4d. Gravity Forms Styles
-  4e. Social Sharing Styles
+  4e. Events Styles
+    4e-a. Single Events Styles
+  4f. Blog Page Styles
+  4g. Single Blog Post Styles
+  4h. 404 Page Styles and Archive Styles
+  4i. Social Sharing Styles
 
 5. PORTFOLIO STYLES
 
@@ -2012,6 +2017,89 @@ a.page-numbers:focus {
   }
 }
 
+/* 4e-a. Single Events Styles */
+.event-wrap {
+  display: table;
+
+  .event-main-image {
+    display: table-cell;
+    vertical-align: top;
+    width: 50%;
+    padding-right: 20px;
+  }
+  .event-main-image.alignmiddle {
+    vertical-align: middle;
+  }
+  .event-main-image img {
+    width: 100%;
+    height: auto;
+  }
+  .event-description {
+    display: table-cell;
+    vertical-align: top;
+    width: 50%;
+    padding-left: 20px;
+  }
+  .event-description-inner h2 {
+    font-size: 2.25rem !important;
+  }
+  .event-description.alignmiddle {
+    vertical-align: middle;
+  }
+  .event-description h3 {
+    font-size: 1.9375rem !important;
+    margin-bottom: .625rem;
+  }
+  .event-meta-wrapper .date-time-wrapper,
+  .event-meta-wrapper .location-wrapper {
+    width: 50%;
+    float: left;
+    margin-bottom: 30px;
+  }
+  .em-location-map-container {
+    width: 100% !important;
+  }
+
+}
+@media #{$break767} {
+  .event-wrap {
+    .event-meta-wrapper .date-time-wrapper,
+    .event-meta-wrapper .location-wrapper {
+      width: 100%;
+      float: none;
+    }
+  }
+}
+@media #{$break640} {
+  .event-wrap {
+    .event-main-image {
+      display: block;
+      width: 100%;
+      padding-right: 0;
+      margin-bottom: 40px;
+    }
+    .event-description {
+      display: block;
+      width: 100%;
+      padding-left: 0;
+    }
+    .event-meta-wrapper .date-time-wrapper,
+    .event-meta-wrapper .location-wrapper {
+      width: 50%;
+      float: left;
+    }
+  }
+}
+@media #{$break375} {
+  .event-wrap {
+    .event-meta-wrapper .date-time-wrapper,
+    .event-meta-wrapper .location-wrapper {
+      width: 100%;
+      float: none;
+    }
+  }
+}
+
 /* 4f. Blog Page Styles */
 .page-template-page-blog {
 
@@ -2153,6 +2241,25 @@ nav#nav-single {
   }
 
 }
+.about-the-author-wrap {
+  margin: 35px 0 0 0;
+  padding: 35px 10px 0 10px;
+  border-top: 1px solid $red;
+
+  .author-image {
+    width: 80px;
+    padding-right: 15px;
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .author-description {
+    display: table-cell;
+    vertical-align: middle;
+    font-weight: 400 !important;
+    font-size: .95rem;
+    font-style: italic;
+  }
+}
 
 /* 4h. 404 Page Styles and Archive Styles */
 div#four-o-four-wrapper {
@@ -2177,7 +2284,7 @@ div.archives-wrapper {
 
 }
 
-/* 4e. Social Sharing Styles */
+/* 4i. Social Sharing Styles */
 .bs-social-share-container {
   display: block;
 
@@ -2687,15 +2794,29 @@ ul.filter-portfolio-category li a.active:before, ul.filter-portfolio-category li
 }
 
 /* 5a. Single Portfolio Page Styles */
+span.title-bar-meta {
+
+  span.term-name:after {
+    content: '|';
+    padding: 0 8px;
+  }
+  span.term-name:last-child:after {
+    display: none;
+  }
+
+}
 .portfolio-wrap {
   display: table;
   width: 100%;
 
   .portfolio-main-image {
     display: table-cell;
-    vertical-align: middle;
+    vertical-align: top;
     width: 50%;
-    padding-right: 40px;
+    padding-right: 20px;
+  }
+  .portfolio-main-image.alignmiddle {
+    vertical-align: middle;
   }
   .portfolio-main-image img {
     width: 100%;
@@ -2703,8 +2824,15 @@ ul.filter-portfolio-category li a.active:before, ul.filter-portfolio-category li
   }
   .portfolio-description {
     display: table-cell;
-    vertical-align: middle;
+    vertical-align: top;
     width: 50%;
+    padding-left: 20px;
+  }
+  .portfolio-description-inner h2 {
+    font-size: 2.25rem !important;
+  }
+  .portfolio-description.alignmiddle {
+    vertical-align: middle;
   }
   .portfolio-gallery {
     display: inline-block;
@@ -2712,6 +2840,7 @@ ul.filter-portfolio-category li a.active:before, ul.filter-portfolio-category li
     margin: 40px 0 0;
 
     h3 {
+      font-size: 1.9375rem !important;
       margin-bottom: .625rem;
     }
     .gallery {
@@ -2742,6 +2871,21 @@ ul.filter-portfolio-category li a.active:before, ul.filter-portfolio-category li
 
   }
 
+}
+@media #{$break640} {
+  .portfolio-wrap {
+    .portfolio-main-image {
+      display: block;
+      width: 100%;
+      padding-right: 0;
+      margin-bottom: 40px;
+    }
+    .portfolio-description {
+      display: block;
+      width: 100%;
+      padding-left: 0;
+    }
+  }
 }
 
 
