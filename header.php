@@ -43,7 +43,7 @@
         return ($like_count ) ? $like_count : "0";
     } ?>
 
-	<div id="preloader"><img src="http://127.0.0.1/newuptown/wp-content/uploads/2016/05/logo-color.svg" class="preloader-logo"></div>
+	<div id="preloader"><img src="<?php bloginfo('url'); ?>/wp-content/uploads/2016/05/logo-color.svg" class="preloader-logo"></div>
 	<?php do_action( 'foundationpress_after_body' ); ?>
 
 	<?php if ( get_theme_mod( 'wpt_mobile_menu_layout' ) == 'offcanvas' ) : ?>
