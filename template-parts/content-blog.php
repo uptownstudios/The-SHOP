@@ -24,7 +24,8 @@ $loop = new WP_Query( $args );
 						<div class="blog-page-title-excerpt">
 							<h3><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h3>
 							<p class="author-date">Published on <?php the_date(); ?></p>
-							<?php the_excerpt(); ?>
+							<p class="author-byline"><span class="avatar"><?php echo get_avatar( get_the_author_meta( 'ID' ), 32 ); ?></span><span class="byline">By <a href="<?php echo get_author_posts_url( $author_id ); ?>" title=""><?php the_author_meta( 'display_name', $author_id ); ?></a></span>
+							<?php the_excerpt(); ?></p>
 							<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">Read More &raquo;</a>
 						</div>
 					</div>

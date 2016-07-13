@@ -19,8 +19,9 @@ get_header(); ?>
 
 <?php get_template_part( 'template-parts/archive-title-bar' ); ?>
 
-<div id="page" class="archives-wrapper max-width-one-thousand no-sidebar" role="main">
+<div id="page" class="archives-wrapper max-width-sixteen-hundred no-sidebar" role="main">
 	<article class="main-content">
+	<div class="entry-content bs-isotope">
 	<?php if ( have_posts() ) : ?>
 
 		<?php /* Start the Loop */ ?>
@@ -33,21 +34,15 @@ get_header(); ?>
 
 		<?php endif; // End have_posts() check. ?>
 
-		<?php /* Display navigation to next/previous pages when applicable */ ?>
-		<?php if ( function_exists( 'foundationpress_pagination' ) ) { foundationpress_pagination(); } else if ( is_paged() ) { ?>
-			<nav class="prev-next-posts">
-				<div class="prev-posts-link">
-					<?php echo get_next_posts_link( '&laquo; Older Posts', $loop->max_num_pages ); // display older posts link ?>
-				</div>
-				<div class="next-posts-link">
-					<?php echo get_previous_posts_link( 'Newer Posts &raquo;' ); // display newer posts link ?>
-				</div>
-			</nav>
-		<?php } ?>
-
 	</article>
-
-
 </div>
+<nav class="prev-next-posts">
+	<div class="prev-posts-link">
+		<?php echo get_next_posts_link( '&laquo; Older Posts', $loop->max_num_pages ); // display older posts link ?>
+	</div>
+	<div class="next-posts-link">
+		<?php echo get_previous_posts_link( 'Newer Posts &raquo;' ); // display newer posts link ?>
+	</div>
+</nav>
 
 <?php get_footer();

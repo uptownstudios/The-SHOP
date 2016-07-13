@@ -28,6 +28,14 @@ get_header(); ?>
 		<?php the_content(); ?>
 		</div>
 
+		<?php $posttags = get_the_tags(); if ($posttags) { ?>
+		<div class="the-tags">
+			<?php foreach($posttags as $tag) {
+				echo '<a href="' . get_bloginfo('url') . '/tag/'  . $tag->slug . '"><span class="tag">#' . $tag->name . '</a></span>';
+			} ?>
+		</div>
+		<?php } ?>
+
 		<?php get_template_part( 'template-parts/about-author' ); ?>
 
 		<nav id="nav-single" class="nav-single">

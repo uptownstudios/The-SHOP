@@ -20,22 +20,39 @@ get_header(); ?>
 
 		<?php
 			$description = get_field('bs_portfolio_description');
-			$mbt = get_field('bs_portfolio_mbt');
-			$mbu = get_field('bs_portfolio_mbu');
 			$mainimg = get_field('bs_portfolio_main_image');
+			$mainvid = get_field('bs_portfolio_main_video');
 			$gallery = get_field('bs_portfolio_gallery', false, false);
+			$imgorvid = get_field('bs_image_or_video');
 		?>
 			<div class="portfolio-wrap">
 				<div class="portfolio-main-image">
+					<?php if($imageorvid == 'image') {?>
 					<img src="<?php echo $mainimg['url']; ?>" alt="<?php echo $mainimg['alt']; ?>" />
+					<?php } else { echo $mainvid;	} ?>
 				</div>
 				<div class="portfolio-description">
 					<div class="portfolio-description-inner">
 						<h2>Project Overview</h2>
 						<?php echo $description; ?>
-						<?php if($mbt && $mbu) { ?>
-						<a class="bs-btn bs-btn-red" href="<?php echo $mbu; ?>"><?php echo $mbt; ?></a>
-						<?php } ?>
+
+						<?php	if( have_rows('bs_portfolio_mbs') ): ?>
+
+							<div class="portfolio-buttons-wrapper">
+
+							<?php while ( have_rows('bs_portfolio_mbs') ) : the_row();
+								$mbt = get_sub_field('bs_portfolio_mbt');
+								$mbu = get_sub_field('bs_portfolio_mbu');
+							?>
+
+								<a class="bs-btn bs-btn-red" href="<?php echo $mbu; ?>" target="_blank" title="<?php echo $mbt; ?>"><?php echo $mbt; ?></a>
+
+							<?php endwhile; ?>
+
+							</div>
+
+						<?php endif; ?>
+
 						<?php if($gallery) { ?>
 						<div class="clearfix clear"></div>
 						<div class="portfolio-gallery">
@@ -44,6 +61,13 @@ get_header(); ?>
 								$shortcode = '[gallery ids="' . implode(',', $gallery) . '" columns="4" size="thumbnail"]';
 								echo do_shortcode( $shortcode );
 							?>
+						</div>
+						<?php } ?>
+						<?php $posttags = get_the_tags(); if ($posttags) { ?>
+						<div class="the-tags">
+							<?php foreach($posttags as $tag) {
+							  echo '<a href="' . get_bloginfo('url') . '/tag/'  . $tag->slug . '"><span class="tag">#' . $tag->name . '</a></span>';
+							} ?>
 						</div>
 						<?php } ?>
 					</div>
