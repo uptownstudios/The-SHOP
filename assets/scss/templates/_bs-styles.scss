@@ -694,11 +694,11 @@ header#masthead.reverse-header {
     color: $dark;
   }
   .top-bar .top-bar-left a.custom-logo-link {
-    background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/05/logo-color.svg) no-repeat center center !important;
+    background: url(http://159.203.243.127/wp-content/uploads/2016/05/logo-color.svg) no-repeat center center !important;
     background-size: 150px 69px !important;
   }
   .title-bar-title a.custom-logo-link {
-    background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/05/logo-color.svg) no-repeat center center !important;
+    background: url(http://159.203.243.127/wp-content/uploads/2016/05/logo-color.svg) no-repeat center center !important;
     background-size: 171px 80px !important;
     display: inline-block;
   }
@@ -752,7 +752,7 @@ body.mobile .home-hero-wrapper {
   background-size: 110% !important;
 }
 .what-we-do-wrapper {
-  background: #e7e7e7 url(http://127.0.0.1/newuptown/wp-content/uploads/2016/06/what-we-do-bg-tile.svg) repeat fixed !important;
+  background: #e7e7e7 url(http://159.203.243.127/wp-content/uploads/2016/06/what-we-do-bg-tile.svg) repeat fixed !important;
   background-size: 75px !important;
 
   .vc_column-inner {
@@ -872,7 +872,7 @@ body.mobile .home-hero-wrapper {
 }
 
 .testimonials-wrapper {
-  background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/05/dots-bg-repeat3.svg) repeat top left;
+  background: url(http://159.203.243.127/wp-content/uploads/2016/05/dots-bg-repeat3.svg) repeat top left;
   background-size: 35px;
   background-attachment: fixed;
 
@@ -931,7 +931,7 @@ body.mobile .home-hero-wrapper {
 
 .waves-section {
   background-color: #a50031 !important;
-  background-image: url('http://127.0.0.1/newuptown/wp-content/uploads/2016/05/waves-svg-bg3.svg') !important;
+  background-image: url('http://159.203.243.127/wp-content/uploads/2016/05/waves-svg-bg3.svg') !important;
   background-repeat: repeat-x;
   background-position: -1px bottom;
   background-size: 44px;
@@ -939,7 +939,7 @@ body.mobile .home-hero-wrapper {
 }
 
 .ig-wrapper {
-  background: #e7e7e7 url(http://127.0.0.1/newuptown/wp-content/uploads/2016/06/what-we-do-bg-tile.svg) repeat fixed !important;
+  background: #e7e7e7 url(http://159.203.243.127/wp-content/uploads/2016/06/what-we-do-bg-tile.svg) repeat fixed !important;
   background-size: 75px !important;
 
   span.ig-caption {
@@ -1165,7 +1165,7 @@ header#featured-hero {
     //   width: 200px;
     //   height: 200px;
     //   display: block;
-    //   background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/06/gray-sun-burst.svg);
+    //   background: url(http://159.203.243.127/wp-content/uploads/2016/06/gray-sun-burst.svg);
     //   position: absolute;
     //   top: 0;
     //   left: 50%;
@@ -1183,12 +1183,12 @@ header#featured-hero {
       height: 5px;
       display: block;
       position: absolute;
-      background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/06/dot-border-light2.svg);
+      background: url(http://159.203.243.127/wp-content/uploads/2016/06/dot-border-light2.svg);
       left: 0;
       bottom: -1rem;
     }
     h1.entry-title.dark span.entry-title-inner:after {
-      background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/06/dot-border2.svg);
+      background: url(http://159.203.243.127/wp-content/uploads/2016/06/dot-border2.svg);
     }
 }
 
@@ -1390,12 +1390,15 @@ span.fun-title {
 .single-tm-image figure {
     position: relative;
     overflow: hidden;
+    border-radius: 100%;
 }
 .single-tm-image figcaption {
   position: absolute;
+  top: 0;
   width: 100%;
+  height: 44px;
   margin: 0 !important;
-  padding: 20px;
+  padding: 70% 20px 30%;
   color: #FFF;
   font-size: 2.5rem !important;
   line-height: 1.1;
@@ -1404,21 +1407,11 @@ span.fun-title {
   font-weight: 700;
   background: rgba(0,0,0,.5);
   opacity: 0;
-  -webkit-transform: translateY(0);
-  -moz-transform: translateY(0);
-  -o-transform: translateY(0);
-  transform: translateY(0);
-  -webkit-transition: all .25s ease-out;
-  -moz-transition: all .25s ease-out;
-  -o-transition: all .25s ease-out;
-  transition: all .25s ease-out;
+  border-radius: 100%;
+  @include transition(opacity);
 }
-.single-tm-inner:hover .single-tm-image figure figcaption {
+.single-tm-outer.showtitle .single-tm-image figure figcaption {
   opacity: 1;
-  -webkit-transform: translateY(-100%);
-  -moz-transform: translateY(-100%);
-  -o-transform: translateY(-100%);
-  transform: translateY(-100%);
 }
 @media only screen and (max-width: 68.6875em) {
   .single-tm-inner, .single-service-inner {
@@ -1474,11 +1467,10 @@ span.fun-title {
     padding-bottom: 0 !important;
   }
   .single-tm-image figcaption {
+    padding: 70% 20px 30%;
+  }
+  .single-tm-outer.showtitle .single-tm-image figcaption {
     opacity: 1;
-    -webkit-transform: translateY(-100%);
-    -moz-transform: translateY(-100%);
-    -o-transform: translateY(-100%);
-    transform: translateY(-100%);
   }
   .single-service-image .vc_single_image-wrapper {
     padding-top: 0;
@@ -1642,7 +1634,7 @@ span.fun-title {
 
 /* 4d. Contact Us Page and Gravity Forms Styles */
 // .holler-at-us-wrapper {
-//   background: #ecebe9 url(http://127.0.0.1/newuptown/wp-content/uploads/2016/04/geo-feathers-semi-transparent.svg) fixed;
+//   background: #ecebe9 url(http://159.203.243.127/wp-content/uploads/2016/04/geo-feathers-semi-transparent.svg) fixed;
 //   background-size: 55px;
 // }
 // .home .holler-at-us-wrapper {
@@ -1764,7 +1756,7 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
   }
   li.bs-textarea .ginput_container_textarea:after {
     content: '';
-    background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/05/dots-bg-repeat3.svg);
+    background: url(http://159.203.243.127/wp-content/uploads/2016/05/dots-bg-repeat3.svg);
     background-size: 16px;
     width: 100%;
     height: 28px;
@@ -2949,7 +2941,7 @@ span.title-bar-meta {
 //     width: 100%;
 //     height: 4px;
 //     display: block;
-//     background: url(http://127.0.0.1/newuptown/wp-content/uploads/2016/06/dot-border-red.svg);
+//     background: url(http://159.203.243.127/wp-content/uploads/2016/06/dot-border-red.svg);
 //     top: -2px;
 //     position: relative;
 // }

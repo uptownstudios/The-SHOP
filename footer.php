@@ -181,18 +181,27 @@
 	window.onload = init();
 
 	// Light header switch Waypoint script
-	shrinkOn = jQuery('#masthead').height()
+	shrinkOn = jQuery('#masthead').height();
+
 	var sharewaypoint = new Waypoint({
 		element: document.getElementById('init-header-change'),
 		handler: function(direction) {
 			jQuery('#masthead').toggleClass('reverse-header');
-			jQuery('#masthead.reverse-header .top-bar .top-bar-left a.custom-logo-link img').attr('src','http://159.203.243.127/wp-content/uploads/2016/05/logo-color.svg');
-			jQuery('#masthead .top-bar .top-bar-left a.custom-logo-link img').attr('src','http://159.203.243.127/wp-content/uploads/2016/04/logo.svg');
+			jQuery('#masthead.reverse-header .top-bar .top-bar-left a.custom-logo-link img').attr('src','http://<?php bloginfo('url'); ?>/wp-content/uploads/2016/05/logo-color.svg');
+			jQuery('#masthead .top-bar .top-bar-left a.custom-logo-link img').attr('src','http://<?php bloginfo('url'); ?>/wp-content/uploads/2016/04/logo.svg');
 
 		},
 		offset: shrinkOn
 	});
 
+	//Show title waypoint
+	$('.single-tm-outer').each(function() {
+		$(this).waypoint(function() {
+			$(this).toggleClass('showtitle');
+		}, {
+			offset: '40%'
+		});
+	});
 
 	jQuery(function($) {
 		// Scroll to hash on click
