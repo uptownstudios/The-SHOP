@@ -327,6 +327,11 @@ ul.social-media-wrapper.white li a {
 .text-align-center, .text-align-center * {
   text-align: center;
 }
+.readable-line-length.text-align-center {
+  margin-right: auto !important;
+  margin-left: auto !important;
+  display: block;
+}
 .cta-text.has-background-image {
   background: rgba(27,27,27,.65);
   padding: 20px;
@@ -369,7 +374,7 @@ ul.social-media-wrapper.white li a {
     height: auto;
   }
 }
-@media #{$break480} {
+@media #{$break600} {
   .bs-isotope-item {
   	width: 100% !important;
   	height: auto !important;
@@ -738,15 +743,15 @@ body.shrink-logo {
     margin-top: 0;
   }
   .meet-the-team-svg img {
-    width: 100%;
-    min-width: 300px;
+    width: 590px;
+    max-width: 100%;
     height: auto;
     margin: 0 auto;
     display: block;
   }
 }
 body:not(.mobile) .home-hero-wrapper {
-  background-image: none !important;
+  background-position: bottom center !important;
 }
 body.mobile .home-hero-wrapper {
   background-size: 110% !important;
@@ -1241,6 +1246,62 @@ header#featured-hero {
 .single-service-content {
   max-width: none;
 }
+ul.team-social-media-wrapper.left,
+ul.team-social-media-wrapper {
+  display: inline-block;
+  text-align: left;
+  list-style: none;
+  margin: 0;
+
+  li {
+    display: inline-block;
+    padding: 0 5px 0 0;
+  }
+  li a {
+    width: 30px;
+    height: 30px;
+    font-size: 1.25rem;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 15px;
+    display: block;
+    background: $dark;
+    color: #FFF !important;
+  }
+  li a i {
+    margin-left: -1px;
+  }
+}
+ul.team-social-media-wrapper.right {
+  display: inline-block;
+  text-align: right;
+  width: 100%;
+
+  li {
+    display: inline-block;
+    padding: 0 0 0 5px;
+  }
+}
+ul.team-social-media-wrapper.center {
+  display: table;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+
+  li {
+    display: inline-block;
+    padding: 0 2.5px;
+  }
+}
+ul.team-social-media-wrapper.red li a {
+  background: $red;
+  color: #FFF !important;
+  @include transition(background);
+}
+ul.team-social-media-wrapper.red li a:hover {
+  background: $dark;
+  color: #FFF !important;
+}
 .single-tm-image,
 .single-service-image {
   margin-bottom: 0 !important;
@@ -1259,6 +1320,10 @@ header#featured-hero {
     max-height: 500px;
   }
 
+}
+.single-service-outer:nth-child(even) .single-service-image img {
+  border-radius: 100%;
+  border: 1px solid #dadada;
 }
 .services-list-inner {
   display: table;
@@ -1400,7 +1465,7 @@ span.fun-title {
   margin: 0 !important;
   padding: 70% 20px 30%;
   color: #FFF;
-  font-size: 2.5rem !important;
+  font-size: 2.25rem !important;
   line-height: 1.1;
   font-family: 'acumin-pro-extra-condensed';
   text-transform: uppercase;
@@ -1412,6 +1477,9 @@ span.fun-title {
 }
 .single-tm-outer.showtitle .single-tm-image figure figcaption {
   opacity: 1;
+}
+.single-tm-outer.showtitle .single-tm-image:hover figure figcaption {
+  opacity: 0;
 }
 @media only screen and (max-width: 68.6875em) {
   .single-tm-inner, .single-service-inner {
@@ -1425,7 +1493,7 @@ span.fun-title {
 
   }
   .single-tm-image figcaption {
-    font-size: 1.75rem !important;
+    font-size: 2rem !important;
   }
 }
 @media #{$break767} {
@@ -2377,6 +2445,22 @@ div.archives-wrapper {
 
 }
 
+/* 4j. WP Gallery Styles */
+.gallery-columns-2 {
+
+  figure {
+    margin: 0;
+    padding: 0 20px 20px 0;
+    width: 50%;
+    float: left;
+  }
+  figure img {
+    width: 100%;
+    height: auto;
+  }
+
+}
+
 
 /**** 5. PORTFOLIO PAGE STYLES ****/
 div#page-full-width.portfolio-wrapper {
@@ -2470,7 +2554,7 @@ h4.portfolio-title {
   }
   h4.portfolio-title {
   	visibility: visible;
-  	top: 10px;
+  	top: 0;
   	left: 0;
     padding: 5px;
     margin: 0;
@@ -2531,14 +2615,12 @@ body.single-portfolio-item:hover img {
     width: auto;
     height: auto;
     text-align: center;
-    padding: 0 10px 8px;
+    padding: 0 10px 0;
     position: relative;
     display: inline-block;
     vertical-align: middle;
   }
-  li:before {
-    content: '';
-  }
+
 }
 span.cat-link {
   position: absolute;
@@ -2571,6 +2653,7 @@ span.cat-link {
     max-width: 200px !important;
     height: auto;
   }
+
 }
 .single-portfolio-item:hover span.cat-link {
   visibility: visible;
@@ -2588,7 +2671,7 @@ span.cat-link {
 }
 .single-portfolio-item:hover .portfolio-category {
 	right: 0;
-	bottom: -6px;
+	bottom: 0px;
   padding: 5px;
 	opacity: 1;
 }
@@ -2728,9 +2811,23 @@ ul.filter-portfolio-category li a.active:before, ul.filter-portfolio-category li
 .portfolio-filter-toggle {
 	display: none;
 }
+@media #{$break1200} {
+  h4.portfolio-title {
+    font-size: 1.75rem;
+  }
+  .single-portfolio-item .portfolio-category li {
+    font-size: .875rem;
+  }
+  span.cat-link {
+    font-size: 2.8125rem;
+  }
+}
 @media #{$break1024} {
   header#featured-hero h1.entry-title span.entry-title-inner {
     padding: 0 10px;
+  }
+  span.cat-link {
+    font-size: 2.1875rem;
   }
 }
 @media only screen and (min-width: 50.0625em) {
@@ -2828,12 +2925,21 @@ ul.filter-portfolio-category li a.active:before, ul.filter-portfolio-category li
     top: 50%;
     margin-top: -8px;
   }
+  h4.portfolio-title {
+    font-size: 2rem;
+  }
+  .single-portfolio-item .portfolio-category {
+    bottom: 0;
+    margin-bottom: 5px !important;
+  }
+  .single-portfolio-item .portfolio-category li {
+    font-size: .75rem;
+  }
+  span.cat-link {
+    display: none;
+  }
 }
 @media #{$break480} {
-	.single-portfolio-item {
-  	width: 50% !important;
-  	height: auto !important;
-	}
   span.cat-link {
 		display: none;
 	}
@@ -2895,6 +3001,7 @@ span.title-bar-meta {
     .gallery figure.gallery-item {
       margin: 0;
       padding-left: 20px;
+      padding-bottom: 20px;
       width: 25%;
       float: left;
       box-sizing: border-box;

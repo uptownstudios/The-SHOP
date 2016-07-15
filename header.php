@@ -17,8 +17,9 @@
 		<?php wp_head(); ?>
 		<script src="https://use.typekit.net/uax4yzt.js"></script>
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
+		<link rel="preconnect" href="https://www.youtube.com/watch?v=ZKdHGG_0GJc">
 	</head>
-	<body id="heeeey" <?php body_class(); ?>>
+	<body <?php body_class(); ?>>
 		<script>window.fbAsyncInit = function() { FB.init({ appId: '237010259984812', xfbml: true, version: 'v2.5' }); };
     (function(d, s, id){ var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) {return;}
         js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js"; fjs.parentNode.insertBefore(js, fjs); } (document, 'script', 'facebook-jssdk'));

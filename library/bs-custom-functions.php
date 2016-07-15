@@ -27,7 +27,7 @@ add_filter('body_class','my_body_classes');
 add_filter('widget_text', 'do_shortcode');
 
 
-// Social Media Links Shortcode
+// Customizer Social Media Links Shortcode
 add_shortcode( 'bs_social_urls', 'bs_social_urls_shortcode' );
 function bs_social_urls_shortcode( $atts ) {
     extract( shortcode_atts( array(
@@ -37,18 +37,56 @@ function bs_social_urls_shortcode( $atts ) {
     ob_start(); ?>
 
     <ul class="social-media-wrapper <?php echo $align; ?> <?php echo $color; ?>">
-      <?php if( get_theme_mod('facebook')): ?><li class="facebook"><a href="<?php echo get_theme_mod('facebook','default'); ?>"><i class="fa fa-facebook"></i></a></li><?php endif; ?>
-      <?php if( get_theme_mod('twitter')): ?><li class="twitter"><a href="<?php echo get_theme_mod('twitter','default'); ?>"><i class="fa fa-twitter"></i></a></li><?php endif; ?>
-      <?php if( get_theme_mod('linkedin')): ?><li class="linkedin"><a href="<?php echo get_theme_mod('linkedin','default'); ?>"><i class="fa fa-linkedin"></i></a></li><?php endif; ?>
-      <?php if( get_theme_mod('instagram')): ?><li class="instagram"><a href="<?php echo get_theme_mod('instagram','default'); ?>"><i class="fa fa-instagram"></i></a></li><?php endif; ?>
-      <?php if( get_theme_mod('youtube')): ?><li class="youtube"><a href="<?php echo get_theme_mod('youtube','default'); ?>"><i class="fa fa-youtube-play"></i></a></li><?php endif; ?>
-      <?php if( get_theme_mod('pinterest')): ?><li class="pinterest"><a href="<?php echo get_theme_mod('pinterest','default'); ?>"><i class="fa fa-pinterest"></i></a></li><?php endif; ?>
-      <?php if( get_theme_mod('vimeo')): ?><li class="vimeo"><a href="<?php echo get_theme_mod('vimeo','default'); ?>"><i class="fa fa-vimeo"></i></a></li><?php endif; ?>
-      <?php if( get_theme_mod('rss')): ?><li class="rss"><a href="<?php echo get_theme_mod('rss','default'); ?>"><i class="fa fa-rss"></i></a></li><?php endif; ?>
+      <?php if( get_theme_mod('facebook')): ?><li class="facebook"><a href="<?php echo get_theme_mod('facebook','default'); ?>" target="_blank" title="Find us on Facebook"><i class="fa fa-facebook"></i></a></li><?php endif; ?>
+      <?php if( get_theme_mod('twitter')): ?><li class="twitter"><a href="<?php echo get_theme_mod('twitter','default'); ?>" target="_blank" title="Follow us on Twitter"><i class="fa fa-twitter"></i></a></li><?php endif; ?>
+      <?php if( get_theme_mod('linkedin')): ?><li class="linkedin"><a href="<?php echo get_theme_mod('linkedin','default'); ?>" target="_blank" title="Connect with us on LinkedIn"><i class="fa fa-linkedin"></i></a></li><?php endif; ?>
+      <?php if( get_theme_mod('instagram')): ?><li class="instagram"><a href="<?php echo get_theme_mod('instagram','default'); ?>" target="_blank" title="Follow us on Instagram"><i class="fa fa-instagram"></i></a></li><?php endif; ?>
+      <?php if( get_theme_mod('youtube')): ?><li class="youtube"><a href="<?php echo get_theme_mod('youtube','default'); ?>" target="_blank" title="Check out our YouTube Channel"><i class="fa fa-youtube-play"></i></a></li><?php endif; ?>
+      <?php if( get_theme_mod('pinterest')): ?><li class="pinterest"><a href="<?php echo get_theme_mod('pinterest','default'); ?>" target="_blank" title="Follow us on Pinterest"><i class="fa fa-pinterest"></i></a></li><?php endif; ?>
+      <?php if( get_theme_mod('vimeo')): ?><li class="vimeo"><a href="<?php echo get_theme_mod('vimeo','default'); ?>" target="_blank" title="Check out our Vimeo Channel"><i class="fa fa-vimeo"></i></a></li><?php endif; ?>
+      <?php if( get_theme_mod('rss')): ?><li class="rss"><a href="<?php echo get_theme_mod('rss','default'); ?>" target="_blank" title="Subscribe to our RSS Feed"><i class="fa fa-rss"></i></a></li><?php endif; ?>
     </ul>
 
     <?php $bs_social_variable = ob_get_clean();
     return $bs_social_variable;
+}
+
+
+// Team Social Media Links Shortcode
+add_shortcode( 'team_social_urls', 'team_social_urls_shortcode' );
+function team_social_urls_shortcode( $atts ) {
+    $args = shortcode_atts( array(
+      'align' => '',
+      'color' => '',
+			'name' => 'me',
+			'facebook' => '',
+			'twitter' => '',
+			'linkedin' => '',
+			'instagram' => '',
+			'pinterest' => '',
+			'youtube' => '',
+			'googleplus' => '',
+			'behance' => '',
+			'snapchat' => '',
+			'github' => '',
+    ), $atts );
+    ob_start(); ?>
+
+    <ul class="team-social-media-wrapper <?php echo $args['align']; ?> <?php echo $args['color']; ?>">
+      <?php if($args['facebook'] != '') : ?><li class="facebook"><a href="<?php echo $args['facebook']; ?>" target="_blank" title="Find <?php echo $args['name']; ?> on Facebook"><i class="fa fa-facebook"></i></a></li><?php endif; ?>
+			<?php if($args['twitter'] != '') : ?><li class="twitter"><a href="<?php echo $args['twitter']; ?>" target="_blank" title="Follow <?php echo $args['name']; ?> on Twitter"><i class="fa fa-twitter"></i></a></li><?php endif; ?>
+			<?php if($args['linkedin'] != '') : ?><li class="linkedin"><a href="<?php echo $args['linkedin']; ?>" target="_blank" title="Connect with <?php echo $args['name']; ?> on LinkedIn"><i class="fa fa-linkedin"></i></a></li><?php endif; ?>
+			<?php if($args['instagram'] != '') : ?><li class="instagram"><a href="<?php echo $args['instagram']; ?>" target="_blank" title="Follow <?php echo $args['name']; ?> on Instagram"><i class="fa fa-instagram"></i></a></li><?php endif; ?>
+			<?php if($args['pinterest'] != '') : ?><li class="pinterest"><a href="<?php echo $args['pinterest']; ?>" target="_blank" title="Follow <?php echo $args['name']; ?> on Pinterest"><i class="fa fa-pinterest"></i></a></li><?php endif; ?>
+			<?php if($args['youtube'] != '') : ?><li class="youtube"><a href="<?php echo $args['youtube']; ?>" target="_blank" title="Check <?php echo $args['name']; ?> out on YouTube"><i class="fa fa-youtube"></i></a></li><?php endif; ?>
+			<?php if($args['googleplus'] != '') : ?><li class="googleplus"><a href="<?php echo $args['googleplus']; ?>" target="_blank" title="Find <?php echo $args['name']; ?> on Google+"><i class="fa fa-googleplus"></i></a></li><?php endif; ?>
+			<?php if($args['behance'] != '') : ?><li class="behance"><a href="<?php echo $args['behance']; ?>" target="_blank" title="Find work by <?php echo $args['name']; ?> on Behance"><i class="fa fa-behance"></i></a></li><?php endif; ?>
+			<?php if($args['snapchat'] != '') : ?><li class="snapchat"><a href="<?php echo $args['snapchat']; ?>" target="_blank" title="Snap with <?php echo $args['name']; ?> on Snapchat"><i class="fa fa-snapchat-ghost"></i></a></li><?php endif; ?>
+			<?php if($args['github'] != '') : ?><li class="github"><a href="<?php echo $args['github']; ?>" target="_blank" title="Check out repos by <?php echo $args['name']; ?> on Github"><i class="fa fa-github"></i></a></li><?php endif; ?>
+    </ul>
+
+    <?php $team_social_variable = ob_get_clean();
+    return $team_social_variable;
 }
 
 

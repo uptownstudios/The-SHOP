@@ -187,8 +187,8 @@
 		element: document.getElementById('init-header-change'),
 		handler: function(direction) {
 			jQuery('#masthead').toggleClass('reverse-header');
-			jQuery('#masthead.reverse-header .top-bar .top-bar-left a.custom-logo-link img').attr('src','http://<?php bloginfo('url'); ?>/wp-content/uploads/2016/05/logo-color.svg');
-			jQuery('#masthead .top-bar .top-bar-left a.custom-logo-link img').attr('src','http://<?php bloginfo('url'); ?>/wp-content/uploads/2016/04/logo.svg');
+			jQuery('#masthead.reverse-header .top-bar .top-bar-left a.custom-logo-link img').attr('src','<?php bloginfo('url'); ?>/wp-content/uploads/2016/05/logo-color.svg');
+			jQuery('#masthead .top-bar .top-bar-left a.custom-logo-link img').attr('src','<?php bloginfo('url'); ?>/wp-content/uploads/2016/04/logo.svg');
 
 		},
 		offset: shrinkOn
