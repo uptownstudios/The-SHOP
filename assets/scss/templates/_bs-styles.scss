@@ -24,6 +24,7 @@ $break375: "only screen and (max-width: 23.4375em)";
 }
 
 /**** TABLE OF CONTENTS ****
+
 0. PRELOADER STYLES
 
 1. GENERAL STYLES
@@ -53,7 +54,10 @@ $break375: "only screen and (max-width: 23.4375em)";
 
 6. FOOTER STYLES
 
+00. No JavaScript Styles
+
 ** END TABLE OF CONTENTS **/
+
 
 /**** 0. PRELOADER STYLES ****/
 div#preloader {
@@ -65,8 +69,6 @@ div#preloader {
   height: 100%;
   overflow: visible;
   background: #FFF;
-}
-div#preloader {
   opacity: 1;
   -webkit-transition: opacity 700ms ease-out 400ms;
   -moz-transition: opacity 700ms ease-out 400ms;
@@ -244,9 +246,24 @@ body.modal-active {
   padding-left: 30px;
   margin-bottom: 30px;
 
+  figure {
+    background: #CCC url('http://127.0.0.1/newuptown/wp-content/uploads/2016/07/img-icon.png') no-repeat center center;
+    background-size: 50px;
+  }
+
   img {
     width: 100%;
     height: auto;
+  }
+  img.lazyload,
+  img.lazyloading {
+    opacity: 0;
+    min-height: 150px;
+    @include transition(opacity);
+  }
+  img.lazyloaded {
+    opacity: 1;
+    @include transition(opacity);
   }
 
 }
@@ -2257,7 +2274,7 @@ a.page-numbers:focus {
           width: 100%;
           height: auto;
           transform: scale(1) rotate(0deg);
-          @include transition(transform);
+          @include transition(all);
         }
 
     }
@@ -2289,6 +2306,7 @@ a.page-numbers:focus {
     padding: 20px 5px;
     border-top: 1px solid #a72535;
     max-width: 1570px;
+    clear: both;
   }
   .blog-page-title-excerpt h3, .blog-page-title-excerpt h3 a {
     font-size: 1.5rem;
@@ -2331,16 +2349,16 @@ div#single-post {
   font-family: 'museo-sans';
 }
 div#single-post.max-width-nine-hundred {
-    max-width: 900px;
+  max-width: 900px;
 }
 div#single-post.max-width-one-thousand {
-    max-width: 1000px;
+  max-width: 1000px;
 }
 div#single-post.no-sidebar article,
 #page.archives-wrapper.no-sidebar article {
-    float: none;
-    width: 100%;
-    margin-bottom: 0;
+  float: none;
+  width: 100%;
+  margin-bottom: 0;
 }
 .single-featured-image {
   margin-bottom: 20px;
@@ -2402,7 +2420,8 @@ div#four-o-four-wrapper {
   }
 
 }
-div.archives-wrapper {
+div#page.archives-wrapper {
+  margin-top: 0;
 
   .entry-content, header {
     font-family: 'museo-sans';
@@ -3153,6 +3172,28 @@ span.title-bar-meta {
   p {
     font-weight: 300 !important;
     text-align: center;
+  }
+
+}
+
+
+/**** 00. No JavaScript Styles ****/
+.no-js {
+
+  // div#preloader {
+  //   display: none;
+  // }
+  img.lazyload {
+    display: none;
+  }
+  .bs-isotope-item {
+    float: left;
+  }
+  .bs-isotope-item:nth-child(3n+1) {
+    clear: left;
+  }
+  p, a, li, span, h1, h2, h3, h4, h5, h6, blockquote {
+    font-family: Arial, Helvetica, sans-serif !important;
   }
 
 }

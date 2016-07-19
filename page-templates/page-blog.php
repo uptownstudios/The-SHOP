@@ -14,9 +14,9 @@ $loop = new WP_Query( $args );
 <div id="page-full-width" role="main">
 
 <?php do_action( 'foundationpress_before_content' ); ?>
-  <article <?php post_class('main-content') ?> id="post-<?php the_ID(); ?>">
+  <article <?php post_class('main-content lazy-isotope-wrapper') ?> id="post-<?php the_ID(); ?>">
       <?php do_action( 'foundationpress_page_before_entry_content' ); ?>
-      <div class="entry-content bs-isotope">
+      <div class="entry-content lazy-isotope">
           <?php the_content(); ?>
           <?php get_template_part( 'template-parts/content','blog' ); ?>
       </div>

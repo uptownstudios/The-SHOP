@@ -31,7 +31,7 @@ get_header(); ?>
 		<?php $posttags = get_the_tags(); if ($posttags) { ?>
 		<div class="the-tags">
 			<?php foreach($posttags as $tag) {
-				echo '<a href="' . get_bloginfo('url') . '/tag/'  . $tag->slug . '"><span class="tag">#' . $tag->name . '</a></span>';
+				echo '<a href="' . get_bloginfo('url') . '/tag/'  . $tag->slug . '"><span class="tag">#' . $tag->slug . '</a></span>';
 			} ?>
 		</div>
 		<?php } ?>

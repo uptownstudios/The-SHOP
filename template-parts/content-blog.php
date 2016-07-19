@@ -16,9 +16,15 @@ $loop = new WP_Query( $args );
 			<?php if ( $loop->have_posts()) : while ( $loop->have_posts()) : $loop->the_post(); ?>
 				<article id="post-<?php the_ID(); ?>" <?php post_class('index-card bs-isotope-item'); ?>>
 					<div class="entry-content">
+						<?php
+							$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
+							$image = $image[0];
+							$imageSrcSet = wp_get_attachment_image_srcset( get_post_thumbnail_id( $post->ID ), 'full' );
+							// $imageSrcSet = $imageSrcSet[0];
+						?>
 						<?php if ( has_post_thumbnail() ) { ?>
 						<div class="blog-page-featured-image">
-							<figure><a href="<?php the_permalink(); ?>"><?php the_post_thumbnail(); ?></a></figure>
+							<figure><a href="<?php the_permalink(); ?>"><img data-sizes="auto" data-src=<?php echo $image; ?>" data-srcset="<?php echo $imageSrcSet; ?>" data-expand="-110" class="lazyload" /><noscript><img src="<?php echo $image; ?>" /></noscript></a></figure>
 						</div>
 						<?php } ?>
 						<div class="blog-page-title-excerpt">
@@ -31,3 +37,4 @@ $loop = new WP_Query( $args );
 					</div>
 				</article>
 			<?php endwhile; endif; ?>
+			<div class="clear"></div>

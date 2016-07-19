@@ -130,17 +130,41 @@
 		var $container = $('.bs-isotope');
 		$container.imagesLoaded(function() {
 			$container.isotope({
-				resizable: false,
 				itemSelector: '.bs-isotope-item',
-				layoutMode: 'masonry',
-				fitRows: {
-	  				gutter: 20
-				}
+				layoutMode: 'masonry'
 			});
-			$container.isotope('reloadItems');
+			$container.isotope('reloadItems').isotope();
 		});
 		$(window).trigger('resize');
 	}(jQuery));
+
+
+	// Lazy Load with Isotope/Masonry Layout
+	$('.lazy-isotope-wrapper').each(function(){
+
+		var $isotope = $('.lazy-isotope', this);
+
+		$isotope.isotope({
+			itemSelector: '.bs-isotope-item',
+			layoutMode: 'masonry'
+		});
+
+	  $isotope[0].addEventListener('load', (function(){
+	    var runs;
+	    var update = function(){
+	      $isotope.isotope('layout');
+	      runs = false;
+	    };
+	    return function(){
+	      if(!runs){
+	        runs = true;
+	        setTimeout(update, 33);
+	      }
+	    };
+	  }()), true);
+
+	});
+
 
 	// Isotope Filters for Portfolio
 	jQuery(document).ready(function($) {
