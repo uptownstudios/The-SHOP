@@ -1333,7 +1333,7 @@ ul.team-social-media-wrapper.red li a:hover {
 
   .service-list-item {
     display: table-cell;
-    width: 14.2857142857%;
+    width: 12.5%;
 
     img {
       width: 60px;
@@ -1379,6 +1379,18 @@ ul.team-social-media-wrapper.red li a:hover {
   }
 }
 @media #{$break767} {
+  .services-list .wpb_raw_code.wpb_content_element.wpb_raw_html {
+    margin-bottom: 0;
+  }
+  .services-list .vc_column-inner {
+    padding-top: 20px !important;
+  }
+  .services-list-inner .service-list-item {
+    display: block;
+    width: 25%;
+    float: left;
+    margin-bottom: 20px;
+  }
   .case-study-text {
     order: -1;
     margin-top: -40px;
