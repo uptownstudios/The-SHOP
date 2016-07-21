@@ -131,7 +131,13 @@ h2 span.sub-title {
   margin: 40px 0;
   text-align: left;
 
+  a {
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+
   span.tag {
+    display: inline-block;
     padding: 5px 8px;
     border-radius: 4px;
     text-transform: lowercase;
@@ -494,10 +500,12 @@ nav.off-canvas {
 body.off-canvas-open[data-whatinput="touch"] {
   overflow-y: hidden;
 }
-
 body.off-canvas-open[data-whatinput="touch"] .off-canvas-wrapper {
   overflow-y: hidden !important;
   position: fixed;
+}
+.entry-content {
+  overflow-x: hidden;
 }
 
 /* 2b. Social Media Styles */
@@ -1156,6 +1164,16 @@ body.mobile .home-hero-wrapper {
 div#page-full-width {
   margin-top: 0;
   max-width: none;
+
+  .main-content {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
+.page-id-34 div#page-full-width .main-content,
+.page-id-37 div#page-full-width .main-content {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 /* 4a. Title Bar Styles */
@@ -1169,13 +1187,15 @@ header#featured-hero {
     h1.entry-title {
       text-align: center;
       color: #FFF;
-      font: 400 84px/1 'acumin-pro-extra-condensed';
+      // font: 400 84px/1 'acumin-pro-extra-condensed';
+      font: 700 54px/1.2 'museo-sans';
       letter-spacing: .01rem;
       text-shadow: 1px 1px 2px #000;
-      text-transform: uppercase;
+      // text-transform: uppercase;
+      text-transform: capitalize;
       display: table-cell;
       vertical-align: bottom;
-      padding: 165px 0 60px;
+      padding: 165px 1rem 60px;
       position: relative;
     }
     h1.entry-title.dark {
@@ -1201,12 +1221,13 @@ header#featured-hero {
     }
     h1.entry-title span.entry-title-inner:after {
       content: '';
-      width: 100%;
+      width: 300px;
       height: 5px;
       display: block;
       position: absolute;
       background: url(http://159.203.243.127/wp-content/uploads/2016/06/dot-border-light2.svg);
-      left: 0;
+      left: 50%;
+      margin-left: -150px;
       bottom: -1rem;
     }
     h1.entry-title.dark span.entry-title-inner:after {
@@ -1255,6 +1276,8 @@ header#featured-hero {
 .single-service-content {
   max-width: 800px;
   margin: 36px auto 0;
+  padding-left: 10px;
+  padding-right: 10px;
 
     h2, h3, h4, h5, h6, p, span, li, a, blockquote {
       font-family: 'museo-sans';
@@ -2360,6 +2383,11 @@ div#single-post.no-sidebar article,
   width: 100%;
   margin-bottom: 0;
 }
+div#single-post.no-sidebar article.main-content,
+#page.archives-wrapper.no-sidebar article.main-content {
+  padding-left: 25px;
+  padding-right: 25px;
+}
 .single-featured-image {
   margin-bottom: 20px;
 
@@ -2917,7 +2945,7 @@ ul.filter-portfolio-category li a.active:before, ul.filter-portfolio-category li
     display: none;
   }
   header#featured-hero h1.entry-title {
-    font: 66px/1 'acumin-pro-extra-condensed';
+    font: 700 45px/1.2 'museo-sans';
   }
 }
 @media #{$break600} {
@@ -3016,6 +3044,9 @@ span.title-bar-meta {
   }
   .portfolio-description.alignmiddle {
     vertical-align: middle;
+  }
+  .portfolio-buttons-wrapper .bs-btn {
+    margin-bottom: 10px;
   }
   .portfolio-gallery {
     display: inline-block;
