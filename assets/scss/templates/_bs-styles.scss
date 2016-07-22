@@ -10,6 +10,8 @@ $ltgray: #e7e7e8;
 $break1600: "only screen and (max-width: 100em)";
 $break1200: "only screen and (max-width: 75em)";
 $break1024: "only screen and (max-width: 64em)";
+$break951: "only screen and (max-width: 59.4375em)";
+$break951to601: "only screen and (max-width: 59.4375em) and (min-width: 37.5625em)";
 $break767: "only screen and (max-width: 47.9375em)";
 $break640: "only screen and (max-width: 40em)";
 $break600: "only screen and (max-width: 37.5em)";
@@ -764,8 +766,15 @@ body.shrink-logo {
   top: 32px;
 }
 .home {
+
   div#page-full-width {
     margin-top: 0;
+
+    .main-content {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+
   }
   .meet-the-team-svg img {
     width: 590px;
@@ -774,6 +783,7 @@ body.shrink-logo {
     margin: 0 auto;
     display: block;
   }
+
 }
 body:not(.mobile) .home-hero-wrapper {
   background-position: bottom center !important;
@@ -2258,19 +2268,44 @@ a.page-numbers:focus {
 
     p.author-date {
       text-transform: uppercase;
+      margin-bottom: 10px;
     }
     p.author-byline {
       display: table;
       width: 100%;
+      margin-bottom: 10px;
     }
     p.author-byline span.avatar {
       display: table-cell;
-      width: 42px;
+      width: 60px;
       vertical-align: middle;
     }
     p.author-byline span.avatar img {
-      width: 32px;
+      width: 44px;
+      height: auto;
       margin-right: 10px;
+      border-radius: 100%;
+    }
+    h3.alt-avatar-title {
+      margin-top: 15px;
+    }
+    span.avatar.alt-avatar {
+      width: 50px;
+      height: 50px;
+      display: block;
+      border-radius: 50px;
+      position: relative;
+      margin-top: -25px;
+      margin-bottom: -25px;
+      left: 50%;
+      margin-left: -25px;
+    }
+    span.avatar.alt-avatar img {
+      width: 100%;
+      height: auto;
+      border-radius: 100%;
+      border: 3px solid #f1f1f1;
+      box-shadow: 0 -2px 4px rgba(0,0,0,.5)
     }
     p.author-byline span.byline {
       display: table-cell;
@@ -2328,13 +2363,50 @@ a.page-numbers:focus {
     margin: 10px auto 0;
     padding: 20px 5px;
     border-top: 1px solid #a72535;
+    width: 100%;
+    width: calc(100% - 50px);
     max-width: 1570px;
     clear: both;
+    display: table;
+
+    div.prev-posts-link {
+      width: 50%;
+      display: table-cell;
+    }
+    div.next-posts-link {
+      width: 50%;
+      display: table-cell;
+      text-align: right;
+    }
+
   }
   .blog-page-title-excerpt h3, .blog-page-title-excerpt h3 a {
     font-size: 1.5rem;
   }
 
+}
+@media #{$break951to601} {
+  .page-template-page-blog article.post {
+    p.author-byline span.avatar {
+      display: table-cell;
+      width: 50px;
+      vertical-align: middle;
+    }
+    p.author-byline span.avatar img {
+      width: 34px;
+    }
+    h3.alt-avatar-title {
+      margin-top: 12px;
+    }
+    span.avatar.alt-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 40px;
+      margin-top: -20px;
+      margin-bottom: -20px;
+      margin-left: -20px;
+    }
+  }
 }
 @media #{$break767} {
   .page-template-page-blog article.post .blog-page-title-excerpt,
