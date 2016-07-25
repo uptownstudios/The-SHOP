@@ -268,7 +268,7 @@ body.modal-active {
   img.lazyload,
   img.lazyloading {
     opacity: 0;
-    min-height: 150px;
+    min-height: 100px;
     @include transition(opacity);
   }
   img.lazyloaded {
