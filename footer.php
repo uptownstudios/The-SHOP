@@ -99,12 +99,14 @@
 	        $('#back-top').fadeOut();
 	      }
 	    });
-	    $('#back-top a').click(function () {
-	      $('body,html').animate({
-	        scrollTop: 0
-	      }, 1200);
-	      return false;
-	    });
+			if($('body').hasClass('mobile')) {
+				// do nothing
+			} else {
+		    $('#back-top a').click(function () {
+		      $('body,html').animate({ scrollTop: '0px' }, 'slow');
+		      return false;
+		    });
+			}
 	  });
 
 		// Float Labels

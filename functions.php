@@ -85,3 +85,12 @@ function acf_set_featured_image( $value, $post_id, $field  ){
 // acf/update_value/name={$field_name} - filter for a specific field based on it's name
 $thumb = get_field('bs_portfolio_thumbnail');
 add_filter('acf/update_value/name=bs_portfolio_thumbnail', 'acf_set_featured_image', 10, 3);
+
+
+add_filter( 'script_loader_tag', function ( $tag, $handle ) {
+
+    if ( 'events-manager' !== $handle )
+        return $tag;
+
+    return str_replace( ' src', ' async src', $tag );
+}, 10, 2 );

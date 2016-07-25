@@ -56,6 +56,8 @@ $break375: "only screen and (max-width: 23.4375em)";
 
 6. FOOTER STYLES
 
+7. MOBILE STYLES (when WP detects a mobile device a class of 'mobile' is added to the body tag and we use this to style accordingly)
+
 00. No JavaScript Styles
 
 ** END TABLE OF CONTENTS **/
@@ -292,6 +294,7 @@ html .margin-bottom-6per {
   margin-right: auto !important;
 }
 .entry-content {
+  overflow: hidden;
 
   h2, h3, h4, h5, h6 {
     margin-bottom: 0;
@@ -505,9 +508,6 @@ body.off-canvas-open[data-whatinput="touch"] {
 body.off-canvas-open[data-whatinput="touch"] .off-canvas-wrapper {
   overflow-y: hidden !important;
   position: fixed;
-}
-.entry-content {
-  overflow-x: hidden;
 }
 
 /* 2b. Social Media Styles */
@@ -1171,6 +1171,9 @@ body.mobile .home-hero-wrapper {
 
 
 /**** 4. INTERNAL PAGE STYLES ****/
+#swipebox-slider .slide img {
+  background: #FFF;
+}
 div#page-full-width {
   margin-top: 0;
   max-width: none;
@@ -1252,12 +1255,16 @@ header#featured-hero {
 }
 .single-service {
 
+  .entry-content {
+    overflow: visible !important;
+  }
   .single-service-outer {
     background: #FFF;
   }
   #single-post {
     margin-top: 0;
   }
+
 }
 .photo-right {
 
@@ -2166,6 +2173,9 @@ a.page-numbers:focus {
 }
 
 /* 4e-a. Single Events Styles */
+.single-event header#featured-hero.single-featured-hero h1.entry-title p.entry-meta {
+  text-transform: initial;
+}
 .event-wrap {
   display: table;
 
@@ -3144,6 +3154,10 @@ span.title-bar-meta {
       width: 100%;
       height: auto;
     }
+    .gallery figcaption {
+      display: none !important;
+      speak: none;
+    }
     .gallery-icon a {
       overflow: hidden;
       display: block;
@@ -3275,6 +3289,30 @@ span.title-bar-meta {
   p {
     font-weight: 300 !important;
     text-align: center;
+  }
+
+}
+
+
+/**** 7. MOBILE STYLES ****/
+.mobile {
+
+  .what-we-do-wrapper {
+    background-attachment: scroll !important;
+  }
+  .wpb_animate_when_almost_visible {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+  ul.filter-portfolio-category li span.term-num,
+  ul.filter-portfolio-category li a.active+span.term-num,
+  ul.filter-portfolio-category li:hover span.term-num,
+  ul.filter-portfolio-category li a:before,
+  ul.filter-portfolio-category li a:after {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important;
   }
 
 }
