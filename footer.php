@@ -67,6 +67,7 @@
 	});
 
 	jQuery(document).ready(function($) {
+		$('#preloader img').delay(10).show();
 		$(window).imagesLoaded(function() {
 
 			// Site Preloader
@@ -261,15 +262,13 @@
 			return false;
 		});
 		$('.bs-quote-modal-close').click(function() {
-			//$('.bs-quote-modal-wrapper.show-modal').removeClass('show-modal');
 			$('.bs-quote-modal-wrapper.show-modal').removeClass('show-modal').fadeOut('fast');
 			$('body').removeClass('modal-active');
 			$('a.bs-quote-modal.return-focus').focus();
 			return false;
 		});
 		$(document).keyup(function(e) {
-    	if (e.keyCode == 27) { // escape key maps to keycode `27`
-      	//$('.bs-quote-modal-wrapper.show-modal').removeClass('show-modal');
+    	if (e.keyCode == 27) {
 				$('.bs-quote-modal-wrapper.show-modal').removeClass('show-modal').fadeOut('fast');
 				$('body').removeClass('modal-active');
 				$('a.bs-quote-modal.return-focus').focus();

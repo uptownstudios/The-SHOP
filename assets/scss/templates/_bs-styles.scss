@@ -64,7 +64,10 @@ $break375: "only screen and (max-width: 23.4375em)";
 
 
 /**** 0. PRELOADER STYLES ****/
-div#preloader {
+div#preloader img.preloader-logo {
+  display: none;
+}
+.js_active div#preloader {
   position: fixed;
   left: 0;
   top: 0;
@@ -79,10 +82,10 @@ div#preloader {
   -o-transition: opacity 700ms ease-out 400ms;
   transition: opacity 700ms ease-out 400ms;
 }
-div#preloader.loaded {
+.js_active div#preloader.loaded {
   opacity: 0;
 }
-div#preloader img.preloader-logo {
+.js_active div#preloader img.preloader-logo {
   width: 300px;
   height: 140px;
   position: absolute;
@@ -91,7 +94,7 @@ div#preloader img.preloader-logo {
   margin-top: -70px;
   margin-left: -150px;
 }
-.gambit_video_inner .flex-video.widescreen.vimeo {
+.js_active .gambit_video_inner .flex-video.widescreen.vimeo {
   padding-bottom: inherit;
   height: inherit;
   margin-bottom: inherit;
@@ -627,6 +630,22 @@ background: none;
       box-sizing: content-box !important;
       letter-spacing: .03rem;
     }
+    .menu > li.menu-item-has-children > a {
+      position: relative;
+      padding-right: 20px !important;
+    }
+    .menu > li.menu-item-has-children > a:before {
+      content: '+';
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: block;
+      width: 20px;
+      height: 77px;
+      line-height: 77px;
+      color: #FFF;
+      font-size: 30px;
+    }
     .menu .dropdown {
       display: block;
       visibility: hidden;
@@ -703,6 +722,10 @@ background: none;
     padding: 10px 3.5px 0 3.5px !important;
     font-size: 1.95em;
   }
+  .top-bar .top-bar-right .menu > li.menu-item-has-children > a:before {
+    height: 82px;
+    line-height: 97px;
+  }
 }
 @media only screen and (max-width: 50em) and (min-width: 45.0625em) {
   .top-bar .top-bar-right .menu > li > a {
@@ -723,6 +746,9 @@ header#masthead.reverse-header {
   box-shadow: 0 0 18px 5px rgba(0,0,0,.2);
 
   .top-bar .menu a {
+    color: $dark;
+  }
+  .menu > li.menu-item-has-children > a:before {
     color: $dark;
   }
   .top-bar .top-bar-left a.custom-logo-link {
@@ -851,7 +877,8 @@ body.mobile .home-hero-wrapper {
       opacity: 0;
       transition: all .25s ease-out;
     }
-    a:hover img.sunburst {
+    a:hover img.sunburst,
+    a:focus img.sunburst {
       transform: translateX(-50%) scale(1);
       z-index: 1;
       opacity: 1;
@@ -3330,11 +3357,14 @@ span.title-bar-meta {
 
 }
 
-body[data-whatinput="keyboard"] {
+body[data-whatinput="keyboard"], .no-js {
 
   .wpb_animate_when_almost_visible {
     opacity: 1 !important;
     animation: none !important;
+  }
+  button:focus {
+    box-shadow: 0 0 4px 4px rgb(84, 115, 245) !important;
   }
 
 }

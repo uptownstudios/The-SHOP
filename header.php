@@ -20,6 +20,7 @@
 		<link rel="preconnect" href="https://www.youtube.com/watch?v=ZKdHGG_0GJc">
 	</head>
 	<body <?php body_class(); ?>>
+		<div id="preloader" style="position: fixed; left: 0; top: 0; z-index: 9999999; width: 100%; height: 100%; overflow: visible; background: #FFF;"><img src="<?php bloginfo('url'); ?>/wp-content/uploads/2016/05/logo-color.svg" class="preloader-logo"></div>
 		<script>window.fbAsyncInit = function() { FB.init({ appId: '237010259984812', xfbml: true, version: 'v2.5' }); };
     (function(d, s, id){ var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) {return;}
         js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js"; fjs.parentNode.insertBefore(js, fjs); } (document, 'script', 'facebook-jssdk'));
@@ -44,7 +45,6 @@
         return ($like_count ) ? $like_count : "0";
     } ?>
 
-	<div id="preloader" style="position: fixed; left: 0; top: 0; z-index: 9999999; width: 100%; height: 100%; overflow: visible; background: #FFF;"><img src="<?php bloginfo('url'); ?>/wp-content/uploads/2016/05/logo-color.svg" class="preloader-logo"></div>
 	<?php do_action( 'foundationpress_after_body' ); ?>
 
 	<?php if ( get_theme_mod( 'wpt_mobile_menu_layout' ) == 'offcanvas' ) : ?>
