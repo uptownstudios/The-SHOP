@@ -67,7 +67,7 @@ $break375: "only screen and (max-width: 23.4375em)";
 div#preloader img.preloader-logo {
   display: none;
 }
-.js_active div#preloader {
+div#preloader {
   position: fixed;
   left: 0;
   top: 0;
@@ -82,10 +82,10 @@ div#preloader img.preloader-logo {
   -o-transition: opacity 700ms ease-out 400ms;
   transition: opacity 700ms ease-out 400ms;
 }
-.js_active div#preloader.loaded {
+div#preloader.loaded {
   opacity: 0;
 }
-.js_active div#preloader img.preloader-logo {
+div#preloader img.preloader-logo {
   width: 300px;
   height: 140px;
   position: absolute;
@@ -94,7 +94,7 @@ div#preloader img.preloader-logo {
   margin-top: -70px;
   margin-left: -150px;
 }
-.js_active .gambit_video_inner .flex-video.widescreen.vimeo {
+.gambit_video_inner .flex-video.widescreen.vimeo {
   padding-bottom: inherit;
   height: inherit;
   margin-bottom: inherit;
