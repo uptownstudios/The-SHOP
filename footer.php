@@ -60,6 +60,10 @@
 		$(window).resize(function() {
 			$('body.mobile .home-hero-wrapper.vc_row.vc_row-o-full-height').css({'min-height':$heightOnLoad});
 		});
+		$paginationHeight = $('span.em-pagination').height();
+		if($paginationHeight > 0) {
+			$('.uptown-events-wrapper').css({'margin-bottom':$paginationHeight + 30 });
+		}
 	});
 
 	jQuery(document).ready(function($) {
@@ -135,7 +139,7 @@
 				itemSelector: '.bs-isotope-item',
 				layoutMode: 'masonry'
 			});
-			$container.isotope('reloadItems').isotope();
+			$container.isotope('layout').isotope();
 		});
 		$(window).trigger('resize');
 	}(jQuery));
@@ -246,19 +250,29 @@
 
 		// Quote Modal Script
 		$('a.bs-quote-modal').click(function() {
-			$(this).parents('.single-service-content').find('.bs-quote-modal-wrapper').addClass('show-modal');
+			$('a.bs-quote-modal.return-focus').removeClass('return-focus');
+			$(this).addClass('return-focus');
+			$(this).parents('.single-service-content').find('.bs-quote-modal-wrapper').fadeIn('slow').addClass('show-modal');
 			$('body').addClass('modal-active');
+			if($('.bs-quote-modal-wrapper.show-modal').is(':visible') == true) {
+				console.log('Modal is shown');
+				$('input[name="input_1"]').focus();
+			}
 			return false;
 		});
 		$('.bs-quote-modal-close').click(function() {
-			$('.bs-quote-modal-wrapper.show-modal').removeClass('show-modal');
+			//$('.bs-quote-modal-wrapper.show-modal').removeClass('show-modal');
+			$('.bs-quote-modal-wrapper.show-modal').removeClass('show-modal').fadeOut('fast');
 			$('body').removeClass('modal-active');
+			$('a.bs-quote-modal.return-focus').focus();
 			return false;
 		});
 		$(document).keyup(function(e) {
     	if (e.keyCode == 27) { // escape key maps to keycode `27`
-      	$('.bs-quote-modal-wrapper.show-modal').removeClass('show-modal');
+      	//$('.bs-quote-modal-wrapper.show-modal').removeClass('show-modal');
+				$('.bs-quote-modal-wrapper.show-modal').removeClass('show-modal').fadeOut('fast');
 				$('body').removeClass('modal-active');
+				$('a.bs-quote-modal.return-focus').focus();
     	}
 		});
 

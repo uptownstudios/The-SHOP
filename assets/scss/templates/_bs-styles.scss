@@ -1461,8 +1461,9 @@ ul.team-social-media-wrapper.red li a:hover {
 
 /* Quote Modal Styles */
 .bs-quote-modal-wrapper {
-  visibility: hidden;
-  opacity: 0;
+  // visibility: hidden;
+  // opacity: 0;
+  display: none;
   position: fixed;
   z-index: 99;
   top: 0;
@@ -1470,7 +1471,7 @@ ul.team-social-media-wrapper.red li a:hover {
   bottom: 0;
   left: 0;
   overflow: hidden;
-  @include transition(all);
+  // @include transition(all);
 
   .bs-quote-modal-overlay {
     position: absolute;
@@ -1490,14 +1491,22 @@ ul.team-social-media-wrapper.red li a:hover {
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     overflow: scroll;
+    // margin-top: -50px;
+    // opacity: 0;
+    // transition: all .2s ease-out .3s;
   }
   .bs-quote-modal-inner br {
     display: none;
   }
 }
 .bs-quote-modal-wrapper.show-modal {
-  visibility: visible;
-  opacity: 1;
+  // visibility: visible;
+  // opacity: 1;
+
+  // .bs-quote-modal-inner {
+  //   margin-top: 0;
+  //   opacity: 1;
+  // }
 }
 button.bs-quote-modal-close {
   width: 30px;
@@ -2021,7 +2030,9 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
   display: table;
   width: 100%;
   max-width: 1600px;
-  margin: 40px auto 0 !important;
+  margin-top: 40px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 
   .list-style-events-wrapper {
     margin-left: -30px;
@@ -2110,9 +2121,11 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
 }
 
 span.em-pagination {
-  margin-left: 40px;
   display: block;
   clear: both;
+  position: absolute;
+  bottom: -30px;
+  margin-left: 30px;
 }
 .page-numbers {
   width: 30px;
@@ -3294,7 +3307,7 @@ span.title-bar-meta {
 }
 
 
-/**** 7. MOBILE STYLES ****/
+/**** 7. MOBILE & KEYBOARD INPUT STYLES ****/
 .mobile {
 
   .what-we-do-wrapper {
@@ -3313,6 +3326,15 @@ span.title-bar-meta {
     -moz-transition: none !important;
     -o-transition: none !important;
     transition: none !important;
+  }
+
+}
+
+body[data-whatinput="keyboard"] {
+
+  .wpb_animate_when_almost_visible {
+    opacity: 1 !important;
+    animation: none !important;
   }
 
 }
