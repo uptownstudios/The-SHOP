@@ -27,7 +27,7 @@ $loop = new WP_Query( $args );
 						?>
 						<?php if ( has_post_thumbnail() ) { ?>
 						<div class="blog-page-featured-image">
-							<figure><a href="<?php the_permalink(); ?>"><img alt="<?php echo $imagealt; ?>" data-sizes="auto" data-src=<?php echo $image; ?>" data-srcset="<?php echo $imageSrcSet; ?>" class="lazyload" /><noscript><img src="<?php echo $image; ?>" alt="<?php echo $imagealt; ?>" /></noscript></a></figure>
+							<figure><a href="<?php the_permalink(); ?>"><img alt="<?php echo $imagealt; ?>" data-sizes="auto" data-src="<?php echo $image; ?>" data-srcset="<?php echo $imageSrcSet; ?>" class="lazyload" /><noscript><img src="<?php echo $image; ?>" alt="<?php echo $imagealt; ?>" /></noscript></a></figure>
 						</div>
 						<span class="avatar alt-avatar"><?php echo get_avatar( get_the_author_meta( 'ID' ), 100 ); ?></span>
 						<?php } ?>

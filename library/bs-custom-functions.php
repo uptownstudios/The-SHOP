@@ -104,7 +104,6 @@ function bs_instagram_feed( $atts ) {
 }
 add_shortcode( 'bs_ig_feed', 'bs_instagram_feed' );
 
-
 // Custom Excerpt
 function bs_exceprt_more( $more ) {
   return ' ...';

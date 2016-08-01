@@ -10,7 +10,8 @@
 
 ?>
 <!doctype html>
-<html class="no-js" <?php language_attributes(); ?> >
+<!--[if IE 9]>    <html class="no-js ie9 oldie" <?php language_attributes(); ?> "> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js" <?php language_attributes(); ?> > <!--<![endif]-->
 	<head>
 		<meta charset="<?php bloginfo( 'charset' ); ?>" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
