@@ -15,14 +15,29 @@
 	<head>
 		<meta charset="<?php bloginfo( 'charset' ); ?>" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+		<meta name="theme-color" content="#a72535">
+		<!-- <link rel="manifest" href="/manifest.json">
+		<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
+	  <script>
+	    var OneSignal = OneSignal || [];
+	    OneSignal.push(["init", {
+	      appId: "0ef6890f-d75a-44a0-8f27-b8fd48d3e409",
+	      autoRegister: false,
+	      notifyButton: {
+	        enable: false /* Set to false to hide */
+	      }
+	    }]);
+	  </script> -->
 		<?php wp_head(); ?>
 		<script src="https://use.typekit.net/uax4yzt.js"></script>
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
 		<link rel="preconnect" href="https://www.youtube.com/watch?v=ZKdHGG_0GJc">
+		<link rel="icon" sizes="192x192" href="<?php bloginfo('url'); ?>/wp-content/uploads/2016/08/favicon.png">
+		<?php if( get_theme_mod('analytics')): ?><?php echo get_theme_mod('analytics','default'); ?><?php endif; ?>
 	</head>
 	<body <?php body_class(); ?>>
 		<div id="preloader" style="position: fixed; left: 0; top: 0; z-index: 9999999; width: 100%; height: 100%; overflow: visible; background: #FFF;"><img src="<?php bloginfo('url'); ?>/wp-content/uploads/2016/05/logo-color.svg" class="preloader-logo"></div>
-		<script>window.fbAsyncInit = function() { FB.init({ appId: '237010259984812', xfbml: true, version: 'v2.5' }); };
+		<script>window.fbAsyncInit = function() { FB.init({ appId: '317466291976025', xfbml: true, version: 'v2.5' }); };
     (function(d, s, id){ var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) {return;}
         js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js"; fjs.parentNode.insertBefore(js, fjs); } (document, 'script', 'facebook-jssdk'));
     function fb_share() { FB.ui({ method: 'share', href: '<?php the_permalink(); ?>' },

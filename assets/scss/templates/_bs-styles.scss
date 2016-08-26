@@ -12,8 +12,10 @@ $break1200: "only screen and (max-width: 75em)";
 $break1024: "only screen and (max-width: 64em)";
 $break951: "only screen and (max-width: 59.4375em)";
 $break951to601: "only screen and (max-width: 59.4375em) and (min-width: 37.5625em)";
+$break800: "only screen and (max-width: 50em)";
 $break767: "only screen and (max-width: 47.9375em)";
 $break640: "only screen and (max-width: 40em)";
+$break639: "only screen and (max-width: 39.9375em)";
 $break600: "only screen and (max-width: 37.5em)";
 $break480: "only screen and (max-width: 30em)";
 $break375: "only screen and (max-width: 23.4375em)";
@@ -133,6 +135,19 @@ h2 span.sub-title {
   display: block;
   font-size: 65%;
   margin: 10px 0;
+}
+.subtle-image-border img,
+img.subtle-image-border {
+  border: 1px solid $ltgray !important;
+}
+.hide-for-now {
+  display: none;
+  visibility: hidden;
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  speak: none;
+  left: -9999px;
 }
 .the-tags {
   display: inline-block;
@@ -262,7 +277,7 @@ body.modal-active {
   margin-bottom: 30px;
 
   figure {
-    background: #CCC url('http://127.0.0.1/newuptown/wp-content/uploads/2016/07/img-icon.png') no-repeat center center;
+    background: #CCC url('https://uptownstudios.net/wp-content/uploads/2016/07/img-icon.png') no-repeat center center;
     background-size: 50px;
   }
 
@@ -353,6 +368,9 @@ ul.social-media-wrapper.brown li a {
 ul.social-media-wrapper.white li a {
   color: #FFF;
 }
+ul.social-media-wrapper li a {
+  line-height: 30px !important;
+}
 .readable-line-length {
   max-width: 800px;
   margin: 0 auto;
@@ -401,6 +419,14 @@ ul.social-media-wrapper.white li a {
 #back-top a:focus {
   background: $red;
 }
+.fourohfour-recent-posts ul {
+  margin: 0;
+  list-style: none;
+}
+.fourohfour-recent-posts ul li {
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
 @media #{$break767} {
   .bs-isotope-item {
     width: 50%;
@@ -422,7 +448,7 @@ ul.social-media-wrapper.white li a {
 
 /**** 2. HEADER STYLES ****/
 header#masthead {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -741,6 +767,16 @@ background: none;
     font-size: 1.5em;
   }
 }
+@media #{$break800} {
+  .top-bar .top-bar-right .menu > li.menu-item-has-children > a:before {
+    line-height: 97px;
+  }
+}
+@media #{$break639} {
+  .off-canvas-wrapper-inner {
+    will-change: transform;
+  }
+}
 
 /* 2d. Reverse Header Styles */
 header#masthead.reverse-header {
@@ -754,11 +790,11 @@ header#masthead.reverse-header {
     color: $dark;
   }
   .top-bar .top-bar-left a.custom-logo-link {
-    background: url(http://159.203.243.127/wp-content/uploads/2016/05/logo-color.svg) no-repeat center center !important;
+    background: url(https://uptownstudios.net/wp-content/uploads/2016/05/logo-color.svg) no-repeat center center !important;
     background-size: 150px 69px !important;
   }
   .title-bar-title a.custom-logo-link {
-    background: url(http://159.203.243.127/wp-content/uploads/2016/05/logo-color.svg) no-repeat center center !important;
+    background: url(https://uptownstudios.net/wp-content/uploads/2016/05/logo-color.svg) no-repeat center center !important;
     background-size: 171px 80px !important;
     display: inline-block;
   }
@@ -790,9 +826,9 @@ body.shrink-logo {
 
 
 /**** 3. HOME PAGE STYLES ****/
-// .admin-bar header#masthead {
-//   top: 32px;
-// }
+.admin-bar header#masthead {
+  top: 32px;
+}
 .home {
 
   div#page-full-width {
@@ -820,7 +856,7 @@ body.mobile .home-hero-wrapper {
   background-size: 110% !important;
 }
 .what-we-do-wrapper {
-  background: #e7e7e7 url(http://159.203.243.127/wp-content/uploads/2016/06/what-we-do-bg-tile.svg) repeat fixed !important;
+  background: #e7e7e7 url(https://uptownstudios.net/wp-content/uploads/2016/06/what-we-do-bg-tile.svg) repeat fixed !important;
   background-size: 75px !important;
 
   .vc_column-inner {
@@ -941,7 +977,7 @@ body.mobile .home-hero-wrapper {
 }
 
 .testimonials-wrapper {
-  background: url(http://159.203.243.127/wp-content/uploads/2016/05/dots-bg-repeat3.svg) repeat top left;
+  background: url(https://uptownstudios.net/wp-content/uploads/2016/05/dots-bg-repeat3.svg) repeat top left;
   background-size: 35px;
   background-attachment: fixed;
 
@@ -1000,7 +1036,7 @@ body.mobile .home-hero-wrapper {
 
 .waves-section {
   background-color: #a50031 !important;
-  background-image: url('http://159.203.243.127/wp-content/uploads/2016/05/waves-svg-bg3.svg') !important;
+  background-image: url('https://uptownstudios.net/wp-content/uploads/2016/05/waves-svg-bg3.svg') !important;
   background-repeat: repeat-x;
   background-position: -1px bottom;
   background-size: 44px;
@@ -1008,7 +1044,7 @@ body.mobile .home-hero-wrapper {
 }
 
 .ig-wrapper {
-  background: #e7e7e7 url(http://159.203.243.127/wp-content/uploads/2016/06/what-we-do-bg-tile.svg) repeat fixed !important;
+  background: #e7e7e7 url(https://uptownstudios.net/wp-content/uploads/2016/06/what-we-do-bg-tile.svg) repeat fixed !important;
   background-size: 75px !important;
 
   span.ig-caption {
@@ -1037,13 +1073,13 @@ body.mobile .home-hero-wrapper {
       bottom: 0;
       opacity: 1;
   }
+  #instafeed .slick-track {
+    display: table;
+  }
   #instafeed .slick-slide {
     float: none;
     display: table-cell;
     vertical-align: middle;
-  }
-  #instafeed .slick-track {
-    display: table;
   }
   a.instagram-image.slick-slide {
     position: relative;
@@ -1248,7 +1284,7 @@ header#featured-hero {
     //   width: 200px;
     //   height: 200px;
     //   display: block;
-    //   background: url(http://159.203.243.127/wp-content/uploads/2016/06/gray-sun-burst.svg);
+    //   background: url(https://uptownstudios.net/wp-content/uploads/2016/06/gray-sun-burst.svg);
     //   position: absolute;
     //   top: 0;
     //   left: 50%;
@@ -1266,13 +1302,13 @@ header#featured-hero {
       height: 5px;
       display: block;
       position: absolute;
-      background: url(http://159.203.243.127/wp-content/uploads/2016/06/dot-border-light2.svg);
+      background: url(https://uptownstudios.net/wp-content/uploads/2016/06/dot-border-light2.svg);
       left: 50%;
       margin-left: -150px;
       bottom: -1rem;
     }
     h1.entry-title.dark span.entry-title-inner:after {
-      background: url(http://159.203.243.127/wp-content/uploads/2016/06/dot-border2.svg);
+      background: url(https://uptownstudios.net/wp-content/uploads/2016/06/dot-border2.svg);
     }
 }
 
@@ -1791,15 +1827,42 @@ span.fun-title {
 /* 4c. Clients Page Styles */
 .clients-wrapper {
   max-width: 1100px;
+  margin: 0 auto;
 
   .bs-isotope-item {
     width: 25%;
+  }
+  .clients-inner.row ul {
+    width: 33.3333% !important;
+    margin: 0 -3px 0 0 !important;
+    float: none !important;
+    display: table-cell;
+    vertical-align: top;
+    padding: 16px;
+  }
+  .clients-inner.row ul:nth-child(2) {
+    background: $ltgray;
+  }
+  .clients-inner.row ul li {
+    list-style: none;
+    margin-bottom: 16px;
+    line-height: 1.2;
   }
 
 }
 @media #{$break767} {
   .clients-wrapper .bs-isotope-item {
       width: 33.3333%;
+  }
+}
+@media #{$break640} {
+  .clients-wrapper .clients-inner.row ul {
+    width: 100% !important;
+    display: block;
+    padding: 0;
+  }
+  .clients-wrapper .clients-inner.row ul:nth-child(2) {
+    background: none;
   }
 }
 @media #{$break480} {
@@ -1810,7 +1873,7 @@ span.fun-title {
 
 /* 4d. Contact Us Page and Gravity Forms Styles */
 // .holler-at-us-wrapper {
-//   background: #ecebe9 url(http://159.203.243.127/wp-content/uploads/2016/04/geo-feathers-semi-transparent.svg) fixed;
+//   background: #ecebe9 url(https://uptownstudios.net/wp-content/uploads/2016/04/geo-feathers-semi-transparent.svg) fixed;
 //   background-size: 55px;
 // }
 // .home .holler-at-us-wrapper {
@@ -1932,7 +1995,7 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
   }
   li.bs-textarea .ginput_container_textarea:after {
     content: '';
-    background: url(http://159.203.243.127/wp-content/uploads/2016/05/dots-bg-repeat3.svg);
+    background: url(https://uptownstudios.net/wp-content/uploads/2016/05/dots-bg-repeat3.svg);
     background-size: 16px;
     width: 100%;
     height: 28px;
@@ -2066,6 +2129,7 @@ body .entry-content .gform_wrapper label.gfield_label+div.ginput_container {
 
   .list-style-events-wrapper {
     margin-left: -30px;
+    min-height: 190px;
   }
   .list-style-events-wrapper h2 {
     display: none;
@@ -2561,6 +2625,10 @@ nav#nav-single {
     font-size: .95rem;
     font-style: italic;
   }
+  .author-image img {
+    border-radius: 100%;
+    margin-top: -20px;
+  }
 }
 
 /* 4h. 404 Page Styles and Archive Styles */
@@ -2641,6 +2709,7 @@ div#page.archives-wrapper {
   figure img {
     width: 100%;
     height: auto;
+    border: 1px solid $ltgray;
   }
 
 }
@@ -3150,6 +3219,11 @@ span.title-bar-meta {
     vertical-align: top;
     width: 50%;
     padding-right: 20px;
+
+    .portfolio-gallery {
+      margin: 0;
+    }
+    
   }
   .portfolio-main-image.alignmiddle {
     vertical-align: middle;
@@ -3196,6 +3270,7 @@ span.title-bar-meta {
     .gallery figure.gallery-item img {
       width: 100%;
       height: auto;
+      border: 1px solid $ltgray;
     }
     .gallery figcaption {
       display: none !important;
@@ -3239,7 +3314,7 @@ span.title-bar-meta {
 //     width: 100%;
 //     height: 4px;
 //     display: block;
-//     background: url(http://159.203.243.127/wp-content/uploads/2016/06/dot-border-red.svg);
+//     background: url(https://uptownstudios.net/wp-content/uploads/2016/06/dot-border-red.svg);
 //     top: -2px;
 //     position: relative;
 // }
@@ -3299,8 +3374,11 @@ span.title-bar-meta {
     font-weight: 900;
     font-size: 1em;
   }
+  ul.social-media-wrapper li {
+    margin-right: 0 !important;
+  }
   ul.social-media-wrapper li a {
-    line-height: 24px !important;
+    line-height: 30px !important;
   }
 }
 @media only screen and (max-width: 101.875rem) {
@@ -3360,8 +3438,15 @@ span.title-bar-meta {
 
 }
 
-body[data-whatinput="keyboard"], .no-js {
+body[data-whatinput="keyboard"] {
 
+  button:focus {
+    box-shadow: 0 0 4px 4px rgb(84, 115, 245) !important;
+  }
+
+}
+
+ .no-js {
   .wpb_animate_when_almost_visible {
     opacity: 1 !important;
     animation: none !important;
@@ -3369,8 +3454,7 @@ body[data-whatinput="keyboard"], .no-js {
   button:focus {
     box-shadow: 0 0 4px 4px rgb(84, 115, 245) !important;
   }
-
-}
+ }
 
 
 /**** 8. IE ONLY STYLES ****/
@@ -3380,17 +3464,17 @@ body[data-whatinput="keyboard"], .no-js {
     background-attachment: scroll !important;
   }
   .what-we-do-wrapper, .ig-wrapper {
-    background-image: url('http://159.203.243.127/wp-content/uploads/2016/08/what-we-do-bg-tile-01.png') !important;
+    background-image: url('https://uptownstudios.net/wp-content/uploads/2016/08/what-we-do-bg-tile-01.png') !important;
     background-size: 75px !important;
     background-attachment: scroll !important;
   }
   .testimonials-wrapper {
-    background-image: url('http://159.203.243.127/wp-content/uploads/2016/08/dots-bg-repeat-semi-transparent-2x.png');
+    background-image: url('https://uptownstudios.net/wp-content/uploads/2016/08/dots-bg-repeat-semi-transparent-2x.png');
     background-size: 35px;
     background-attachment: scroll !important;
   }
   .waves-section {
-    background-image: url('http://159.203.243.127/wp-content/uploads/2016/08/waves-svg-bg3.png') !important;
+    background-image: url('https://uptownstudios.net/wp-content/uploads/2016/08/waves-svg-bg3.png') !important;
     background-size: 44px;
   }
   .meet-the-team-svg {
@@ -3408,16 +3492,16 @@ body[data-whatinput="keyboard"], .no-js {
   }
   .browsers-other-11 #featured-hero,
   .browsers-windows-other #featured-hero {
-    background-image: url('http://159.203.243.127/wp-content/uploads/2016/08/tie-fighter-wing02.png') !important;
+    background-image: url('https://uptownstudios.net/wp-content/uploads/2016/08/tie-fighter-wing02.png') !important;
     background-color: #a8c9e9 !important;
     background-size: 290px !important;
   }
   header#featured-hero h1.entry-title.dark span.entry-title-inner:after {
-    background: url(http://159.203.243.127/wp-content/uploads/2016/08/dot-border2.png);
+    background: url(https://uptownstudios.net/wp-content/uploads/2016/08/dot-border2.png);
     background-size: 20px;
   }
   header#featured-hero h1.entry-title span.entry-title-inner:after {
-    background: url(http://159.203.243.127/wp-content/uploads/2016/08/dot-border-light2.png);
+    background: url(https://uptownstudios.net/wp-content/uploads/2016/08/dot-border-light2.png);
     background-size: 20px;
   }
 }
@@ -3428,21 +3512,32 @@ body[data-whatinput="keyboard"], .no-js {
     background-attachment: scroll !important;
   }
   .what-we-do-wrapper, .ig-wrapper {
-    background-image: url('http://159.203.243.127/wp-content/uploads/2016/08/what-we-do-bg-tile-01.png') !important;
+    background-image: url('https://uptownstudios.net/wp-content/uploads/2016/08/what-we-do-bg-tile-01.png') !important;
     background-size: 75px !important;
     background-attachment: scroll !important;
   }
   .testimonials-wrapper {
-    background-image: url('http://159.203.243.127/wp-content/uploads/2016/08/dots-bg-repeat-semi-transparent-2x.png');
+    background-image: url('https://uptownstudios.net/wp-content/uploads/2016/08/dots-bg-repeat-semi-transparent-2x.png');
     background-size: 35px;
     background-attachment: scroll !important;
   }
   .waves-section {
-    background-image: url('http://159.203.243.127/wp-content/uploads/2016/08/waves-svg-bg3.png') !important;
+    background-image: url('https://uptownstudios.net/wp-content/uploads/2016/08/waves-svg-bg3.png') !important;
     background-size: 44px;
   }
 }
 
+
+/**** 9. FIREFOX ONLY CSS ****/
+@-moz-document url-prefix() {
+  .ig-wrapper #instafeed .slick-slide {
+    float: left !important;
+    display: block !important;
+  }
+  .ig-wrapper #instafeed .slick-track {
+    display: block !important;
+  }
+}
 
 /**** 00. No JavaScript Styles ****/
 .no-js {

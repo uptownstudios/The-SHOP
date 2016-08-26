@@ -64,6 +64,41 @@ function my_taxonomies_portfolio() {
 add_action( 'init', 'my_taxonomies_portfolio', 0 );
 
 
+// PHOTO PORTFOLIO CUSTOM POST TYPE
+function my_custom_post_photography() {
+	$labels = array(
+		'name'               => _x( 'Photo Portfolio', 'post type general name' ),
+		'singular_name'      => _x( 'Photo Portfolio', 'post type singular name' ),
+		'add_new'            => _x( 'Add New Item', 'photo-portfolio' ),
+		'add_new_item'       => __( 'Add New Item' ),
+		'edit_item'          => __( 'Edit Photo Portfolio Item' ),
+		'new_item'           => __( 'New Photo Portfolio Item' ),
+		'all_items'          => __( 'All Photo Portfolio Items' ),
+		'view_item'          => __( 'View Photo Portfolio Item' ),
+		'search_items'       => __( 'Search Photo Portfolio' ),
+		'not_found'          => __( 'No photo portfolio items found' ),
+		'not_found_in_trash' => __( 'No photo portfolio items found in the Trash' ),
+		'parent_item_colon'  => '',
+		'menu_name'          => 'Photo Portfolio'
+	);
+	$args = array(
+		'labels'        	     => $labels,
+		'description'   	     => 'Holds our portfolio and portfolio specific data',
+		'capablility_type' 	   => 'post',
+		'public'        	     => true,
+		'menu_position' 	     => 5,
+    'taxonomies'           => array( 'post_tag' ),
+		'supports'      	     => array( 'title', 'editor', 'thumbnail', 'excerpt', 'comments', 'custom-fields', ),
+		//'register_meta_box_cb' => 'add_project_metaboxes',
+		'has_archive'   	     => true,
+    'menu_icon'            => 'dashicons-images-alt2',
+		'rewrite'							 => array('slug' => 'photo-portfolio'),
+	);
+	register_post_type( 'photo-portfolio', $args );
+}
+add_action( 'init', 'my_custom_post_photography' );
+
+
 // SERVICES CUSTOM POST TYPE
 function my_custom_post_current_services() {
 	$labels = array(

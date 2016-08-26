@@ -96,6 +96,22 @@ function newuptown_customize_register( $wp_customize ) {
       'settings' => 'copyright',
   ) ) );
 
+  // Add Google Analytics Tracking Section
+  $wp_customize->add_section( 'analytics-code' , array(
+    'title' => __( 'Analytics Tracking Code', '_s' ),
+    'priority' => 2000,
+    'description' => __( 'Paste in the entire Google Analytics tracking code here.', '_s' )
+  ) );
+
+  // Add Google Analytics Tracking Field
+  $wp_customize->add_setting( 'analytics' , array( 'default' => '' ) );
+  $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'analytics-code', array(
+      'label' => __( 'Analytics Code', '_s' ),
+      'type' => 'textarea',
+      'section' => 'analytics-code',
+      'settings' => 'analytics',
+  ) ) );
+
 }
 
 add_action( 'customize_register', 'newuptown_customize_register' );

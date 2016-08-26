@@ -56,7 +56,7 @@
 
 	jQuery(document).ready(function($) {
 		$heightOnLoad = $('.home-hero-wrapper.vc_row.vc_row-o-full-height').height();
-		console.log($heightOnLoad);
+		// console.log($heightOnLoad);
 		$(window).resize(function() {
 			$('body.mobile .home-hero-wrapper.vc_row.vc_row-o-full-height').css({'min-height':$heightOnLoad});
 		});
@@ -68,6 +68,18 @@
 
 	jQuery(document).ready(function($) {
 		$('#preloader img').delay(10).show();
+		$('.home #video-iframe-1').delay(500).load(function() {
+
+			// Site Preloader
+			$('#preloader').addClass('loaded')
+			// $('#preloader img').fadeIn('fast');
+			// $('#preloader .spinner').addClass('loaded');
+			// $('#preloader img').addClass('loaded');
+			$('#preloader.loaded').delay(250).slideUp(1000, function() {
+				$(this).hide();
+			});
+		});
+
 		$(window).imagesLoaded(function() {
 
 			// Site Preloader
@@ -84,7 +96,7 @@
 			var portrighthalf = jQuery('.portfolio-description-inner').height();
 			var eventlefthalf = jQuery('.event-main-image').height();
 			var eventrighthalf = jQuery('.event-description-inner').height();
-			if(portlefthalf > portrighthalf) {
+			if((portlefthalf > portrighthalf) && (portlefthalf > 800)) {
 				$('.portfolio-main-image').addClass('alignmiddle');
 				$('.portfolio-description').addClass('alignmiddle');
 			}
