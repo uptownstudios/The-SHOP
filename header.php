@@ -29,14 +29,15 @@
 	    }]);
 	  </script> -->
 		<?php wp_head(); ?>
-		<script src="https://use.typekit.net/uax4yzt.js"></script>
+		<script src="https://use.typekit.net/zig3dkj.js"></script>
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
-		<link rel="preconnect" href="https://www.youtube.com/watch?v=ZKdHGG_0GJc">
+		<link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+
 		<link rel="icon" sizes="192x192" href="<?php bloginfo('url'); ?>/wp-content/uploads/2016/08/favicon.png">
 		<?php if( get_theme_mod('analytics')): ?><?php echo get_theme_mod('analytics','default'); ?><?php endif; ?>
 	</head>
 	<body <?php body_class(); ?>>
-		<div id="preloader" style="position: fixed; left: 0; top: 0; z-index: 9999999; width: 100%; height: 100%; overflow: visible; background: #FFF;"><img src="<?php bloginfo('url'); ?>/wp-content/uploads/2016/05/logo-color.svg" class="preloader-logo"></div>
+		<!-- <div id="preloader" style="position: fixed; left: 0; top: 0; z-index: 9999999; width: 100%; height: 100%; overflow: visible; background: #FFF;"><img src="<?php bloginfo('url'); ?>/wp-content/uploads/2016/05/logo-color.svg" class="preloader-logo"></div> -->
 		<script>window.fbAsyncInit = function() { FB.init({ appId: '317466291976025', xfbml: true, version: 'v2.5' }); };
     (function(d, s, id){ var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) {return;}
         js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js"; fjs.parentNode.insertBefore(js, fjs); } (document, 'script', 'facebook-jssdk'));
@@ -71,6 +72,9 @@
 
 	<?php do_action( 'foundationpress_layout_start' ); ?>
 
+	<div id="projects-list">
+		<?php get_template_part( 'template-parts/projects-list' ); ?>
+	</div>
 	<header id="masthead" class="site-header" role="banner">
 		<!-- <div class="logo-wrapper hide-for-small-only">
 			<?php if ( function_exists( 'the_custom_logo' ) ) { the_custom_logo(); } ?>
@@ -84,14 +88,23 @@
 
 		<nav id="site-navigation" class="main-navigation top-bar" role="navigation">
 			<div class="top-bar-left">
+				<ul class="project-filters">
+					<li class="projects">
+						<a href="#" class="show-project-filters">Projects</a>
+					</li>
+				</ul>
+			</div>
+			<div class="top-bar-middle">
 				<ul class="menu">
 					<li class="home"><?php if ( function_exists( 'the_custom_logo' ) ) { the_custom_logo(); } ?></li>
 				</ul>
 			</div>
 			<div class="top-bar-right">
+				<?php if( get_theme_mod('facebook') || get_theme_mod('twitter') || get_theme_mod('linkedin') || get_theme_mod('instagram') || get_theme_mod('youtube') || get_theme_mod('pinterest') || get_theme_mod('rss') || get_theme_mod('vimeo')) { ?>
 				<div class="top-bar-social">
 					<?php get_template_part('template-parts/social-media'); ?>
 				</div>
+				<?php } ?>
 				<?php foundationpress_top_bar_r(); ?>
 
 				<?php if ( ! get_theme_mod( 'wpt_mobile_menu_layout' ) || get_theme_mod( 'wpt_mobile_menu_layout' ) == 'topbar' ) : ?>

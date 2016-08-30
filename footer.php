@@ -55,6 +55,15 @@
 	}
 
 	jQuery(document).ready(function($) {
+		$('input[type="checkbox"]').click(function() {
+			$(this).parents('label').toggleClass('checked');
+		});
+		$('ul.project-filters li.projects a').click(function() {
+			$('#projects-list').addClass('show-filters');
+		});
+		$('.close-project-filters a').click(function() {
+			$('#projects-list.show-filters').removeClass('show-filters');
+		});
 		$heightOnLoad = $('.home-hero-wrapper.vc_row.vc_row-o-full-height').height();
 		// console.log($heightOnLoad);
 		$(window).resize(function() {
@@ -237,15 +246,6 @@
 		offset: shrinkOn
 	});
 
-	//Show title waypoint
-	$('.single-tm-outer').each(function() {
-		$(this).waypoint(function() {
-			$(this).toggleClass('showtitle');
-		}, {
-			offset: '40%'
-		});
-	});
-
 	jQuery(function($) {
 		// Scroll to hash on click
 	  $('a[href*="#"]:not([href="#"])').click(function() {
@@ -261,32 +261,6 @@
 	      }
 	    }
 	  });
-
-		// Quote Modal Script
-		$('a.bs-quote-modal').click(function() {
-			$('a.bs-quote-modal.return-focus').removeClass('return-focus');
-			$(this).addClass('return-focus');
-			$(this).parents('.single-service-content').find('.bs-quote-modal-wrapper').fadeIn('slow').addClass('show-modal');
-			$('body').addClass('modal-active');
-			if($('.bs-quote-modal-wrapper.show-modal').is(':visible') == true) {
-				console.log('Modal is shown');
-				$('input[name="input_1"]').focus();
-			}
-			return false;
-		});
-		$('.bs-quote-modal-close').click(function() {
-			$('.bs-quote-modal-wrapper.show-modal').removeClass('show-modal').fadeOut('fast');
-			$('body').removeClass('modal-active');
-			$('a.bs-quote-modal.return-focus').focus();
-			return false;
-		});
-		$(document).keyup(function(e) {
-    	if (e.keyCode == 27) {
-				$('.bs-quote-modal-wrapper.show-modal').removeClass('show-modal').fadeOut('fast');
-				$('body').removeClass('modal-active');
-				$('a.bs-quote-modal.return-focus').focus();
-    	}
-		});
 
 	});
 
@@ -309,82 +283,6 @@
 	    });
 
 	});
-
-	// Scroll to service on page load after all images are loaded
-  jQuery(function($){
-  $('a.go-to-service, .go-to-service a').on('click', scroller.hashLinkClicked);
-    scroller.loaded();
-  });
-
-  (function($){
-
-    scroller = {
-			scrollTiming: 1000,
-      pageLoadScrollDelay: 1000,
-      hashLinkClicked: function(e){
-
-        // current path
-        var temp    = window.location.pathname.split('#');
-        var curPath = scroller.addTrailingSlash(temp[0]);
-
-        // target path
-        var link       = $(this).attr('href');
-        var linkArray  = link.split('#');
-        var navId      = (typeof linkArray[1] !== 'undefined') ? linkArray[1] : null;
-        var targetPath = scroller.addTrailingSlash(linkArray[0]);
-
-        // scrollTo the hash id if the target is on the same page
-        if (targetPath == curPath && navId) {
-          e.preventDefault();
-          scroller.scrollToElement('#'+navId);
-          window.location.hash = scroller.generateTempNavId(navId);
-
-        // otherwise add '_' to hash
-        } else if (navId) {
-          e.preventDefault();
-          navId = scroller.generateTempNavId(navId);
-          window.location = targetPath+'#'+navId;
-        }
-      },
-      addTrailingSlash: function(str){
-        lastChar = str.substring(str.length-1, str.length);
-        if (lastChar != '/')
-          str = str+'/';
-        return str;
-      },
-      scrollToElement: function(whereTo){
-        jQuery('html, body').animate({ scrollTop: jQuery(whereTo).offset().top - topScrollOffset }, scroller.scrollTiming);
-      },
-      generateTempNavId: function(navId){
-        return '_'+navId;
-      },
-      getNavIdFromHash: function(){
-        var hash = window.location.hash;
-
-        if (scroller.hashIsTempNavId()) {
-          hash = hash.substring(2);
-        }
-
-        return hash;
-      },
-      hashIsTempNavId: function(){
-        var hash = window.location.hash;
-
-        return hash.substring(0,2) === '#_';
-      },
-
-      loaded: function(){
-
-        if (scroller.hashIsTempNavId()) {
-          setTimeout(function() {
-            scroller.scrollToElement('#'+scroller.getNavIdFromHash());
-          },scroller.pageLoadScrollDelay);
-          var hash = window.location.hash;
-        }
-      }
-    };
-
-  })(jQuery);
 
 </script>
 

@@ -83,7 +83,7 @@ function acf_set_featured_image( $value, $post_id, $field  ){
 }
 
 // acf/update_value/name={$field_name} - filter for a specific field based on it's name
-$thumb = get_field('bs_portfolio_thumbnail');
+//$thumb = get_field('bs_portfolio_thumbnail');
 add_filter('acf/update_value/name=bs_portfolio_thumbnail', 'acf_set_featured_image', 10, 3);
 
 

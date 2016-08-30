@@ -52,65 +52,6 @@ function bs_social_urls_shortcode( $atts ) {
 }
 
 
-// Team Social Media Links Shortcode
-add_shortcode( 'team_social_urls', 'team_social_urls_shortcode' );
-function team_social_urls_shortcode( $atts ) {
-    $args = shortcode_atts( array(
-      'align' => '',
-      'color' => '',
-			'name' => 'me',
-			'facebook' => '',
-			'twitter' => '',
-			'linkedin' => '',
-			'instagram' => '',
-			'pinterest' => '',
-			'youtube' => '',
-			'googleplus' => '',
-			'behance' => '',
-			'snapchat' => '',
-			'github' => '',
-    ), $atts );
-    ob_start(); ?>
-
-    <ul class="team-social-media-wrapper <?php echo $args['align']; ?> <?php echo $args['color']; ?>">
-      <?php if($args['facebook'] != '') : ?><li class="facebook"><a href="<?php echo $args['facebook']; ?>" target="_blank" title="Find <?php echo $args['name']; ?> on Facebook"><i class="fa fa-facebook"></i></a></li><?php endif; ?>
-			<?php if($args['twitter'] != '') : ?><li class="twitter"><a href="<?php echo $args['twitter']; ?>" target="_blank" title="Follow <?php echo $args['name']; ?> on Twitter"><i class="fa fa-twitter"></i></a></li><?php endif; ?>
-			<?php if($args['linkedin'] != '') : ?><li class="linkedin"><a href="<?php echo $args['linkedin']; ?>" target="_blank" title="Connect with <?php echo $args['name']; ?> on LinkedIn"><i class="fa fa-linkedin"></i></a></li><?php endif; ?>
-			<?php if($args['instagram'] != '') : ?><li class="instagram"><a href="<?php echo $args['instagram']; ?>" target="_blank" title="Follow <?php echo $args['name']; ?> on Instagram"><i class="fa fa-instagram"></i></a></li><?php endif; ?>
-			<?php if($args['pinterest'] != '') : ?><li class="pinterest"><a href="<?php echo $args['pinterest']; ?>" target="_blank" title="Follow <?php echo $args['name']; ?> on Pinterest"><i class="fa fa-pinterest"></i></a></li><?php endif; ?>
-			<?php if($args['youtube'] != '') : ?><li class="youtube"><a href="<?php echo $args['youtube']; ?>" target="_blank" title="Check <?php echo $args['name']; ?> out on YouTube"><i class="fa fa-youtube"></i></a></li><?php endif; ?>
-			<?php if($args['googleplus'] != '') : ?><li class="googleplus"><a href="<?php echo $args['googleplus']; ?>" target="_blank" title="Find <?php echo $args['name']; ?> on Google+"><i class="fa fa-googleplus"></i></a></li><?php endif; ?>
-			<?php if($args['behance'] != '') : ?><li class="behance"><a href="<?php echo $args['behance']; ?>" target="_blank" title="Find work by <?php echo $args['name']; ?> on Behance"><i class="fa fa-behance"></i></a></li><?php endif; ?>
-			<?php if($args['snapchat'] != '') : ?><li class="snapchat"><a href="<?php echo $args['snapchat']; ?>" target="_blank" title="Snap with <?php echo $args['name']; ?> on Snapchat"><i class="fa fa-snapchat-ghost"></i></a></li><?php endif; ?>
-			<?php if($args['github'] != '') : ?><li class="github"><a href="<?php echo $args['github']; ?>" target="_blank" title="Check out repos by <?php echo $args['name']; ?> on Github"><i class="fa fa-github"></i></a></li><?php endif; ?>
-    </ul>
-
-    <?php $team_social_variable = ob_get_clean();
-    return $team_social_variable;
-}
-
-
-// Instagram Feed Shortcode
-function bs_instagram_feed( $atts ) {
-  extract( shortcode_atts(array(), $atts) );
-  ob_start(); ?>
-
-  <div id="instafeed"></div>
-
-  <?php
-    wp_enqueue_script( 'instafeed', get_template_directory_uri() . '/assets/javascript/instafeed.js', array('jquery'), '1.0', true );
-    $bs_ig_feed_variable = ob_get_clean();
-    return $bs_ig_feed_variable;
-}
-add_shortcode( 'bs_ig_feed', 'bs_instagram_feed' );
-
-// Custom Excerpt
-function bs_exceprt_more( $more ) {
-  return ' ...';
-}
-add_filter( 'excerpt_more', 'bs_exceprt_more' );
-
-
 // BS Social Share shortcode
 add_shortcode( 'bs_social_share', 'bs_social_share_shortcode' );
 function bs_social_share_shortcode( $atts ) {
