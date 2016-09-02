@@ -55,11 +55,13 @@
 	}
 
 	jQuery(document).ready(function($) {
-		$('input[type="checkbox"]').click(function() {
-			$(this).parents('label').toggleClass('checked');
-		});
+		// $('input[type="checkbox"]').click(function() {
+		// 	var inputID = $(this).attr('id');
+		//  	$('label[for="' + inputID + '"]').toggleClass('checked');
+		// });
 		$('ul.project-filters li.projects a').click(function() {
 			$('#projects-list').addClass('show-filters');
+			$('input#impact-all').click();
 		});
 		$('.close-project-filters a').click(function() {
 			$('#projects-list.show-filters').removeClass('show-filters');
@@ -69,10 +71,6 @@
 		$(window).resize(function() {
 			$('body.mobile .home-hero-wrapper.vc_row.vc_row-o-full-height').css({'min-height':$heightOnLoad});
 		});
-		$paginationHeight = $('span.em-pagination').height();
-		if($paginationHeight > 0) {
-			$('.uptown-events-wrapper').css({'margin-bottom':$paginationHeight + 30 });
-		}
 	});
 
 	jQuery(document).ready(function($) {
@@ -100,19 +98,6 @@
 				$(this).hide();
 			});
 
-			// Portfolio/Event left/right height function
-			var portlefthalf = jQuery('.portfolio-main-image').height();
-			var portrighthalf = jQuery('.portfolio-description-inner').height();
-			var eventlefthalf = jQuery('.event-main-image').height();
-			var eventrighthalf = jQuery('.event-description-inner').height();
-			if((portlefthalf > portrighthalf) && (portlefthalf > 800)) {
-				$('.portfolio-main-image').addClass('alignmiddle');
-				$('.portfolio-description').addClass('alignmiddle');
-			}
-			if(eventlefthalf > eventrighthalf) {
-				$('.event-main-image').addClass('alignmiddle');
-				$('.event-description').addClass('alignmiddle');
-			}
 		});
 
 	  // Back to top script
@@ -135,37 +120,198 @@
 			}
 	  });
 
-		// Float Labels
-		function floatLabel(inputType) {
-			$(inputType).each(function(){
-					var $this = $(this);
-					$this.focus(function(){
-						$this.closest('li.gfield').find('label').attr("data-attr","active");
-					});
-					$this.blur(function(){
-						if($this.val() === '' || $this.val() === 'blank'){
-							$this.closest('li.gfield').find('label').attr("data-attr","");
-						}
-					});
-			});
-		}
-		floatLabel(".floatLabel input");
-		floatLabel(".floatLabel textarea");
 	});
 
 	// Masonry Layout for Portfolio, Blog Posts, and Events
-	(function ($) {
-		var $container = $('.bs-isotope');
-		$container.imagesLoaded(function() {
+	// (function ($) {
+	// 	var $container = $('.bs-isotope');
+	// 	$container.imagesLoaded(function() {
+	// 		$container.isotope({
+	// 			itemSelector: '.bs-isotope-item',
+	// 			layoutMode: 'masonry'
+	// 		});
+	// 		$container.isotope('layout').isotope();
+	// 	});
+	// 	$(window).trigger('resize');
+	// }(jQuery));
+
+	var $container;
+	var qsRegex;
+	var filters = {};
+	var comboFilter = {};
+
+	$(function(){
+
+	  $container = $('#container');
+
+	  $container.isotope();
+	  // do stuff when checkbox change
+	  $('#options').on( 'change', function( jQEvent ) {
+	    var $checkbox = $( jQEvent.target );
+	    manageCheckbox( $checkbox );
+
+	    comboFilter = getComboFilter( filters );
+
 			$container.isotope({
 				itemSelector: '.bs-isotope-item',
-				layoutMode: 'masonry'
+				layoutMode: 'fitRows',
+				getSortData: {
+					impact: '.impact',
+					category: '.category',
+					status: '.status',
+					alpha: '.alpha'
+				},
+				filter: function() {
+					var $this = $(this),
+					comboResult = $this.is(comboFilter),
+					searchResult = qsRegex ? $this.text().match( qsRegex ) : true;
+					return (comboResult || comboFilter=='') && searchResult;
+				},
+				sortBy: ['impact','category','status','alpha']
 			});
-			$container.isotope('layout').isotope();
-		});
-		$(window).trigger('resize');
-	}(jQuery));
 
+	  });
+
+		$container.on('layoutComplete', function( event, laidOutItems ) {
+		  console.log( 'Isotope layout completed on ' +
+		  laidOutItems.length + ' items' );
+		  if( laidOutItems.length == 0 ) {
+		    console.log( 'No results returend' );
+		    $('.nothing-to-show').fadeIn('slow');
+		  } else {
+				$('.nothing-to-show').fadeOut('fast');
+			}
+		});
+
+	});
+
+	$container = $('#container');
+	$container.isotope({
+		itemSelector: '.bs-isotope-item',
+		layoutMode: 'fitRows',
+		getSortData: {
+			impact: '.impact',
+			category: '.category',
+			status: '.status',
+			alpha: '.alpha'
+		}
+	});
+	$('#sorts').on( 'click', 'button', function() {
+		var sortByValue = $(this).attr('data-sort-by');
+		sortByValue = sortByValue.split(',');
+		console.log("Sorting button click",sortByValue);
+		$('button.button.active').not(this).removeClass('active');
+		$(this).addClass('active');
+		$container.isotope({ sortBy: sortByValue });
+	});
+
+
+	$('button.clear-search').click(function() {
+		$('#search').val('').keyup();
+	});
+
+	function getComboFilter( filters ) {
+	  var i = 0;
+	  var comboFilters = [];
+	  var message = [];
+
+	  for ( var prop in filters ) {
+	    message.push( filters[ prop ].join(' ') );
+	    var filterGroup = filters[ prop ];
+	    // skip to next filter group if it doesn't have any values
+	    if ( !filterGroup.length ) {
+	      continue;
+	    }
+	    if ( i === 0 ) {
+	      // copy to new array
+	      comboFilters = filterGroup.slice(0);
+	    } else {
+	      var filterSelectors = [];
+	      // copy to fresh array
+	      var groupCombo = comboFilters.slice(0); // [ A, B ]
+	      // merge filter Groups
+	      for (var k=0, len3 = filterGroup.length; k < len3; k++) {
+	        for (var j=0, len2 = groupCombo.length; j < len2; j++) {
+	          filterSelectors.push( groupCombo[j] + filterGroup[k] ); // [ 1, 2 ]
+	        }
+
+	      }
+	      // apply filter selectors to combo filters for next group
+	      comboFilters = filterSelectors;
+	    }
+	    i++;
+	  }
+
+	  var comboFilter = comboFilters.join(', ');
+	  return comboFilter;
+	}
+
+	function manageCheckbox( $checkbox ) {
+	  var checkbox = $checkbox[0];
+
+	  var group = $checkbox.parents('.option-set').attr('data-group');
+	  // create array for filter group, if not there yet
+	  var filterGroup = filters[ group ];
+	  if ( !filterGroup ) {
+	    filterGroup = filters[ group ] = [];
+	  }
+
+	  var isAll = $checkbox.hasClass('all');
+	  // reset filter group if the all box was checked
+	  if ( isAll ) {
+	    delete filters[ group ];
+	    if ( !checkbox.checked ) {
+	      checkbox.checked = 'checked';
+	    }
+	  }
+	  // index of
+	  var index = $.inArray( checkbox.value, filterGroup );
+
+	  if ( checkbox.checked ) {
+	    var selector = isAll ? 'input' : 'input.all';
+	    $checkbox.siblings( selector ).removeAttr('checked');
+
+
+	    if ( !isAll && index === -1 ) {
+	      // add filter to group
+	      filters[ group ].push( checkbox.value );
+	    }
+
+	  } else if ( !isAll ) {
+	    // remove filter from group
+	    filters[ group ].splice( index, 1 );
+	    // if unchecked the last box, check the all
+	    if ( !$checkbox.siblings('[checked]').length ) {
+	      $checkbox.siblings('input.all').attr('checked', 'checked');
+	    }
+	  }
+
+	}
+
+	var $search = $('#search').keyup( debounce( function() {
+		qsRegex = new RegExp( $search.val(), 'gi' );
+		if ( $search.val() !== '' ) {
+			$('button.clear-search').addClass('show');
+		} else {
+			$('button.clear-search').removeClass('show');
+		}
+		$container.isotope();
+	}) );
+
+	// debounce so filtering doesn't happen every millisecond
+	function debounce( fn, threshold ) {
+	  var timeout;
+	  return function debounced() {
+		if ( timeout ) {
+		  clearTimeout( timeout );
+		}
+		function delayed() {
+		  fn();
+		  timeout = null;
+		}
+		timeout = setTimeout( delayed, threshold || 100 );
+	  }
+	}
 
 	// Lazy Load with Isotope/Masonry Layout
 	$('.lazy-isotope-wrapper').each(function(){
@@ -193,28 +339,6 @@
 
 	});
 
-
-	// Isotope Filters for Portfolio
-	jQuery(document).ready(function($) {
-		// cache container
-		var $container = $('.portfolio-container');
-		// filter items when filter link is clicked
-		$('#filters a').click(function(){
-		  var selector = $(this).attr('data-filter');
-		  $container.isotope({ filter: selector });
-			$('#filters a.active').not(this).removeClass('active');
-			$(this).addClass('active');
-		  return false;
-		});
-		$('.title-bar .menu-icon').click(function() {
-			$('body').toggleClass('off-canvas-open');
-		});
-		jQuery('.portfolio-filter-toggle a').click(function() {
-			$('#filters').slideToggle('fast');
-			return false;
-		});
-	});
-
 	// Shrink logo Classie script
 	function init() {
     window.addEventListener('scroll', function(e){
@@ -233,18 +357,18 @@
 	window.onload = init();
 
 	// Light header switch Waypoint script
-	shrinkOn = jQuery('#masthead').height();
-
-	var sharewaypoint = new Waypoint({
-		element: document.getElementById('init-header-change'),
-		handler: function(direction) {
-			jQuery('#masthead').toggleClass('reverse-header');
-			jQuery('#masthead.reverse-header .top-bar .top-bar-left a.custom-logo-link img').attr('src','<?php bloginfo('url'); ?>/wp-content/uploads/2016/05/logo-color.svg');
-			jQuery('#masthead .top-bar .top-bar-left a.custom-logo-link img').attr('src','<?php bloginfo('url'); ?>/wp-content/uploads/2016/04/logo.svg');
-
-		},
-		offset: shrinkOn
-	});
+	// shrinkOn = jQuery('#masthead').height();
+	//
+	// var sharewaypoint = new Waypoint({
+	// 	element: document.getElementById('init-header-change'),
+	// 	handler: function(direction) {
+	// 		jQuery('#masthead').toggleClass('reverse-header');
+	// 		jQuery('#masthead.reverse-header .top-bar .top-bar-left a.custom-logo-link img').attr('src','<?php bloginfo('url'); ?>/wp-content/uploads/2016/05/logo-color.svg');
+	// 		jQuery('#masthead .top-bar .top-bar-left a.custom-logo-link img').attr('src','<?php bloginfo('url'); ?>/wp-content/uploads/2016/04/logo.svg');
+	//
+	// 	},
+	// 	offset: shrinkOn
+	// });
 
 	jQuery(function($) {
 		// Scroll to hash on click
@@ -261,26 +385,6 @@
 	      }
 	    }
 	  });
-
-	});
-
-	// initiating the isotope page
-	jQuery(window).load(function($) {
-
-	    // Store # parameter and add "." before hash
-	    var hashID = "." + window.location.hash.substring(1);
-
-	    //  the current version of isotope, the hack works in v2 also
-	    var $container = jQuery('.portfolio-container');
-
-	    $container.imagesLoaded(function(){
-	        $container.isotope({
-	            itemSelector: ".single-portfolio-item",
-	            filter: hashID, // the variable filter hack
-	        });
-					jQuery('#filters a.active').removeClass('active');
-					jQuery('#filters a[data-filter="' + hashID + '"]').addClass('active');
-	    });
 
 	});
 

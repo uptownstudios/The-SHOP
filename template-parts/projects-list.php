@@ -4,9 +4,9 @@
 ?>
 <div class="projects-list-wrapper">
 
-	<div class="close-project-filters"><a href="#" title="Close Filters Overlay">x</a></div>
-	
-	<div id="filters" class="projects-list-filters">
+	<div class="close-project-filters"><a href="#" title="Close Filters Overlay"><span class="x-close">x</span><span class="x-alt-close"></span></a></div>
+
+	<div class="projects-list-filters">
 		<?php
 			$tax_impact = 'portfolio-impact';
 			$tax_impact_terms = get_terms($tax_impact);
@@ -23,42 +23,53 @@
 			$all_status_terms;
 			$filter_status_text = '';
     ?>
-		<div class="project-list-filter">
+
+		<div class="search-filter">
+			<label for="search">Search</label><input type="text" name="search" id="search" value="" placeholder="what are you looking for?" />
+			<button class="clear-search"><i class="fa fa-times" aria-hidden="true"></i></button>
+		</div>
+
+		<div id="sorts" class="button-group">
+			<h3>Sort by</h3>
+			<button class="button active" data-sort-by="impact">Impact</button><br>
+			<button class="button" data-sort-by="category">Category</button><br>
+			<button class="button" data-sort-by="status">Status</button><br>
+			<button class="button" data-sort-by="alpha">Alpha</button>
+		</div>
+
+		<div id="options">
 			<h3>Filter by Area of Impact</h3>
-			<div class="filter-projects-impact option-set filter">
+			<div class="project-list-filter filter-projects-impact option-set filter" data-group="impact">
 	      <?php
 	        foreach ($tax_impact_terms as $tax_impact_term) {
-	          $filter_impact_text .= '<label for="' . $tax_impact_term->slug . '"><input id="' . $tax_impact_term->slug . '" class="filter" type="checkbox" title="' . sprintf( __( "View all posts in %s" ), $tax_impact_term->name ) . '" value=".' . $tax_impact_term->slug . '" ' . '/ ><span>' . $tax_impact_term->name.'</span></label>';
+	          $filter_impact_text .= '<input id="' . $tax_impact_term->slug . '" type="checkbox" title="' . sprintf( __( "View all posts in %s" ), $tax_impact_term->name ) . '" value=".' . $tax_impact_term->slug . '" ' . '/ ><label for="' . $tax_impact_term->slug . '"><span>' . $tax_impact_term->name.'</span></label><br>';
 	        }
-	        $filter_impact_text = '<label for="impact-all" class="checked"><input id="impact-all" value="" class="all" type="checkbox" title="View All" checked /><span>All</span></label>' . $filter_impact_text;
+	        $filter_impact_text = '<input id="impact-all" value="" class="all" type="checkbox" title="View All" checked /><label for="impact-all"><span>All</span></label><br>' . $filter_impact_text;
 	        echo $filter_impact_text;
 
 	      ?>
 	  	</div>
-		</div>
 
-		<div class="project-list-filter">
 			<h3>Category</h3>
-			<div class="filter-projects-category option-set filter">
+			<div class="project-list-filter filter-projects-category option-set filter" data-group="category">
 	      <?php
 	        foreach ($tax_cat_terms as $tax_cat_term) {
-	          $filter_cat_text .= '<label for="' . $tax_cat_term->slug . '"><input id="' . $tax_cat_term->slug . '" class="filter" type="checkbox" title="' . sprintf( __( "View all posts in %s" ), $tax_cat_term->name ) . '" value=".' . $tax_cat_term->slug . '" ' . '/ ><span>' . $tax_cat_term->name.'</span></label>';
+	          $filter_cat_text .= '<input id="' . $tax_cat_term->slug . '" type="checkbox" title="' . sprintf( __( "View all posts in %s" ), $tax_cat_term->name ) . '" value=".' . $tax_cat_term->slug . '" ' . '/ ><label for="' . $tax_cat_term->slug . '"><span>' . $tax_cat_term->name.'</span></label><br>';
 	        }
-	        $filter_cat_text = '<label for="impact-all" class="checked"><input id="impact-all" value="" class="all" type="checkbox" title="View All" checked /><span>All</span></label>' . $filter_cat_text;
+	        $filter_cat_text = '<input id="cat-all" value="" class="all" type="checkbox" title="View All" checked /><label for="cat-all"><span>All</span></label><br>' . $filter_cat_text;
 	        echo $filter_cat_text;
 
 	      ?>
 	  	</div>
-		</div>
 
-		<div class="project-list-filter">
+
 			<h3>Status</h3>
-			<div class="filter-projects-status option-set filter">
+			<div class="project-list-filter filter-projects-status option-set filter" data-group="status">
 	      <?php
 	        foreach ($tax_status_terms as $tax_status_term) {
-	          $filter_status_text .= '<label for="' . $tax_status_term->slug . '"><input id="' . $tax_status_term->slug . '" class="filter" type="checkbox" title="' . sprintf( __( "View all posts in %s" ), $tax_status_term->name ) . '" value=".' . $tax_status_term->slug . '" ' . '/ ><span>' . $tax_status_term->name.'</span></label>';
+	          $filter_status_text .= '<input id="' . $tax_status_term->slug . '" type="checkbox" title="' . sprintf( __( "View all posts in %s" ), $tax_status_term->name ) . '" value=".' . $tax_status_term->slug . '" ' . '/ ><label for="' . $tax_status_term->slug . '"><span>' . $tax_status_term->name.'</span></label><br>';
 	        }
-	        $filter_status_text = '<label for="impact-all" class="checked"><input id="impact-all" value="" class="all" type="checkbox" title="View All" checked /><span>All</span></label>' . $filter_status_text;
+	        $filter_status_text = '<input id="status-all" value="" class="all" type="checkbox" title="View All" checked /><label for="status-all"><span>All</span></label><br>' . $filter_status_text;
 	        echo $filter_status_text;
 
 	      ?>
@@ -66,7 +77,9 @@
 		</div>
 	</div>
 
-	<div class="projects-list-inner bs-isotope lazy-isotope">
+	<div class="nothing-to-show projects-list-inner" style="display: none;"><p>Sorry, your search returned no results.</p></div>
+
+	<div id="container" class="projects-list-inner bs-isotope lazy-isotope">
 		<?php
 			while ( $port_loop->have_posts()) : $port_loop->the_post();
 			$teaser = get_field('project_teaser');
@@ -76,20 +89,20 @@
 
 		?>
 
-			<div class="single-project">
+			<div class="single-project bs-isotope-item item <?php $tax_impact_terms = get_the_terms( $post->ID , 'portfolio-impact' ); foreach ($tax_impact_terms as $tax_impact_term) { echo ' ' . $tax_impact_term->slug; } ?> <?php $tax_cat_terms = get_the_terms( $post->ID , 'portfolio-cat' ); foreach ($tax_cat_terms as $tax_cat_term) { echo ' ' . $tax_cat_term->slug; } ?> <?php $tax_status_terms = get_the_terms( $post->ID , 'portfolio-status' ); foreach ($tax_status_terms as $tax_status_term) { echo ' ' . $tax_status_term->slug; } ?>">
 				<div class="single-project-left">
-					<h2><?php the_title(); ?></h2>
+					<h2 class="alpha"><?php the_title(); ?></h2>
 					<div class="project-meta">
 						<div class="impact-list">
 							<ul>
-								<?php $impact_terms = get_the_terms( $post->ID , 'portfolio-impact' ); foreach ( $impact_terms as $impact_term ) { echo '<li>' . $impact_term->name . '</li>'; } ?>
+								<?php $impact_terms = get_the_terms( $post->ID , 'portfolio-impact' ); if ( $impact_terms ) { foreach ( $impact_terms as $impact_term ) { echo '<li class="impact">' . $impact_term->name . '</li>'; } } ?>
 							</ul>
 						</div>
 						<div class="category-list">
-							<strong>Category</strong> <?php $impact_cats = get_the_terms( $post->ID , 'portfolio-cat' ); foreach ( $impact_cats as $impact_cat ) { echo '<span>' . $impact_cat->name . '</span>'; } ?>
+							<?php $cat_terms = get_the_terms( $post->ID , 'portfolio-cat' ); if ( $cat_terms ) { ?><strong>Category</strong> <?php foreach ( $cat_terms as $cat_term ) { echo '<span class="category">' . $cat_term->name . '</span>'; } } ?>
 						</div>
 						<div class="status-list">
-							<strong>Status</strong> <?php $impact_stats = get_the_terms( $post->ID , 'portfolio-status' ); foreach ( $impact_stats as $impact_stat ) { echo '<span>' . $impact_stat->name . '</span>'; } ?>
+							<?php $status_terms = get_the_terms( $post->ID , 'portfolio-status' ); if ( $status_terms ) { ?><strong>Status</strong> <?php foreach ( $status_terms as $status_term ) { echo '<span class="status">' . $status_term->name . '</span>'; } } ?>
 						</div>
 
 					</div>
@@ -98,7 +111,7 @@
 					</div>
 				</div>
 				<div class="single-project-right">
-					<img src="<?php echo $image_url[0]; ?>" />
+					<img class="lazyload" data-sizes="auto" data-src="<?php echo $image_url[0]; ?>" />
 				</div>
 			</div>
 
