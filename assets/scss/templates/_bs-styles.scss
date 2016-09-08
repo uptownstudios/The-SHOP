@@ -349,7 +349,7 @@ header#masthead {
   left: 0;
   width: 100%;
   z-index: 99;
-  background-color: rgba(18,18,18,.5);
+  background-color: rgba(18,18,18,0);
   transition: all 500ms ease-out;
 }
 .title-bar-title {
@@ -401,10 +401,65 @@ background: none;
         height: auto;
         margin-right: 0 !important;
         transition: width 500ms ease-out;
+        opacity: 0;
+        @include transition(opacity);
       }
 
     }
 
+  .top-bar-left {
+
+    ul.project-filters {
+      margin: 0;
+      list-style: none;
+
+      .projects {
+        float: none;
+        display: inline-block;
+        list-style: none;
+        height: 82px !important;
+      }
+      .projects a {
+        position: relative;
+        display: block;
+        height: 82px !important;
+        padding: 0 10px 0 30px !important;
+        font: 700 1.5rem/82px $robotocon;
+        text-transform: uppercase;
+        box-sizing: content-box !important;
+        color: $white;
+      }
+      .projects a:before {
+        content: '+';
+        position: absolute;
+        top: 0;
+        left: 10px;
+        text-align: left;
+        display: block;
+        width: 20px;
+        height: 77px;
+        line-height: 77px;
+        color: $white;
+        font-size: 30px;
+      }
+      .projects a:after {
+        content: '';
+        width: 0;
+        height: 3px;
+        background: #FFF;
+        position: absolute;
+        left: 30px;
+        bottom: 20px !important;
+        top: auto;
+        @include transition(all);
+      }
+      .projects a:hover:after {
+        width: calc(100% - 40px);
+      }
+
+    }
+
+  }
   .top-bar-right {
     display: table-cell;
     float: none;
@@ -422,19 +477,20 @@ background: none;
     .menu > li > a {
       height: 82px;
       padding: 0 10px !important;
-      font: 700 2rem/82px $robotocon;
+      font: 700 1.5rem/82px $robotocon;
       text-transform: uppercase;
       box-sizing: content-box !important;
     }
     .menu > li.menu-item-has-children > a {
       position: relative;
-      padding-right: 20px !important;
+      padding-left: 20px !important;
     }
     .menu > li.menu-item-has-children > a:before {
       content: '+';
       position: absolute;
       top: 0;
-      right: 0;
+      left: 0;
+      text-align: left;
       display: block;
       width: 20px;
       height: 77px;
@@ -455,6 +511,12 @@ background: none;
       opacity: 1;
       margin-top: 0;
       z-index: 1;
+    }
+    .menu > li.opens-left > .is-dropdown-submenu {
+      left: auto;
+      right: 10px;
+      top: 100%;
+      margin-top: -16px;
     }
     .menu > li.is-dropdown-submenu-parent > a::after {
       display: none;
@@ -479,37 +541,63 @@ background: none;
       background: $white;
       display: block;
       position: absolute;
-      bottom: 16px;
+      left: 20px;
+      bottom: 20px;
       transition: width 250ms ease-out;
     }
     .menu > li:hover:after,
     .menu > li.active:after {
-      width: 100%;
+      width: calc(100% - 30px);
       transition: width 250ms ease-out;
     }
     .menu .dropdown {
-      min-width: 192px;
-      background-color: rgba(18, 18, 18, 0.5);
+      min-width: 230px;
+      background-color: rgba(18, 18, 18, 0);
     }
     .menu .dropdown li a {
       height: auto;
       line-height: 1;
-      padding: 10px 10px 10px 0 !important;
+      padding: 10px 0 !important;
+      font-size: 1.25rem;
+      font-weight: 400;
+      position: relative;
+      display: inline-block;
     }
     .menu .dropdown li {
       -webkit-transition: background 250ms ease-out;
     }
-    .menu .dropdown li:hover,
-    .menu .dropdown li:focus {
-      background: #1b1b1b;
-    }
+    // .menu .dropdown li:hover,
+    // .menu .dropdown li:focus {
+    //   background: #1b1b1b;
+    // }
     .menu .dropdown li:hover a,
     .menu .dropdown li:focus a {
       color: $white !important;
     }
+    .menu .dropdown li a:hover:after {
+      content: '';
+    }
     .menu .dropdown li:after {
       display: none;
     }
+    .menu .dropdown li a:after {
+      content: '';
+      width: 0;
+      height: 2px;
+      background: #FFF;
+      position: absolute;
+      right: 0;
+      bottom: 5px !important;
+      top: auto;
+      @include transition(all);
+    }
+    .menu .dropdown li a:hover:after,
+    .menu .dropdown li a:focus:after {
+      width: 100%;
+    }
+    // .menu .dropdown li a.active:after {
+    //   width: 100%;
+    // }
   }
 }
 
@@ -546,41 +634,53 @@ background: none;
   }
 }
 
-/* 2b. Reverse Header Styles */
-header#masthead.reverse-header {
-  background-color: rgba(255,255,255,.95);
-  box-shadow: 0 0 18px 5px rgba(0,0,0,.2);
+/* 2b. Reverse Header Styles and Filters Open Styles*/
+body.filters-open {
+  overflow: hidden;
 
-  .top-bar .menu a {
-    color: $black;
+  .top-bar .top-bar-left ul.project-filters .projects a:after {
+    width: calc(100% - 40px);
+    background: $black;
   }
-  .menu > li.menu-item-has-children > a:before {
-    color: $black;
+}
+header#masthead.reverse-header .top-bar .top-bar-left ul.project-filters .projects a:after {
+  background: $black !important;
+}
+header#masthead.reverse-header,
+body.filters-open {
+  background-color: rgba(255,255,255,.95);
+
+  a.custom-logo-link img {
+    opacity: 1;
   }
-  .top-bar .top-bar-left a.custom-logo-link {
-    background: url(https://uptownstudios.net/wp-content/uploads/2016/05/logo-color.svg) no-repeat center center !important;
-    background-size: 150px 69px !important;
+  .top-bar .menu a,
+  .top-bar .top-bar-left ul.project-filters .projects a {
+    color: $black !important;
   }
-  .title-bar-title a.custom-logo-link {
-    background: url(https://uptownstudios.net/wp-content/uploads/2016/05/logo-color.svg) no-repeat center center !important;
-    background-size: 171px 80px !important;
-    display: inline-block;
+  .menu > li.menu-item-has-children > a:before,
+  .top-bar .top-bar-left ul.project-filters .projects a:before {
+    color: $black !important;
+  }
+  .top-bar .top-bar-right .menu .dropdown li a:hover,
+  .top-bar .top-bar-right .menu .dropdown li a:focus {
+    color: $black !important;
+  }
+  .top-bar .top-bar-right .menu > li:after,
+  .top-bar .top-bar-right .menu .dropdown li a:after {
+    background: $black !important;
   }
   .menu-icon::after,
   .menu-icon:hover:after {
     background: #222;
     box-shadow: 0 7px 0 #222, 0 14px 0 #222;
   }
-  img.custom-logo {
-    opacity: 0;
-  }
   .top-bar-social ul li a {
     color: #222;
   }
-  .top-bar .top-bar-right .menu .dropdown {
-    background-color: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 9px 10px 4px rgba(0, 0, 0, 0.2);
-  }
+  // .top-bar .top-bar-right .menu .dropdown {
+  //   background-color: rgba(255, 255, 255, 0.95);
+  //   box-shadow: 0 9px 10px 4px rgba(0, 0, 0, 0.2);
+  // }
 }
 
 /* 2c. Shrink Logo Styles */
@@ -615,6 +715,11 @@ body:not(.mobile) .home-hero-wrapper {
 }
 body.mobile .home-hero-wrapper {
   background-size: 110% !important;
+}
+.home-logo img {
+  width: 600px;
+  max-width: 100%;
+  height: auto;
 }
 
 @media #{$break1024} {
@@ -1266,7 +1371,7 @@ div#projects-list {
   top: 0;
   padding-top: 114px;
   border-bottom: 20px solid #FFF;
-  transform: translateX(-100%);
+  transform: translateY(-100%);
   opacity: 0;
   -webkit-transition: all .5s ease-out;
   -moz-transition: all .5s ease-out;
@@ -1275,16 +1380,16 @@ div#projects-list {
   box-sizing: border-box;
 }
 div#projects-list.show-filters {
-  transform: translateX(0%);
+  transform: translateY(0%);
   opacity: 1;
+  z-index: 99;
 }
 .projects-list-wrapper {
   display: block;
-  overflow: auto;
   width: 100%;
   max-width: 1024px;
   margin: 0 auto;
-  padding-top: 60px;
+  padding-top: 100px;
   height: 100%;
   position: relative;
 
@@ -1295,7 +1400,7 @@ div#projects-list.show-filters {
   .close-project-filters {
     position: absolute;
     right: 0;
-    top: 0;
+    top: 10px;
     padding: 5px;
     background: none;
     @include transition(all);
@@ -1358,13 +1463,19 @@ span.x-alt-close {
   height: 100%;
   overflow: auto;
   padding-right: 40px;
-  position: fixed;
+  position: absolute;
   z-index: 99;
 }
+.projects-list-scroll-wrapper {
+  overflow: hidden;
+  height: 100%;
+}
 .projects-list-inner {
-  display: table;
+  display: block;
   width: 100%;
-  padding-left: calc(21.48% + 40px);
+  height: 100% !important;
+  padding-left: 21.48%;
+  overflow: auto;
 }
 .project-list-filter,
 .projects-list-filters {
@@ -1374,6 +1485,7 @@ span.x-alt-close {
   h3 {
     font-size: 1rem;
     font-family: $robotocon;
+    font-weight: 400 !important;
     text-transform: uppercase;
     margin: 0;
   }
@@ -1393,6 +1505,7 @@ span.x-alt-close {
     padding: 4px 6px;
     margin-bottom: 2px;
     line-height: 1;
+    font-weight: 700 !important;
     @include transition(all);
   }
   .option-set.filter input:checked + label span {
@@ -1403,6 +1516,10 @@ span.x-alt-close {
 .search-filter {
   position: relative;
 
+  label {
+    font-family: $robotocon;
+    ;text-transform: uppercase;
+  }
   button.clear-search {
     opacity: 0;
     position: absolute;
@@ -1416,6 +1533,22 @@ span.x-alt-close {
   input#search {
     padding-right: 20px;
     margin-bottom: 25px;
+  }
+  input#search::-webkit-input-placeholder {
+    font-family: $robotocon;
+    color: #BBB;
+  }
+  input#search:-moz-placeholder {
+    font-family: $robotocon;
+    color: #BBB;
+  }
+  input#search::-moz-placeholder {
+    font-family: $robotocon;
+    color: #BBB;
+  }
+  input#search:-ms-input-placeholder {
+    font-family: $robotocon;
+    color: #BBB;
   }
 
 }
@@ -1433,15 +1566,33 @@ span.x-alt-close {
     cursor: pointer;
     font-size: .9rem;
     font-family: "roboto-condensed", "Helvetica Neue", "Arial Narrow", Helvetica, Arial;
+    font-weight: 700 !important;
     text-transform: uppercase;
     color: $black;
     background: $white;
-    transition: all 0.2s ease-out;
+    @include transition(all);
   }
   button.button.active {
     background: $teal;
   }
 
+}
+button.reset-all-filters {
+  padding: 6px 10px;
+  font-weight: 700;
+  margin: 3px 0 0 0;
+  line-height: 1;
+  cursor: pointer;
+  font-size: .9rem;
+  font-family: "roboto-condensed", "Helvetica Neue", "Arial Narrow", Helvetica, Arial;
+  text-transform: uppercase;
+  color: $black;
+  background: $teal;
+  @include transition(all);
+}
+button.reset-all-filters:hover,
+button.reset-all-filters:focus {
+  background: #e6e6e6;
 }
 .single-project {
   margin-bottom: 40px;

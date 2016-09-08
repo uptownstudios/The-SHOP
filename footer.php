@@ -61,15 +61,19 @@
 		// });
 		$('ul.project-filters li.projects a').click(function() {
 			$('#projects-list').addClass('show-filters');
+			$('body').addClass('filters-open');
 			$('input#impact-all').click();
+			return false;
 		});
 		$('.close-project-filters a').click(function() {
 			$('#projects-list.show-filters').removeClass('show-filters');
+			$('body').removeClass('filters-open');
+			return false;
 		});
-		$heightOnLoad = $('.home-hero-wrapper.vc_row.vc_row-o-full-height').height();
+		$heightOnLoad = $('#home-hero-wrapper').height();
 		// console.log($heightOnLoad);
 		$(window).resize(function() {
-			$('body.mobile .home-hero-wrapper.vc_row.vc_row-o-full-height').css({'min-height':$heightOnLoad});
+			$('body.mobile #home-hero-wrapper').css({'min-height':$heightOnLoad});
 		});
 	});
 
@@ -210,6 +214,14 @@
 		$('#search').val('').keyup();
 	});
 
+	$('button.reset-all-filters').click(function() {
+		$('button.clear-search').click();
+		$('input#impact-all').click();
+		$('input#category-all').click();
+		$('input#status-all').click();
+		$('button[data-sort-by="impact"]').click();
+	});
+
 	function getComboFilter( filters ) {
 	  var i = 0;
 	  var comboFilters = [];
@@ -313,6 +325,9 @@
 	  }
 	}
 
+	// var projectsListHeight = $('.projects-list-scroll-wrapper').height();
+	// $('.projects-list-inner').css({'max-height':projectsListHeight});
+
 	// Lazy Load with Isotope/Masonry Layout
 	$('.lazy-isotope-wrapper').each(function(){
 
@@ -356,19 +371,19 @@
 	}
 	window.onload = init();
 
-	// Light header switch Waypoint script
-	// shrinkOn = jQuery('#masthead').height();
-	//
-	// var sharewaypoint = new Waypoint({
-	// 	element: document.getElementById('init-header-change'),
-	// 	handler: function(direction) {
-	// 		jQuery('#masthead').toggleClass('reverse-header');
-	// 		jQuery('#masthead.reverse-header .top-bar .top-bar-left a.custom-logo-link img').attr('src','<?php bloginfo('url'); ?>/wp-content/uploads/2016/05/logo-color.svg');
-	// 		jQuery('#masthead .top-bar .top-bar-left a.custom-logo-link img').attr('src','<?php bloginfo('url'); ?>/wp-content/uploads/2016/04/logo.svg');
-	//
-	// 	},
-	// 	offset: shrinkOn
-	// });
+	//Light header switch Waypoint script
+	shrinkOn = jQuery('#masthead').height();
+
+	var sharewaypoint = new Waypoint({
+		element: document.getElementById('mission'),
+		handler: function(direction) {
+			jQuery('#masthead').toggleClass('reverse-header');
+			// jQuery('#masthead.reverse-header .top-bar .top-bar-left a.custom-logo-link img').attr('src','<?php bloginfo('url'); ?>/wp-content/uploads/2016/05/logo-color.svg');
+			// jQuery('#masthead .top-bar .top-bar-left a.custom-logo-link img').attr('src','<?php bloginfo('url'); ?>/wp-content/uploads/2016/04/logo.svg');
+
+		},
+		offset: shrinkOn
+	});
 
 	jQuery(function($) {
 		// Scroll to hash on click
@@ -378,8 +393,11 @@
 				console.log(target);
 	      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
 	      if (target.length) {
+					$('.top-bar-right .menu li.active').removeClass('active');
+					$(this).addClass('active');
 	        $('html, body').animate({
-	          scrollTop: target.offset().top - topScrollOffset
+	          // scrollTop: target.offset().top - topScrollOffset
+						scrollTop: target.offset().top
 	        }, 1000);
 	        return false;
 	      }
