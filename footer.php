@@ -86,7 +86,7 @@
 			// $('#preloader img').fadeIn('fast');
 			// $('#preloader .spinner').addClass('loaded');
 			// $('#preloader img').addClass('loaded');
-			$('#preloader.loaded').delay(250).slideUp(1000, function() {
+			$('#preloader.loaded').delay(250).fadeOut(1000, function() {
 				$(this).hide();
 			});
 		});
@@ -98,7 +98,7 @@
 			// $('#preloader img').fadeIn('fast');
 			// $('#preloader .spinner').addClass('loaded');
 			// $('#preloader img').addClass('loaded');
-			$('#preloader.loaded').delay(250).slideUp(1000, function() {
+			$('#preloader.loaded').delay(250).fadeOut(1000, function() {
 				$(this).hide();
 			});
 
@@ -361,29 +361,62 @@
         shrinkOn = jQuery('#masthead').height(),
         header = document.querySelector("body");
       if (distanceY > shrinkOn) {
-        classie.add(header,"shrink-logo");
+        classie.add(header,"darken-header");
       } else {
-        if (classie.has(header,"shrink-logo")) {
-          classie.remove(header,"shrink-logo");
+        if (classie.has(header,"darken-header")) {
+          classie.remove(header,"darken-header");
         }
       }
   	});
 	}
 	window.onload = init();
 
-	//Light header switch Waypoint script
-	shrinkOn = jQuery('#masthead').height();
-
-	var sharewaypoint = new Waypoint({
-		element: document.getElementById('mission'),
-		handler: function(direction) {
-			jQuery('#masthead').toggleClass('reverse-header');
-			// jQuery('#masthead.reverse-header .top-bar .top-bar-left a.custom-logo-link img').attr('src','<?php bloginfo('url'); ?>/wp-content/uploads/2016/05/logo-color.svg');
-			// jQuery('#masthead .top-bar .top-bar-left a.custom-logo-link img').attr('src','<?php bloginfo('url'); ?>/wp-content/uploads/2016/04/logo.svg');
-
-		},
-		offset: shrinkOn
+	$('.bs-carousel').slick({
+  dots: false,
+  infinite: false,
+  speed: 300,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+	arrows: true,
+	prevArrow: '<button aria-hidden="true" role="presentation" type="button" class="slick-prev"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/prev-arrow.svg" alt="Previous Arrow" width="20" /></button>',
+	nextArrow: '<button aria-hidden="true" role="presentation" type="button" class="slick-next"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/next-arrow.svg" alt="Next Arrow" width="20" /></button>',
+  responsive: [{
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        infinite: true,
+      }
+    },{
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1
+      }
+    },{
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }]
 	});
+
+	;( function( $ ) {
+		$( '.swipebox' ).swipebox( {
+			useCSS : true, // false will force the use of jQuery for animations
+			useSVG : true, // false to force the use of png for buttons
+			initialIndexOnArray : 0, // which image index to init when a array is passed
+			hideCloseButtonOnMobile : false, // true will hide the close button on mobile devices
+			removeBarsOnMobile : true, // false will show top bar on mobile devices
+			hideBarsDelay : 3000000, // delay before hiding bars on desktop
+			videoMaxWidth : 1140, // videos max width
+			beforeOpen: function() {}, // called before opening
+			afterOpen: null, // called after opening
+			afterClose: function() {}, // called after closing
+			loopAtEnd: false // true will return to the first image after the last image is reached
+		} );
+	} )( jQuery );
 
 	jQuery(function($) {
 		// Scroll to hash on click
@@ -404,6 +437,18 @@
 	    }
 	  });
 
+	});
+
+	//Light header switch Waypoint script
+	shrinkOn = jQuery('#masthead').height() * 2;
+
+	var sharewaypoint = new Waypoint({
+		element: document.getElementById('mission'),
+		handler: function(direction) {
+			jQuery('#masthead').toggleClass('reverse-header');
+			jQuery('.down-arrow').removeClass('animated');
+		},
+		offset: shrinkOn
 	});
 
 </script>

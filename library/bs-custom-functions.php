@@ -22,6 +22,19 @@ function my_body_classes($c) {
 }
 add_filter('body_class','my_body_classes');
 
+// Add not-home to body class
+function add_not_home_body_class($classes) {
+    if( !is_front_page() ) $classes[] = 'not-home';
+    return $classes;
+}
+add_filter('body_class','add_not_home_body_class');
+
+
+// Enqueue Scripts
+function bs_scripts_enqueue() {
+    wp_enqueue_script( 'slick', get_stylesheet_directory_uri() . '/assets/javascript/slick.min.js', array( 'jquery' ) );
+}
+add_action( 'wp_enqueue_scripts', 'bs_scripts_enqueue' );
 
 // Shortcodes in widget
 add_filter('widget_text', 'do_shortcode');

@@ -39,8 +39,8 @@
 			</div>
 
 			<div id="options">
-				<h3>Filter by Area of Impact</h3>
 				<div class="project-list-filter filter-projects-impact option-set filter" data-group="impact">
+					<h3>Filter by Area of Impact</h3>
 		      <?php
 		        foreach ($tax_impact_terms as $tax_impact_term) {
 		          $filter_impact_text .= '<input id="' . $tax_impact_term->slug . '" type="checkbox" title="' . sprintf( __( "View all posts in %s" ), $tax_impact_term->name ) . '" value=".' . $tax_impact_term->slug . '" ' . '/ ><label for="' . $tax_impact_term->slug . '"><span>' . $tax_impact_term->name.'</span></label><br>';
@@ -51,8 +51,8 @@
 		      ?>
 		  	</div>
 
-				<h3>Category</h3>
 				<div class="project-list-filter filter-projects-category option-set filter" data-group="category">
+					<h3>Category</h3>
 		      <?php
 		        foreach ($tax_cat_terms as $tax_cat_term) {
 		          $filter_cat_text .= '<input id="' . $tax_cat_term->slug . '" type="checkbox" title="' . sprintf( __( "View all posts in %s" ), $tax_cat_term->name ) . '" value=".' . $tax_cat_term->slug . '" ' . '/ ><label for="' . $tax_cat_term->slug . '"><span>' . $tax_cat_term->name.'</span></label><br>';
@@ -63,9 +63,8 @@
 		      ?>
 		  	</div>
 
-
-				<h3>Status</h3>
 				<div class="project-list-filter filter-projects-status option-set filter" data-group="status">
+					<h3>Status</h3>
 		      <?php
 		        foreach ($tax_status_terms as $tax_status_term) {
 		          $filter_status_text .= '<input id="' . $tax_status_term->slug . '" type="checkbox" title="' . sprintf( __( "View all posts in %s" ), $tax_status_term->name ) . '" value=".' . $tax_status_term->slug . '" ' . '/ ><label for="' . $tax_status_term->slug . '"><span>' . $tax_status_term->name.'</span></label><br>';
@@ -114,7 +113,7 @@
 						</div>
 					</div>
 					<div class="single-project-right">
-						<img class="lazyload" data-sizes="auto" data-src="<?php echo $image_url[0]; ?>" />
+						<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><img class="lazyload" data-sizes="auto" data-src="<?php echo $image_url[0]; ?>" /></a>
 					</div>
 				</div>
 
