@@ -684,7 +684,7 @@ body.filters-open {
     background: $black;
   }
   header#masthead {
-    background: rgba(255,255,255,.95);
+    background: $white;
   }
   .top-bar .top-bar-right .menu .dropdown {
     background: rgba(255,255,255,.95);
@@ -1163,12 +1163,12 @@ body.not-home.filters-open header#masthead {
 // }
 div#projects-list {
   width: 100%;
-  height: calc(90% - 114px);
+  height: calc(90% - 82px);
   background: #FFF;
   display: block;
   position: fixed;
   overflow: auto;
-  top: 114px;
+  top: 82px;
   padding-top: 0;
   border-bottom: 20px solid #FFF;
   transform: translateY(-100%);
@@ -1176,6 +1176,10 @@ div#projects-list {
   box-shadow: 0 7px 5px -4px #666;
   transition: all .5s ease-out;
   box-sizing: border-box;
+}
+.admin-bar div#projects-list {
+  height: calc(90% - 114px);
+  top: 114px;
 }
 div#projects-list.show-filters {
   transform: translateY(0%);
@@ -1504,6 +1508,10 @@ button.reset-all-filters:focus {
 }
 @media #{$break1024} {
   div#projects-list {
+    top: 50px;
+    height:calc(90% - 50px);
+  }
+  .admin-bar div#projects-list {
     top: 86px;
     height: calc(90% - 86px);
   }
