@@ -2,12 +2,12 @@
 	$port_args = array( 'post_type' => 'portfolio', 'posts_per_page' => -1 );
 	$port_loop = new WP_Query( $port_args );
 ?>
+
 <div class="projects-list-wrapper">
 
-	<div class="close-project-filters"><a href="#" title="Close Filters Overlay"><span class="x-close">x</span><span class="x-alt-close"></span></a></div>
-
 	<div class="projects-list-scroll-wrapper">
-		<div class="projects-list-filters">
+		<button class="toggle-all-filters-btn bs-btn bs-btn-teal"><a class="toggle-all-filters" href="#">Filters</a></button>
+		<div id="projects-list-filters" class="projects-list-filters">
 			<?php
 				$tax_impact = 'portfolio-impact';
 				$tax_impact_terms = get_terms($tax_impact);

@@ -19,7 +19,7 @@
 		<?php wp_head(); ?>
 		<script src="https://use.typekit.net/zig3dkj.js"></script>
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
-		<link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Raleway:400,700,900" rel="stylesheet">
 
 		<link rel="icon" sizes="192x192" href="<?php bloginfo('url'); ?>/wp-content/uploads/2016/08/favicon.png">
 		<?php if( get_theme_mod('analytics')): ?><?php echo get_theme_mod('analytics','default'); ?><?php endif; ?>
@@ -59,6 +59,8 @@
 	<?php endif; ?>
 
 	<?php do_action( 'foundationpress_layout_start' ); ?>
+
+	<div class="close-project-filters"><a href="#" title="Close Filters Overlay"><span class="x-close">x</span><span class="x-alt-close"></span></a></div>
 
 	<div id="projects-list">
 		<?php get_template_part( 'template-parts/projects-list' ); ?>

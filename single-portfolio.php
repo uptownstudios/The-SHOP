@@ -8,7 +8,7 @@
 
 get_header(); ?>
 
-<div id="single-post" class="page-full-width max-width-sixteen-hundred no-sidebar" role="main">
+<div id="single-post" class="page-full-width max-width-eleven-seventy no-sidebar" role="main">
 
 <?php do_action( 'foundationpress_before_content' ); ?>
 <?php while ( have_posts() ) : the_post(); ?>

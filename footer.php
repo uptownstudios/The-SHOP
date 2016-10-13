@@ -378,8 +378,8 @@
   slidesToShow: 3,
   slidesToScroll: 1,
 	arrows: true,
-	prevArrow: '<button aria-hidden="true" role="presentation" type="button" class="slick-prev"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/prev-arrow.svg" alt="Previous Arrow" width="20" /></button>',
-	nextArrow: '<button aria-hidden="true" role="presentation" type="button" class="slick-next"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/next-arrow.svg" alt="Next Arrow" width="20" /></button>',
+	prevArrow: '<button aria-hidden="true" role="presentation" type="button" class="slick-prev"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/prev-arrow-white.svg" alt="Previous Arrow" width="20" /></button>',
+	nextArrow: '<button aria-hidden="true" role="presentation" type="button" class="slick-next"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/next-arrow-white.svg" alt="Next Arrow" width="20" /></button>',
   responsive: [{
       breakpoint: 1024,
       settings: {
@@ -439,19 +439,31 @@
 
 	});
 
-	//Light header switch Waypoint script
-	shrinkOn = jQuery('#masthead').height() * 2;
-
-	var sharewaypoint = new Waypoint({
-		element: document.getElementById('mission'),
-		handler: function(direction) {
-			jQuery('#masthead').toggleClass('reverse-header');
-			jQuery('.down-arrow').removeClass('animated');
-		},
-		offset: shrinkOn
+	jQuery(document).ready(function($) {
+		$('.toggle-all-filters').click(function() {
+			$('#projects-list-filters').slideToggle('slow');
+			$(this).toggleClass('active');
+		});
 	});
 
 </script>
+
+<?php if( is_page('home') ) : ?>
+<script type="text/javascript">
+//Light header switch Waypoint script
+shrinkOn = jQuery('#masthead').height() * 2;
+
+var sharewaypoint = new Waypoint({
+	element: document.getElementById('show-small-logo'),
+	handler: function(direction) {
+		jQuery('#masthead').toggleClass('reverse-header');
+		jQuery('.down-arrow').removeClass('animated');
+	},
+	//offset: shrinkOn
+	offset: '40%'
+});
+</script>
+<?php endif; ?>
 
 <?php do_action( 'foundationpress_before_closing_body' ); ?>
 <script id="__bs_script__">//<![CDATA[document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.2.12.3.js'><\/script>".replace("HOST", location.hostname));

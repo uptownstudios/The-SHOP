@@ -14,6 +14,7 @@ $break1024to640: "only screen and (max-width: 64em) and (min-width: 40em)";
 $break951: "only screen and (max-width: 59.4375em)";
 $break951to601: "only screen and (max-width: 59.4375em) and (min-width: 37.5625em)";
 $break800: "only screen and (max-width: 50em)";
+$break782: "only screen and (max-width: 48.87em)";
 $break767: "only screen and (max-width: 47.9375em)";
 $break640: "only screen and (max-width: 40em)";
 $break639: "only screen and (max-width: 39.9375em)";
@@ -137,52 +138,22 @@ body.modal-active {
   overflow: hidden;
 }
 .bs-btn {
-  font-size: 1.125rem;
-  font-weight: 700 !important;
+  padding: 6px 10px;
+  font-weight: 700;
+  margin: 3px 0 0 0;
   line-height: 1;
-  display: inline-block;
-  padding: 8px 20px;
-  border: 2px solid $black;
-  background: $white;
+  cursor: pointer;
+  font-size: .9rem;
+  font-family: "roboto-condensed", "Helvetica Neue", "Arial Narrow", Helvetica, Arial;
   text-transform: uppercase;
+  color: #000000;
+  background: #00FFFF;
+  transition: all 0.2s ease-out;
   @include transition(all);
-}
-.bs-btn.bs-btn-white {
-  background: $white;
-  border: 2px solid $white;
-}
-.bs-btn.bs-btn-white:hover,
-.bs-btn.bs-btn-white:focus {
-  background: $black;
-  border: 2px solid $black;
-  color: $white;
-}
-.bs-btn.bs-btn-clear {
-  background: $white;
-  border: 2px solid $black;
-}
-.bs-btn.bs-btn-clear:hover,
-.bs-btn.bs-btn-clear:focus {
-  background: $black;
-  border: 2px solid $black;
-  color: $white;
-}
-.bs-btn.bs-btn-black {
-  background: $black;
-  border: 2px solid $black;
-  color: $white;
-}
-.bs-btn.bs-btn-black:hover,
-.bs-btn.bs-btn-black:focus {
-  background: $white;
-  border: 2px solid $black;
-  color: $black;
 }
 .bs-btn:hover,
 .bs-btn:focus {
-  background: $black;
-  border: 2px solid $black;
-  color: $white;
+  background: $ltgray;
 }
 .bs-btns-wrapper {
   text-align: left;
@@ -195,7 +166,7 @@ body.modal-active {
 
 }
 .bs-isotope-wrapper {
-  max-width: 1600px;
+  max-width: 1170px;
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
@@ -407,7 +378,8 @@ header#masthead {
 .top-bar {
 display: table;
 width: 100%;
-max-width: 100rem;
+//max-width: 100rem;
+max-width: 1170px;
 margin: 0 auto;
 background: none;
   ul {
@@ -464,7 +436,7 @@ background: none;
         position: relative;
         display: block;
         height: 82px !important;
-        padding: 0 10px 0 30px !important;
+        padding: 0 10px 0 35px !important;
         font: 700 1.5rem/82px $robotocon;
         text-transform: uppercase;
         box-sizing: content-box !important;
@@ -482,6 +454,7 @@ background: none;
         line-height: 77px;
         color: $white;
         font-size: 30px;
+        text-align: right;
       }
       .projects a:after {
         content: '';
@@ -875,7 +848,7 @@ body.mobile .home-hero-wrapper {
   .mission-statement {
     width: 100%;
     padding-left: 25%;
-    max-width: 1600px;
+    max-width: 1170px;
     margin: 0 auto;
 
     h2 {
@@ -937,6 +910,7 @@ body.mobile .home-hero-wrapper {
   .section-heading h2 {
     font-size: 4rem;
     font-family: $raleway;
+    font-weight: 900;
   }
   .home-sections .vc_row {
     max-width: 1024px;
@@ -966,8 +940,9 @@ body.mobile .home-hero-wrapper {
     border-left: 0;
   }
   blockquote p {
-    font-family: Raleway;
+    font-family: $raleway;
     font-style: italic;
+    font-weight: 900;
     color: #000;
     padding: 0 !important;
   }
@@ -1060,6 +1035,8 @@ body.mobile .home-hero-wrapper {
 }
 #swipebox-title {
   text-align: left !important;
+  font-family: $robotocon !important;
+  text-transform: uppercase !important;
 }
 #swipebox-top-bar {
   top: 0 !important;
@@ -1081,7 +1058,7 @@ body.mobile .home-hero-wrapper {
 }
 #swipebox-slider .slide img {
   vertical-align: top !important;
-  margin-top: 50px;
+  margin-top: 80px !important;
 }
 #swipebox-close {
   right: 50% !important;
@@ -1171,25 +1148,32 @@ div#page.archives-wrapper {
 
 
 /**** 5. PORTFOLIO PAGE STYLES ****/
-.admin-bar div#projects-list {
-    margin-top: 46px;
+.top-bar-right {
+  transition: all .4s ease-out;
 }
+.filters-open .top-bar-right {
+  transform: translateY(-100%);
+}
+.filters-open header#masthead.reverse-header,
+body.not-home.filters-open header#masthead {
+  background: $white !important;
+}
+// .admin-bar div#projects-list {
+//     margin-top: 46px;
+// }
 div#projects-list {
   width: 100%;
-  height: 90%;
+  height: calc(90% - 114px);
   background: #FFF;
   display: block;
   position: fixed;
   overflow: auto;
-  top: 0;
-  padding-top: 114px;
+  top: 114px;
+  padding-top: 0;
   border-bottom: 20px solid #FFF;
   transform: translateY(-100%);
   opacity: 0;
-  box-shadow: 0 0 10px #000;
-  -webkit-transition: all .5s ease-out;
-  -moz-transition: all .5s ease-out;
-  -o-transition: all .5s ease-out;
+  box-shadow: 0 7px 5px -4px #666;
   transition: all .5s ease-out;
   box-sizing: border-box;
 }
@@ -1201,7 +1185,8 @@ div#projects-list.show-filters {
 .projects-list-wrapper {
   display: block;
   width: 100%;
-  max-width: 1024px;
+  // max-width: 1024px;
+  max-width: 1170px;
   margin: 0 auto;
   padding-top: 100px;
   height: 100%;
@@ -1211,28 +1196,50 @@ div#projects-list.show-filters {
     position: absolute;
   }
 
-  .close-project-filters {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    padding: 5px;
-    background: none;
-    @include transition(all);
-  }
-  .close-project-filters a {
+  // .close-project-filters {
+  //   position: absolute;
+  //   right: 10px;
+  //   top: 10px;
+  //   padding: 5px;
+  //   background: none;
+  //   @include transition(all);
+  // }
+
+}
+
+.close-project-filters {
+  z-index: 9999;
+  position: fixed;
+  width: 100%;
+  max-width: 1170px;
+  top: -100px;
+  left: calc(50% - 10px);
+  background: none;
+  transform: translateX(-50%);
+  transition: all .5s ease-out;
+
+  a {
     font-family: $raleway;
+    font-weight: 900;
+    display: block;
+    padding: 5px;
+    z-index: 99;
+    float: right;
+    position: relative;
+    @include transition(background);
   }
-  .close-project-filters:hover,
-  .close-project-filters:focus {
+  a:hover,
+  a:focus {
     background: #FF0000;
   }
 
-}
-
-span.x-alt-close {
-  display: none;
-}
-@supports(display: flex) {
+  span.x-alt-close {
+    display: none;
+  }
+  .close-project-filters a:hover span,
+  .close-project-filters a:focus span {
+    color: $white;
+  }
   span.x-close {
     display: none;
   }
@@ -1261,17 +1268,26 @@ span.x-alt-close {
     left: 1px;
     position: absolute;
   }
+  a:hover span.x-alt-close:before,
+  a:hover span.x-alt-close:after,
+  a:focus span.x-alt-close:before,
+  a:focus span.x-alt-close:after {
+    background: $white !important;
+  }
+
 }
-.close-project-filters:hover span,
-.close-project-filters:focus span {
-  color: $white;
+.filters-open .close-project-filters {
+  top: 31px;
 }
-.close-project-filters:hover span:before,
-.close-project-filters:hover span:after,
-.close-project-filters:focus span:before,
-.close-project-filters:focus span:after {
-  background: $white;
+.admin-bar.filters-open .close-project-filters {
+  top: 53px;
 }
+@media #{$break782} {
+  .admin-bar.filters-open .close-project-filters {
+    top: 77px;
+  }
+}
+
 .projects-list-filters {
   width: 21.48%;
   height: 100%;
@@ -1279,6 +1295,17 @@ span.x-alt-close {
   padding-right: 40px;
   position: absolute;
   z-index: 99;
+}
+button.toggle-all-filters-btn {
+  display: none;
+  margin-bottom: 10px;
+}
+a.toggle-all-filters:before {
+  content: 'Show';
+  margin-right: 5px;
+}
+a.toggle-all-filters.active:before {
+  content: 'Hide';
 }
 .projects-list-scroll-wrapper {
   overflow: hidden;
@@ -1429,7 +1456,7 @@ button.reset-all-filters:focus {
   h2, a {
     font-size: 2rem;
     font-family: $raleway;
-    font-weight: 700;
+    font-weight: 900;
   }
 
   .impact-list ul {
@@ -1477,13 +1504,27 @@ button.reset-all-filters:focus {
 }
 @media #{$break1024} {
   div#projects-list {
-    padding-top: 70px;
+    top: 86px;
+    height: calc(90% - 86px);
+  }
+  .filters-open .close-project-filters {
+    top: 17px;
+  }
+  .admin-bar.filters-open .close-project-filters {
+    top: 39px;
+  }
+  .projects-list-wrapper {
+    padding-top: 30px;
+  }
+  .mobile button.toggle-all-filters-btn,
+  .mobile a.toggle-all-filters {
+    display: block !important;
+  }
+  .mobile .projects-list-filters {
+    display: none;
   }
 }
 @media #{$break951} {
-  .projects-list-wrapper {
-    padding-top: 40px;
-  }
   .projects-list-scroll-wrapper {
     overflow: visible;
   }
@@ -1519,10 +1560,19 @@ button.reset-all-filters:focus {
     float: right;
   }
 }
+@media #{$break782} {
+  .admin-bar.filters-open .close-project-filters {
+    top: 53px;
+  }
+  .filters-open .close-project-filters {
+    top: 7px;
+  }
+}
 @media #{$break639} {
   div#projects-list {
-    padding-top: 45px;
+    // padding-top: 45px;
   }
+
 }
 @media #{$break600} {
   div#sorts {
@@ -1562,6 +1612,9 @@ button.reset-all-filters:focus {
 }
 
 /* 5a. Single Portfolio Page Styles */
+.not-home .top-bar .top-bar-right .menu > li.opens-left > .is-dropdown-submenu {
+  background: rgba(255,255,255,.95) !important;
+}
 .not-home header#masthead + section.container {
   margin-top: 82px;
 }
@@ -1628,6 +1681,14 @@ button.reset-all-filters:focus {
   }
 
 }
+.single-portfolio {
+
+  .portfolio-meta-info .portfolio-meta-chunk ul li,
+  .portfolio-meta-info .portfolio-meta-chunk p {
+    cursor: text;
+  }
+
+}
 .portfolio-description {
   width: 78.52%;
   padding-left: 35px;
@@ -1642,12 +1703,13 @@ button.reset-all-filters:focus {
   }
   h1.entry-title {
     font-family: $raleway;
+    font-weight: 900;
     font-size: 4rem !important;
   }
   .portfolio-teaser p {
     font-size: 2rem;
     font-family: $raleway;
-    font-weight: 700;
+    font-weight: 900;
     line-height: 1.4;
     margin: 0;
   }
@@ -1681,6 +1743,7 @@ button.reset-all-filters:focus {
   }
   .portfolio-content h2 {
     font-family: $raleway;
+    font-weight: 900;
   }
 
 }
@@ -1723,8 +1786,6 @@ button.reset-all-filters:focus {
 #footer-container #footer {
   max-width: 100rem;
 }
-#footer {
-}
 @media only screen and (max-width: 101.875rem) {
   #footer-container #footer {
     padding-left: .9375rem;
@@ -1739,12 +1800,12 @@ button.reset-all-filters:focus {
 }
 
 #copyright {
-  max-width: 1600px;
+  max-width: 1170px;
 
   p {
     font-weight: 300 !important;
     text-align: center;
-    font-family: $roboto;
+    font-family: $robotocon !important;
   }
 
 }
